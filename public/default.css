@@ -17,7 +17,6 @@ body::before {
   background-image: url(/assets/shuttle-mobile.svg);
   background-repeat: no-repeat;
   background-position-x: center;
-  content: "Congrats! This is a boilerplate Liftoff installation. To remove this text and modify the theme CSS, go to /custom/styles.css";
   text-align: center;
   padding-top: 152px;
   font-size: 16px;
