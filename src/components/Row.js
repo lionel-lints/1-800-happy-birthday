@@ -4,7 +4,7 @@ import _ from "underscore";
 
 import TextField from "./TextField";
 import Attachments from "./Attachments";
-import * as customRenderers from "../../custom/renderers";
+import { default as customRenderers } from "../../custom/renderers";
 
 const getRenderer = field => {
   const { value, name } = field;

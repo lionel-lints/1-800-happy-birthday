@@ -1,3 +1,3 @@
-// import Foo from "./Foo";
+import Voicemails from "./Voicemails.js";
 
-export default {};
+export default { Voicemails };

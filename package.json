@@ -43,6 +43,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-howler": "^5.0.0",
     "react-router-dom": "^5.0.1",
     "underscore": "^1.9.1",
     "url-pattern": "^1.0.3"
