@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 
 import Row from "./Row";
 import LinkOrAnchor from "./LinkOrAnchor";
-import Header from "./Header";
+import Header from "./Header.js";
+import NavBar from "./NavBar.js";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 
 const StyledRowPage = styled.div`
@@ -12,22 +13,21 @@ const StyledRowPage = styled.div`
   color: white;
 `;
 const RowPage = ({ rowData }) => (
-  <StyledRowPage className="row-page">
-    {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
-      <Header title={process.env.HEADER_TITLE} />
-    )}
-    <LinkOrAnchor className="nav-button" to="/">
-      Back
-    </LinkOrAnchor>
-
-    <Row
-      fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
-      rowData={rowData}
-    />
-    <LinkOrAnchor className="nav-button" to="/">
-      Back
-    </LinkOrAnchor>
-  </StyledRowPage>
+  <>
+    <NavBar />
+    <StyledRowPage className="row-page">
+      {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
+        <Header title={process.env.HEADER_TITLE} />
+      )}
+      <Row
+        fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
+        rowData={rowData}
+      />
+      <LinkOrAnchor className="nav-button" to="/">
+        Back
+      </LinkOrAnchor>
+    </StyledRowPage>
+  </>
 );
 
 RowPage.propTypes = {

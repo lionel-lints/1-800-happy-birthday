@@ -2,8 +2,9 @@ import React from "react";
 import _ from "underscore";
 import PropTypes from "prop-types";
 
-import LinkOrAnchor from "./LinkOrAnchor";
-import Header from "./Header";
+import LinkOrAnchor from "./LinkOrAnchor.js";
+import Header from "./Header.js";
+import NavBar from "./NavBar.js";
 import Row from "./Row";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 import CustomRenderers from "../../custom/renderers";
@@ -19,48 +20,53 @@ const Index = ({ rows, pagination }) => {
   }
 
   return (
-    <div className="index-page">
-      {/* this needs to be refactored, shouldn't have check for window here */}
-      {process.env.HEADER_TITLE && <Header title={process.env.HEADER_TITLE} />}
+    <>
+      <NavBar />
+      <div className="index-page">
+        {/* this needs to be refactored, shouldn't have check for window here */}
+        {process.env.HEADER_TITLE && (
+          <Header title={process.env.HEADER_TITLE} />
+        )}
 
-      {hero}
+        {hero}
 
-      {rows.map(row => {
-        const slugField = _.find(row.fields, field => field.name === "Slug");
-        const slug =
-          (typeof window === "undefined" && slugField && slugField.value) ||
-          row.id;
+        {rows.map(row => {
+          const slugField = _.find(row.fields, field => field.name === "Slug");
+          const slug =
+            (typeof window === "undefined" && slugField && slugField.value) ||
+            row.id;
 
-        return (
-          <LinkOrAnchor key={row.id} to={`/${slug}.html`}>
-            <Row
-              fieldsToDisplay={getFieldsToDisplay(
-                process.env.HOMEPAGE_FIELD_ORDER
-              )}
-              rowData={row}
-            />
-          </LinkOrAnchor>
-        );
-      })}
-      {pagination && (
-        <div>
-          {pagination.back ? (
-            <LinkOrAnchor className="nav-button" to={pagination.back}>
-              <span>← Previous</span>
+          return (
+            <LinkOrAnchor key={row.id} to={`/${slug}.html`}>
+              <Row
+                fieldsToDisplay={getFieldsToDisplay(
+                  process.env.HOMEPAGE_FIELD_ORDER
+                )}
+                rowData={row}
+              />
             </LinkOrAnchor>
-          ) : (
-            <div />
-          )}
-          {pagination.next ? (
-            <LinkOrAnchor className="nav-button" to={pagination.next}>
-              <span>Next →</span>
-            </LinkOrAnchor>
-          ) : (
-            <div />
-          )}
-        </div>
-      )}
-    </div>
+          );
+        })}
+        {pagination && (
+          <div>
+            {pagination.back ? (
+              <LinkOrAnchor className="nav-button" to={pagination.back}>
+                <span>← Previous</span>
+              </LinkOrAnchor>
+            ) : (
+              <div />
+            )}
+            {pagination.next ? (
+              <LinkOrAnchor className="nav-button" to={pagination.next}>
+                <span>Next →</span>
+              </LinkOrAnchor>
+            ) : (
+              <div />
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
