@@ -45,6 +45,8 @@
     "react-dom": "^16.9.0",
     "react-howler": "^5.0.0",
     "react-router-dom": "^5.0.1",
+    "styled-components": "^5.2.1",
+    "styled-reset": "^4.3.4",
     "underscore": "^1.9.1",
     "url-pattern": "^1.0.3"
   },

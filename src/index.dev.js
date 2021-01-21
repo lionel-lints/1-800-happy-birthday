@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import IndexPage from "./dev-components/IndexPage";
 import RowPage from "./dev-components/RowPage";
-import "../public/default.css";
-import "../custom/styles.css";
+
+import { Reset } from "styled-reset";
 
 ReactDOM.render(
   <Router>
+    <Reset />
     <div>
       <Route
         path="/"

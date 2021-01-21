@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Row from "./Row";
@@ -6,8 +7,12 @@ import LinkOrAnchor from "./LinkOrAnchor";
 import Header from "./Header";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 
+const StyledRowPage = styled.div`
+  background-color: black;
+  color: white;
+`;
 const RowPage = ({ rowData }) => (
-  <div className="row-page">
+  <StyledRowPage className="row-page">
     {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
       <Header title={process.env.HEADER_TITLE} />
     )}
@@ -22,7 +27,7 @@ const RowPage = ({ rowData }) => (
     <LinkOrAnchor className="nav-button" to="/">
       Back
     </LinkOrAnchor>
-  </div>
+  </StyledRowPage>
 );
 
 RowPage.propTypes = {
@@ -34,4 +39,5 @@ RowPage.propTypes = {
     )
   }).isRequired
 };
+
 export default RowPage;
