@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 import LinkOrAnchor from "./LinkOrAnchor.js";
 import Header from "./Header.js";
-import NavBar from "./NavBar.js";
 import Row from "./Row";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 import CustomRenderers from "../../custom/renderers";
@@ -21,7 +20,6 @@ const Index = ({ rows, pagination }) => {
 
   return (
     <>
-      <NavBar />
       <div className="index-page">
         {/* this needs to be refactored, shouldn't have check for window here */}
         {process.env.HEADER_TITLE && (

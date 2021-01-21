@@ -1,9 +1,18 @@
 import React from "react";
 import Airtable from "airtable";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import Row from "../components/RowPage";
+import NavBar from "../components/NavBar.js";
 import formatAirtableRowData from "../utils/formatAirtableRowData";
+
+const StyledRowPage = styled.div`
+  background-color: black;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+`;
 
 export default class RowPage extends React.Component {
   constructor(props) {
@@ -33,7 +42,12 @@ export default class RowPage extends React.Component {
 
   render() {
     const { row } = this.state;
-    return row ? <Row rowData={row} /> : <div />;
+    return (
+      <StyledRowPage>
+        <NavBar />
+        {row ? <Row rowData={row} /> : null}
+      </StyledRowPage>
+    );
   }
 }
 

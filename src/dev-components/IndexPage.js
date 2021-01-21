@@ -2,9 +2,18 @@ import React from "react";
 import Airtable from "airtable";
 import PropTypes from "prop-types";
 import _ from "underscore";
+import styled from "styled-components";
 
+import NavBar from "../components/NavBar.js";
 import Index from "../components/Index";
 import tableHasPublishedColumn from "../utils/tableHasPublishedColumn";
+
+const StyledIndexPage = styled.div`
+  background-color: black;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+`;
 
 export default class IndexPage extends React.Component {
   constructor(props) {
@@ -106,12 +115,13 @@ export default class IndexPage extends React.Component {
     const { rows, pagination } = this.state;
     const { currentPage } = this.props;
 
-    return rows ? (
-      <div>
-        <Index rows={rows[currentPage - 1]} pagination={pagination} />
-      </div>
-    ) : (
-      <div />
+    return (
+      <StyledIndexPage>
+        <NavBar />
+        {rows ? (
+          <Index rows={rows[currentPage - 1]} pagination={pagination} />
+        ) : null}
+      </StyledIndexPage>
     );
   }
 }

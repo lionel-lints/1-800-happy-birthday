@@ -13,21 +13,18 @@ const StyledRowPage = styled.div`
   color: white;
 `;
 const RowPage = ({ rowData }) => (
-  <>
-    <NavBar />
-    <StyledRowPage className="row-page">
-      {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
-        <Header title={process.env.HEADER_TITLE} />
-      )}
-      <Row
-        fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
-        rowData={rowData}
-      />
-      <LinkOrAnchor className="nav-button" to="/">
-        Back
-      </LinkOrAnchor>
-    </StyledRowPage>
-  </>
+  <StyledRowPage className="row-page">
+    {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
+      <Header title={process.env.HEADER_TITLE} />
+    )}
+    <Row
+      fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
+      rowData={rowData}
+    />
+    <LinkOrAnchor className="nav-button" to="/">
+      Back
+    </LinkOrAnchor>
+  </StyledRowPage>
 );
 
 RowPage.propTypes = {
