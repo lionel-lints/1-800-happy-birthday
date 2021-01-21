@@ -10,24 +10,9 @@ import CustomRenderers from "../../custom/renderers";
 import Hero from "./Hero";
 
 const Index = ({ rows, pagination }) => {
-  let hero;
-
-  if (typeof CustomRenderers.LiftoffHero === "undefined") {
-    hero = <Hero siteDescription={process.env.SITE_DESCRIPTION} />;
-  } else {
-    hero = <CustomRenderers.LiftoffHero />;
-  }
-
   return (
     <>
       <div className="index-page">
-        {/* this needs to be refactored, shouldn't have check for window here */}
-        {process.env.HEADER_TITLE && (
-          <Header title={process.env.HEADER_TITLE} />
-        )}
-
-        {hero}
-
         {rows.map(row => {
           const slugField = _.find(row.fields, field => field.name === "Slug");
           const slug =
