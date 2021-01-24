@@ -4,7 +4,10 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 import Header from "./Header.js";
+import LanguageButton from "./LanguageButton.js";
+import { LanguageContextConsumer } from "./LanguageContext.js";
 
+import { navBar } from "../../assets/locales/data.json";
 const StyledNav = styled.section`
   width: 100%;
   height: 30vh;
@@ -33,16 +36,26 @@ const StyledSocialLinks = styled.div``;
 
 const NavBar = () => {
   return (
-    <StyledNav>
-      <Header title={"1 800 Happy Birthday"} />
-      <div>
-        <StyledLink to="/about">About</StyledLink>
-        <StyledLink exact to="/">
-          Birthdays
-        </StyledLink>
-        <StyledLink to="/contact">Contact</StyledLink>
-      </div>
-    </StyledNav>
+    <LanguageContextConsumer>
+      {context => (
+        <StyledNav>
+          <div>
+            <LanguageButton language={"English"} />
+            <LanguageButton language={"Español"} />
+          </div>
+          <Header title={"1 800 Happy Birthday"} />
+          <div>
+            <StyledLink to="/about">{navBar.about[context.lang]}</StyledLink>
+            <StyledLink exact to="/">
+              {navBar.birthday[context.lang]}
+            </StyledLink>
+            <StyledLink to="/contact">
+              {navBar.contact[context.lang]}
+            </StyledLink>
+          </div>
+        </StyledNav>
+      )}
+    </LanguageContextConsumer>
   );
 };
 

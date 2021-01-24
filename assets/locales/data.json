@@ -1,0 +1,16 @@
+{
+  "navBar": {
+    "about": {
+      "en": "about",
+      "es": "información"
+    },
+    "birthday": {
+      "en": "birthdays",
+      "es": "cumpleaños"
+    },
+    "contact": {
+      "en": "contact",
+      "es": "contacto"
+    }
+  }
+}
