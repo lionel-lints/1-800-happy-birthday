@@ -7,11 +7,11 @@ import RowPage from "./dev-components/RowPage.js";
 import AboutPage from "./dev-components/AboutPage.js";
 import ContactPage from "./dev-components/ContactPage.js";
 
-import { Reset } from "styled-reset";
+import GlobalStyleReset from "./components/GlobalStyleReset.js";
 
 ReactDOM.render(
   <Router>
-    <Reset />
+    <GlobalStyleReset />
     <div>
       <Route
         path="/"

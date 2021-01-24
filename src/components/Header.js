@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import LinkOrAnchor from "./LinkOrAnchor";
-
-const Header = ({ title }) => (
-  <div className="header">
-    <LinkOrAnchor className="header-link" to="/">
-      <h1>{title}</h1>
-    </LinkOrAnchor>
-  </div>
-);
+const StyledHeader = styled.h1`
+  font-family: BradleyDisplay;
+  font-size: 100px;
+  width: 100%;
+  text-align: center;
+  height: 15vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+`;
+const Header = ({ title }) => <StyledHeader>{title}</StyledHeader>;
 
 Header.propTypes = {
   title: PropTypes.string
