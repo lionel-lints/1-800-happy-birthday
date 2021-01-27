@@ -3,11 +3,10 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 
 import LinkOrAnchor from "./LinkOrAnchor.js";
-import { Header } from "@/modules/_common";
+import { Header, Hero } from "@/modules/_common";
 import Row from "./Row";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 import CustomRenderers from "../../custom/renderers";
-import Hero from "./Hero";
 
 const Index = ({ rows, pagination }) => {
   return (
