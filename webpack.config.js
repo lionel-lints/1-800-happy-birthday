@@ -25,10 +25,20 @@ module.exports = {
   mode: "development",
   module: {
     rules: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(ttf|woff|woff2)$/,
+        use: {
+          loader: "url-loader"
+        }
       }
     ]
   },

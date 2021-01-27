@@ -7,7 +7,7 @@ import Header from "./Header.js";
 import LanguageButton from "./LanguageButton.js";
 import { LanguageContextConsumer } from "./LanguageContext.js";
 
-import { navBar } from "../../assets/locales/data.json";
+import { navBar } from "../assets/locales/data.json";
 const StyledNav = styled.section`
   width: 100%;
   height: 30vh;
