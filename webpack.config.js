@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
+const path = require("path");
 
 const trimFieldOrder = require("./src/utils/trimFieldOrder");
 
@@ -23,6 +24,11 @@ module.exports = {
   },
   entry: "./src/index.js",
   mode: "development",
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    }
+  },
   module: {
     rules: [
       {

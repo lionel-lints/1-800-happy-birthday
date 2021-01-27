@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import IndexPage from "./dev-components/IndexPage.js";
-import RowPage from "./dev-components/RowPage.js";
+import BirthdayPage from "@/modules/birthday/BirthdayPage.js";
 import AboutPage from "./dev-components/AboutPage.js";
 import ContactPage from "./dev-components/ContactPage.js";
 
@@ -22,7 +22,7 @@ ReactDOM.render(
         />
         <Route path="/about" component={AboutPage} />
         <Route path="/contact" component={ContactPage} />
-        <Route path="/:slugOrId.html" exact component={RowPage} />
+        <Route path="/:slugOrId.html" exact component={BirthdayPage} />
         <Route
           path="/page/:page.html"
           render={props => (

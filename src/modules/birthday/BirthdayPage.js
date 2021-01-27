@@ -3,9 +3,9 @@ import Airtable from "airtable";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Row from "../components/RowPage";
-import NavBar from "../components/NavBar.js";
-import formatAirtableRowData from "../utils/formatAirtableRowData";
+import Row from "@/components/RowPage";
+import NavBar from "@/components/NavBar.js";
+import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
 const StyledRowPage = styled.div`
   background-color: black;
@@ -14,7 +14,7 @@ const StyledRowPage = styled.div`
   height: 100vh;
 `;
 
-export default class RowPage extends React.Component {
+export default class BirthdayPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { row: null };
@@ -51,7 +51,7 @@ export default class RowPage extends React.Component {
   }
 }
 
-RowPage.propTypes = {
+BirthdayPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       slugOrId: PropTypes.string
