@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import IndexPage from "./dev-components/IndexPage.js";
+import IndexPage from "@/modules/birthdays/IndexPage.js";
 import BirthdayPage from "@/modules/birthday/BirthdayPage.js";
-import AboutPage from "./dev-components/AboutPage.js";
-import ContactPage from "./dev-components/ContactPage.js";
+import AboutPage from "@/modules/about/AboutPage.js";
+import ContactPage from "@/modules/contact/ContactPage.js";
 
-import GlobalStyleReset from "./components/GlobalStyleReset.js";
-import { LanguageContextProvider } from "./components/LanguageContext.js";
+import GlobalStyleReset from "@/components/GlobalStyleReset.js";
+import { LanguageContextProvider } from "@/components/LanguageContext.js";
 
 ReactDOM.render(
   <Router>

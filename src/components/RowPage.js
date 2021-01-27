@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Row from "./Row";
 import LinkOrAnchor from "./LinkOrAnchor";
 import Header from "./Header.js";
-import NavBar from "./NavBar.js";
+import { NavBar } from "@/modules/_common";
 import getFieldsToDisplay from "../utils/getFieldsToDisplay";
 
 const StyledRowPage = styled.div`

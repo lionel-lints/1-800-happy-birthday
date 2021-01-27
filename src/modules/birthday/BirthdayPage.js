@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Row from "@/components/RowPage";
-import NavBar from "@/components/NavBar.js";
+import { NavBar } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
 const StyledRowPage = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import NavBar from "../components/NavBar.js";
+import { NavBar } from "@/modules/_common";
 
 const StyledContactPage = styled.div`
   background-color: black;

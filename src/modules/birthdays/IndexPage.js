@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import NavBar from "../components/NavBar.js";
-import Index from "../components/Index";
-import tableHasPublishedColumn from "../utils/tableHasPublishedColumn";
+import { NavBar } from "@/modules/_common";
+import Index from "@/components/Index";
+import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
 const StyledIndexPage = styled.div`
   background-color: black;
