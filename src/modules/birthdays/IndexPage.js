@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import { NavBar } from "@/modules/_common";
+import { NavBar, Hero } from "@/modules/_common";
 import Index from "@/components/Index";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
@@ -118,6 +118,7 @@ export default class IndexPage extends React.Component {
     return (
       <StyledIndexPage>
         <NavBar />
+        <Hero />
         {rows ? (
           <Index rows={rows[currentPage - 1]} pagination={pagination} />
         ) : null}

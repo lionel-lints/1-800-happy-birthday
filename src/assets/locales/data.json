@@ -12,5 +12,13 @@
       "en": "Contact",
       "es": "Contacto"
     }
+  },
+  "hero": {
+    "en": "Voicemails for Lives Lost",
+    "es": "Correo de Voz por las Vidas Perdidas"
+  },
+  "blurb": {
+    "en": "1800 Happy Birthday is a voicemail project created to honor the black and brown victims of police killings and systemic racism by allowing people to leave and listen to voicemails left for the victims on their birthday.",
+    "es": "1800 Happy Birthday es un proyecto de correo de voz creado para honrar a las víctimas negras y morenas de asesinatos policiales y racismo sistémico al permitir que las personas se vayan y escuchen los mensajes de voz que se les dejaron a las víctimas en su cumpleaños."
   }
 }

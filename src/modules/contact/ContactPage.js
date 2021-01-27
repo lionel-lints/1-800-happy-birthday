@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { NavBar } from "@/modules/_common";
+import { NavBar, Hero } from "@/modules/_common";
 
 const StyledContactPage = styled.div`
   background-color: black;
@@ -13,6 +13,7 @@ const StyledContactPage = styled.div`
 const ContactPage = () => (
   <StyledContactPage>
     <NavBar />
+    <Hero />
     <h1>The CONTACT page</h1>
   </StyledContactPage>
 );

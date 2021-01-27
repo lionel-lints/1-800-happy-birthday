@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Row from "@/components/RowPage";
-import { NavBar } from "@/modules/_common";
+import { NavBar, Hero } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
 const StyledRowPage = styled.div`
@@ -45,6 +45,7 @@ export default class BirthdayPage extends React.Component {
     return (
       <StyledRowPage>
         <NavBar />
+        <Hero />
         {row ? <Row rowData={row} /> : null}
       </StyledRowPage>
     );

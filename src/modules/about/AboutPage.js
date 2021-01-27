@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import NavBar from "@/modules/_common/NavBar.js";
+import { NavBar, Hero, Blurb } from "@/modules/_common";
 
 const StyledAboutPage = styled.div`
   background-color: black;
@@ -14,7 +14,8 @@ const StyledAboutPage = styled.div`
 const AboutPage = () => (
   <StyledAboutPage>
     <NavBar />
-    <h1>The ABOUT page</h1>
+    <Hero />
+    <Blurb />
   </StyledAboutPage>
 );
 

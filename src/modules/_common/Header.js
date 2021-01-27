@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledHeader = styled.h1`
   font-family: BradleyDisplay;
-  font-size: 100px;
+  font-size: 120px;
   width: 100%;
   text-align: center;
   height: 15vh;

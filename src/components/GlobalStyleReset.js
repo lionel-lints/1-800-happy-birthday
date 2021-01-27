@@ -9,8 +9,29 @@ import BradleySmall from "../assets/fonts/BradleyDJR-Small.ttf";
 import BradleyVariable from "../assets/fonts/BradleyDJRVariable-VF.ttf";
 import PinionScript from "../assets/fonts/PinyonScript-Regular.ttf";
 
+import MontserratExtraBold from "../assets/fonts/Montserrat-ExtraBold.ttf";
+import MontserratMedium from "../assets/fonts/Montserrat-Medium.ttf";
+
 const GlobalStyleReset = createGlobalStyle`
   ${reset}
+
+  /* Webfont: MontserratExtraBold */
+  @font-face {
+    font-family: 'MontserratExtraBold';
+    src: url('${MontserratExtraBold}') format('truetype'); /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Webfont: MontserratMedium*/
+  @font-face {
+    font-family: 'MontserratMedium';
+    src: url('${MontserratMedium}') format('truetype'); /* Safari, Android, iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+  }
 
   /* Webfont: BradleyDJR-Display */
   @font-face {
@@ -65,6 +86,7 @@ const GlobalStyleReset = createGlobalStyle`
     font-weight: normal;
     text-rendering: optimizeLegibility;
   }
+
 `;
 
 export default GlobalStyleReset;
