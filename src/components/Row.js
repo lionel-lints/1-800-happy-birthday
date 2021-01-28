@@ -7,7 +7,7 @@ import TextField from "./TextField";
 import Attachments from "./Attachments";
 import { default as customRenderers } from "../../custom/renderers";
 
-const getRenderer = field => {
+const getRenderer = (field, ind = 0) => {
   const { value, name } = field;
   const customRendererName = name.replace(/\s/g, "");
   if (customRenderers[customRendererName]) {
@@ -16,7 +16,7 @@ const getRenderer = field => {
   }
 
   if (typeof value === "string" || typeof value === "number") {
-    return <TextField key={name} fieldName={name} data={value} />;
+    return <TextField ind={ind} key={name} fieldName={name} data={value} />;
   }
 
   if (Array.isArray(value)) {
@@ -29,7 +29,7 @@ const getRenderer = field => {
       <div key={name}>
         {value.map((string, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <TextField key={idx} fieldName={name} data={string} />
+          <TextField key={idx} ind={ind} fieldName={name} data={string} />
         ))}
       </div>
     );
@@ -38,20 +38,21 @@ const getRenderer = field => {
   return <div />;
 };
 
-const StyledRow = styled.div`
+const StyledRow = styled.span`
   font-family: MontserratExtraBold, sans-serif;
   font-size: 20px;
-  color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
-const Row = ({ rowData, fieldsToDisplay }) => {
+const Row = ({ rowData, fieldsToDisplay, ind }) => {
   const mapFields = name => {
     const field = rowData.fields.find(field => field.name === name);
-    if (field) return getRenderer(field);
+    if (field) return getRenderer(field, ind);
 
     return field;
   };
   return (
-    <StyledRow>
+    <StyledRow isEven={ind % 2 === 0}>
       {_.chain(fieldsToDisplay)
         .map(mapFields)
         .filter(renderer => !!renderer)

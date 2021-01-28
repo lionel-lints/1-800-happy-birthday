@@ -12,7 +12,7 @@ const Index = ({ rows, pagination }) => {
   return (
     <>
       <div className="index-page">
-        {rows.map(row => {
+        {rows.map((row, ind) => {
           const slugField = _.find(row.fields, field => field.name === "Slug");
           const slug =
             (typeof window === "undefined" && slugField && slugField.value) ||
@@ -25,28 +25,11 @@ const Index = ({ rows, pagination }) => {
                   process.env.HOMEPAGE_FIELD_ORDER
                 )}
                 rowData={row}
+                ind={ind}
               />
             </LinkOrAnchor>
           );
         })}
-        {pagination && (
-          <div>
-            {pagination.back ? (
-              <LinkOrAnchor className="nav-button" to={pagination.back}>
-                <span>← Previous</span>
-              </LinkOrAnchor>
-            ) : (
-              <div />
-            )}
-            {pagination.next ? (
-              <LinkOrAnchor className="nav-button" to={pagination.next}>
-                <span>Next →</span>
-              </LinkOrAnchor>
-            ) : (
-              <div />
-            )}
-          </div>
-        )}
       </div>
     </>
   );

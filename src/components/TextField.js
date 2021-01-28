@@ -1,27 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { markdown } from "markdown";
+import styled from "styled-components";
 
-import stripFieldName from "../utils/stripFieldName";
-
-const TextField = ({ fieldName, data }) => {
-  const isMarkdown =
-    process.env.MARKDOWN_FIELDS &&
-    process.env.MARKDOWN_FIELDS.split(",").includes(fieldName);
-
-  return (
-    <div className={`${stripFieldName(fieldName)} field`}>
-      <h2 className="field-name">{fieldName}</h2>
-      {isMarkdown ? (
-        <span
-          className="field-value markdown-field"
-          dangerouslySetInnerHTML={{ __html: markdown.toHTML(data) }}
-        />
-      ) : (
-        <span className="field-value">{data}</span>
-      )}
-    </div>
-  );
+const StyledSpan = styled.span`
+  text-decoration: none;
+  font-family: BradleyDisplay;
+  color: ${p => (p.isEven ? "#CCCCCC" : "#FFFFFF")};
+  outline: none;
+  font-size: 24px;
+  letter-spacing: 2px;
+`;
+const TextField = ({ data, ind }) => {
+  return <StyledSpan isEven={ind % 2 === 0}>{data}</StyledSpan>;
 };
 
 TextField.propTypes = {

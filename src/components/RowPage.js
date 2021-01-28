@@ -13,9 +13,6 @@ const StyledRowPage = styled.div`
 `;
 const RowPage = ({ rowData }) => (
   <StyledRowPage className="row-page">
-    {process.env.HEADER_TITLE && process.env.HEADER_TITLE && (
-      <Header title={process.env.HEADER_TITLE} />
-    )}
     <Row
       fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
       rowData={rowData}
