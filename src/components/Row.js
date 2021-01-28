@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "underscore";
+import styled from "styled-components";
 
 import TextField from "./TextField";
 import Attachments from "./Attachments";
@@ -37,6 +38,11 @@ const getRenderer = field => {
   return <div />;
 };
 
+const StyledRow = styled.div`
+  font-family: MontserratExtraBold, sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+`;
 const Row = ({ rowData, fieldsToDisplay }) => {
   const mapFields = name => {
     const field = rowData.fields.find(field => field.name === name);
@@ -45,12 +51,12 @@ const Row = ({ rowData, fieldsToDisplay }) => {
     return field;
   };
   return (
-    <div className="row">
+    <StyledRow>
       {_.chain(fieldsToDisplay)
         .map(mapFields)
         .filter(renderer => !!renderer)
         .value()}
-    </div>
+    </StyledRow>
   );
 };
 
