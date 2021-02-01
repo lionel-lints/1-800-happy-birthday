@@ -1,12 +1,10 @@
-# Liftoff – The Airtable CMS
+# 1-800-Happy-Birthday
 
-[Postlight](https://postlight.com)'s Liftoff is a nifty tool that lets you easily create a static website that displays content in Airtable base and style it with custom CSS. Read all about it in [this handy introduction](https://postlight.com/trackchanges/introducing-liftoff-easily-create-a-static-website-powered-by-airtable).
+This site is a simple react static depoyment for [1800-Happy-Birthday](https://www.1800happybirthday.com/)
 
 ## Quick Start
 
-This README goes pretty in depth with how to set up this project on your computer. Here are the basics in case you want to jump right in. You'll likely want to skim through other parts of this document as you go, but this will get you started!
-
-1. Create an [Airtable](https://www.airtable.com) base if you haven't already.
+1. Create an base if you haven't already.
 2. Clone this repo: `git clone git@github.com:postlight/liftoff.git`.
 3. Run `yarn install` to install dependencies.
 4. Run `yarn setup` for a walkthrough on setting environment variables.
@@ -27,23 +25,17 @@ This README goes pretty in depth with how to set up this project on your compute
    - [Markdown](#markdown)
 3. [Development](#development)
 4. [Styling](#styling)
-   - [Default classes](#default-classes)
    - [Favicon](#favicon)
 5. [Pagination](#pagination)
 6. [Custom renderers](#custom-renderers)
 7. [Build](#build)
 8. [Deploying your site](#deploying-your-site)
-9. [Example sites](#example-sites)
 
 ## Getting Started
 
 ### Cloning/downloading this repo
 
 If you're familiar with git, you can go ahead and clone this repo the normal way.
-
-If not, you can download a Zip file of this repo by clicking on the button shown here near the top of this page:
-
-![Downloading this repo](/readme-assets/git-clone.png)
 
 ### Installing Yarn
 
@@ -63,8 +55,6 @@ After the installation completes, you can then open a new terminal window (Cmd+T
 When that's done, open up another terminal window and run `yarn install`. This will download the 3rd party code this project needs in order to work.
 
 ### Environment setup
-
-This project uses environment variables to store credentials such as your Airtable API key, so we'll need to set those up before we can move onto more exciting things. Luckily, setting them up is simple.
 
 #### Setting up your environment variables
 
@@ -108,19 +98,6 @@ Out of the box, we've provided some boilerplate styling that we hope will help e
 
 Pagination is automatically implemented on any site with more than 10 posts. This makes back + next buttons available on the homepage of your site for navigating between different pages of posts.
 
-### Default classes
-
-- `.attachments`: placed on attachment-type fields
-- `.field-name`: placed on the element containing the name of each field; by default, field names are hidden
-- `.field-value`: placed on the element containing the value of each field
-- `.row-link`: placed on each row on the homepage
-- `.row`: placed on each row
-- `.header`: placed on the header
-- `.index-page` placed on an element that wraps the homepage
-- `.nav-button` placed on back/next navigation buttons
-
-Using a combination of the classes defined by your table's fields and these default classes, you should be able to accomplish just about any styling needs you have.
-
 ### Favicon
 
 You can include a [favicon](https://wikipedia.org/Favicon) for your website by putting a `favicon.ico` image file in the `/custom` directory. It must conform to favicon specifications, meaning it should be a `.ico` file and should be 16x16 or 32x32 pixels in size.
@@ -161,12 +138,6 @@ One service we often use at Postlight is [Netlify](https://netlify.com). You can
 To set your environment variables on Netlify, you will have to input them manually by going to the Setting tabs from the Netlify page for your website and clicking on "Build & deploy" in the sidebar. Now scroll down a little to the "Build environment variables" section and copy in your environment variables from your `.env` file [as set up above](#setting-up-your-environment-variables). When you've finished, it should look something like the following:
 
 ![Netlify environment variables](/readme-assets/netlify-config.png)
-
-## Example sites
-
-We've prepared two example sites for you to get an idea of what this tool makes possible. The first is a reimagining of Postlight's blog site, [Track Changes](https://postlight.com/trackchanges/articles), which you can see at https://track-changes-demo.netlify.com. This site showcases pagination, a lot of custom CSS, and markdown support, as you can see in the body of some of the articles. The second site is a fake blog for pizza enthusiasts, located at https://roni-rony-rone.netlify.com. This site highlights more custom CSS as well as custom React renderers, including one that lets you copy and paste a Google Maps embed code into your Airtable row and see it on your webpage, and another that does the same for Spotify playlist links.
-
-You can see the code we wrote for the Track Changes site [here](https://github.com/fdsimms/tc-demo-liftoff/tree/master/), and you can see the code we wrote for the pizza blog site [here](https://github.com/fdsimms/roni-rony-rone-liftoff-demo/tree/roni-rony-rone-example-site/).
 
 ## License
 
