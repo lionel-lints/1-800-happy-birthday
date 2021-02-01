@@ -4,7 +4,7 @@ import _ from "underscore";
 import styled from "styled-components";
 
 import TextField from "./TextField";
-import Attachments from "./Attachments";
+import Attachments from "@/modules/birthday/Attachments.js";
 import { default as customRenderers } from "../../custom/renderers";
 
 const getRenderer = (field, ind = 0) => {
@@ -44,6 +44,7 @@ const StyledRow = styled.span`
   margin-left: 10px;
   margin-right: 10px;
 `;
+
 const Row = ({ rowData, fieldsToDisplay, ind }) => {
   const mapFields = name => {
     const field = rowData.fields.find(field => field.name === name);

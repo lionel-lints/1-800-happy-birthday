@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { LanguageContextConsumer } from "./LanguageContext.js";
+import { LanguageContextConsumer } from "@/modules/_common/";
 
 const StyledButton = styled.button`
   color: ${p => (p.isActive ? "#FFFFFF" : "#CCCCCC")};

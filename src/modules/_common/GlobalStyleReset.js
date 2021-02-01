@@ -2,15 +2,15 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
-import BradleyDisplay from "../assets/fonts/BradleyDJR-Display.ttf";
-import BradleyMicro from "../assets/fonts/BradleyDJR-Micro.ttf";
-import BradleyRegular from "../assets/fonts/BradleyDJR-Regular.ttf";
-import BradleySmall from "../assets/fonts/BradleyDJR-Small.ttf";
-import BradleyVariable from "../assets/fonts/BradleyDJRVariable-VF.ttf";
-import PinionScript from "../assets/fonts/PinyonScript-Regular.ttf";
+import BradleyDisplay from "@/assets/fonts/BradleyDJR-Display.ttf";
+import BradleyMicro from "@/assets/fonts/BradleyDJR-Micro.ttf";
+import BradleyRegular from "@/assets/fonts/BradleyDJR-Regular.ttf";
+import BradleySmall from "@/assets/fonts/BradleyDJR-Small.ttf";
+import BradleyVariable from "@/assets/fonts/BradleyDJRVariable-VF.ttf";
+import PinionScript from "@/assets/fonts/PinyonScript-Regular.ttf";
 
-import MontserratExtraBold from "../assets/fonts/Montserrat-ExtraBold.ttf";
-import MontserratMedium from "../assets/fonts/Montserrat-Medium.ttf";
+import MontserratExtraBold from "@/assets/fonts/Montserrat-ExtraBold.ttf";
+import MontserratMedium from "@/assets/fonts/Montserrat-Medium.ttf";
 
 const GlobalStyleReset = createGlobalStyle`
   ${reset}

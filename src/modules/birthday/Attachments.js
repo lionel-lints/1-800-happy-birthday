@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import stripFieldName from "../utils/stripFieldName";
+import stripFieldName from "@/utils/stripFieldName";
 
 const mapAttachmentToComponent = (attachment, fieldName) => {
   if (attachment.type.includes("image")) {

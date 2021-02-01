@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { Header, Icon } from "@/modules/_common";
-import LanguageButton from "@/components/LanguageButton.js";
-import { LanguageContextConsumer } from "@/components/LanguageContext.js";
+import {
+  Header,
+  Icon,
+  LanguageButton,
+  LanguageContextConsumer
+} from "@/modules/_common";
 
 import Insta from "@/assets/icons/instagram-icon.svg";
 import Twitter from "@/assets/icons/twitter-icon.svg";

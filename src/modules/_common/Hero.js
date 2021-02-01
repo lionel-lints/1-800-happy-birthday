@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { LanguageContextConsumer } from "@/components/LanguageContext.js";
+import { LanguageContextConsumer } from "@/modules/_common";
 import { hero } from "@/assets/locales/data.json";
 
 const StyledHero = styled.h2`
