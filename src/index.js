@@ -14,11 +14,7 @@ ReactDOM.render(
     <GlobalStyleReset />
     <LanguageContextProvider>
       <div>
-        <Route
-          path="/"
-          exact
-          component={props => <IndexPage {...props} currentPage={1} />}
-        />
+        <Route path="/" exact component={props => <IndexPage {...props} />} />
         <Route path="/about" component={AboutPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/:slugOrId.html" exact component={BirthdayPage} />

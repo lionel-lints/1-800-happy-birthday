@@ -26,7 +26,7 @@ const { AIRTABLE_API_KEY, BASE_ID, TABLE_ID, VIEW } = process.env;
 
 const base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(BASE_ID);
 
-const allRows = [[]];
+const allRows = [];
 
 const downloadFile = (url, filepath, onSuccess, onError) => {
   const file = fs.createWriteStream(filepath);
@@ -60,9 +60,11 @@ tableHasPublishedColumn(base, includePublished =>
     .eachPage(
       function page(records, fetchNextPage) {
         records.forEach(row => {
+          /*
           if (!allRows[currentPage]) {
             allRows.push([]);
           }
+          */
           const formattedRow = formatAirtableRowData(row);
 
           const attachmentFields = formattedRow.fields.filter(
@@ -93,12 +95,7 @@ tableHasPublishedColumn(base, includePublished =>
           const pageTitle = row.fields[process.env.PAGE_TITLE_COLUMN];
 
           const filepath = `dist/${slug}.html`;
-          allRows[currentPage].push(formattedRow);
-          recordsOnCurrentPage += 1;
-          if (recordsOnCurrentPage >= 10) {
-            recordsOnCurrentPage = 0;
-            currentPage += 1;
-          }
+          allRows.push(formattedRow);
 
           // write individual resource page files
           fs.writeFile(
@@ -122,12 +119,10 @@ tableHasPublishedColumn(base, includePublished =>
           console.log(err);
         }
 
-        const writeFile = (idx, filepath, pagination) =>
+        const writeFile = (idx, filepath) =>
           fs.writeFile(
             filepath,
-            renderAsHTMLPage(
-              <Index rows={allRows[idx]} pagination={pagination} />
-            ),
+            renderAsHTMLPage(<Index rows={allRows[idx]} />),
             error => {
               if (error) {
                 console.error(`Error writing ${filepath}`);
@@ -136,18 +131,11 @@ tableHasPublishedColumn(base, includePublished =>
           );
 
         allRows.forEach((row, idx) => {
-          const pageFilepath = `dist/page/${idx + 1}.html`;
           const indexFilepath = `dist/index.html`;
-          const pagination = {
-            back: idx > 0 ? `/page/${idx}.html` : null,
-            next: idx < allRows.length - 1 ? `/page/${idx + 2}.html` : null
-          };
           if (idx === 0) {
             // write index page at /
-            writeFile(idx, indexFilepath, pagination);
+            writeFile(idx, indexFilepath);
           }
-          // write page files for pagination
-          writeFile(idx, pageFilepath, pagination);
         });
       }
     )

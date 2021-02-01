@@ -7,7 +7,7 @@ import Row from "@/modules/birthday/Row.js";
 import getFieldsToDisplay from "@/utils/getFieldsToDisplay";
 import { default as customRenderers } from "@/modules/renderers";
 
-const RowDisplay = ({ rows, pagination }) => {
+const RowDisplay = ({ rows }) => {
   return (
     <div>
       {rows.map((row, ind) => {
@@ -42,16 +42,11 @@ RowDisplay.propTypes = {
       ),
       name: PropTypes.string
     })
-  ),
-  pagination: PropTypes.shape({
-    back: PropTypes.string,
-    next: PropTypes.string
-  })
+  )
 };
 
 RowDisplay.defaultProps = {
-  rows: [],
-  pagination: null
+  rows: []
 };
 
 export default RowDisplay;

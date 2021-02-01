@@ -18,15 +18,13 @@ const StyledIndexPage = styled.div`
 export default class IndexPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { rows: null, pagination: null };
+    console.log("props", props);
+    this.state = { rows: null };
   }
 
   componentDidMount() {
-    const { currentPage } = this.props;
-
     const that = this;
-    // nested arrays for pagination purposes
-    const allRows = [[]];
+    const allRows = [];
     let currentRow = 1;
 
     const base = new Airtable({
@@ -42,10 +40,6 @@ export default class IndexPage extends React.Component {
         .eachPage(
           function page(records, fetchNextPage) {
             records.forEach(row => {
-              if (currentRow > 10) {
-                currentRow = 1;
-                allRows.push([]);
-              }
               const fieldsArray = _.map(row.fields, (value, name) => ({
                 name,
                 value
@@ -63,7 +57,7 @@ export default class IndexPage extends React.Component {
                 ? _.sortBy(fieldsArray, field => fieldOrderMapped[field.name])
                 : fieldsArray;
 
-              allRows[allRows.length - 1].push({
+              allRows.push({
                 ...row,
                 fields
               });
@@ -78,50 +72,23 @@ export default class IndexPage extends React.Component {
               // eslint-disable-next-line no-console
               console.error(err);
             }
-            const backPage = currentPage > 1 ? currentPage - 1 : null;
-            const nextPage =
-              currentPage < allRows.length ? currentPage + 1 : null;
 
             that.setState({
-              rows: allRows,
-              pagination: {
-                back: backPage ? `/page/${backPage}.html` : null,
-                next: nextPage ? `/page/${nextPage}.html` : null
-              }
+              rows: allRows
             });
           }
         )
     );
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { currentPage } = this.props;
-    const { currentPage: newPage } = nextProps;
-    const { rows } = this.state;
-    if (newPage !== currentPage) {
-      const backPage = newPage > 1 ? newPage - 1 : null;
-      const nextPage = newPage < rows.length ? newPage + 1 : null;
-
-      this.setState({
-        pagination: {
-          back: backPage ? `/page/${backPage}.html` : null,
-          next: nextPage ? `/page/${nextPage}.html` : null
-        }
-      });
-    }
-  }
-
   render() {
-    const { rows, pagination } = this.state;
-    const { currentPage } = this.props;
+    const { rows } = this.state;
 
     return (
       <StyledIndexPage>
         <NavBar />
         <Hero />
-        {rows ? (
-          <RowDisplay rows={rows[currentPage - 1]} pagination={pagination} />
-        ) : null}
+        {rows ? <RowDisplay rows={rows} /> : null}
       </StyledIndexPage>
     );
   }
