@@ -5,7 +5,7 @@ import _ from "underscore";
 import styled from "styled-components";
 
 import { NavBar, Hero } from "@/modules/_common";
-import Index from "@/components/Index";
+import RowDisplay from "@/modules/birthdays/RowDisplay.js";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
 const StyledIndexPage = styled.div`
@@ -120,7 +120,7 @@ export default class IndexPage extends React.Component {
         <NavBar />
         <Hero />
         {rows ? (
-          <Index rows={rows[currentPage - 1]} pagination={pagination} />
+          <RowDisplay rows={rows[currentPage - 1]} pagination={pagination} />
         ) : null}
       </StyledIndexPage>
     );

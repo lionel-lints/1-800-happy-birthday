@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import TextField from "./TextField";
+import TextField from "@/modules/birthdays/TextField.js";
 import Attachments from "@/modules/birthday/Attachments.js";
-import { default as customRenderers } from "../../custom/renderers";
+import { default as customRenderers } from "@/modules/renderers";
 
 const getRenderer = (field, ind = 0) => {
   const { value, name } = field;

@@ -3,7 +3,7 @@ import Airtable from "airtable";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Row from "@/components/RowPage";
+import Row from "@/modules/birthday/RowPage";
 import { NavBar, Hero } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 

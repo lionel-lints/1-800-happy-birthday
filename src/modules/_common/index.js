@@ -5,6 +5,7 @@ import Icon from "@/modules/_common/Icon.js";
 import Blurb from "@/modules/_common/Blurb.js";
 import GlobalStyleReset from "@/modules/_common/GlobalStyleReset.js";
 import LanguageButton from "@/modules/_common/LanguageButton.js";
+import LinkOrAnchor from "@/modules/_common/LinkOrAnchor.js";
 import {
   LanguageContextProvider,
   LanguageContextConsumer
@@ -19,5 +20,6 @@ export {
   LanguageButton,
   LanguageContextConsumer,
   LanguageContextProvider,
+  LinkOrAnchor,
   NavBar
 };

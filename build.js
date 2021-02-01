@@ -10,8 +10,8 @@ const Airtable = require("airtable");
 const https = require("https");
 
 const trimFieldOrder = require("./src/utils/trimFieldOrder");
-const Index = require("./src/components/Index").default;
-const RowPage = require("./src/components/RowPage").default;
+const RowDisplay = require("./src/components/RowDisplay").default;
+const RowPage = require("./src/modules/birthday/RowPage").default;
 const tableHasPublishedColumn = require("./src/utils/tableHasPublishedColumn")
   .default;
 
@@ -75,9 +75,7 @@ tableHasPublishedColumn(base, includePublished =>
           attachmentFields.forEach(attachmentField => {
             attachmentField.value.forEach(attachment => {
               if (!alreadyDownloadedAttachments[attachment.url]) {
-                const newUrl = `/assets/${attachment.id}-${
-                  attachment.filename
-                }`;
+                const newUrl = `/assets/${attachment.id}-${attachment.filename}`;
                 downloadFile(attachment.url, `dist${newUrl}`);
                 alreadyDownloadedAttachments[attachment.url] = true;
                 attachment.url = newUrl;
