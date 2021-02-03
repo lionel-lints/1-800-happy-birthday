@@ -69,8 +69,16 @@ const NavBar = () => {
               {navBar.contact[context.lang]}
             </StyledLink>
             <div>
-              <Icon src={Insta} alt={"instagram icon"} />
-              <Icon src={Twitter} alt={"twitter icon"} />
+              <Icon
+                src={Insta}
+                alt={"instagram icon"}
+                href={"https://instagram.com/1800HappyBirthday/"}
+              />
+              <Icon
+                src={Twitter}
+                alt={"twitter icon"}
+                href={"https://twitter.com/1800hbd"}
+              />
             </div>
           </StyledNavRow>
         </StyledNav>
