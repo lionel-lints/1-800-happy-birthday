@@ -3,13 +3,14 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import AdvisorsSection from "@/modules/about/AdvisorsSection.js";
+import FAQSection from "@/modules/about/FAQSection.js";
 import {
   NavBar,
   Hero,
   Blurb,
   LanguageContextConsumer
 } from "@/modules/_common";
-import { advisors, volunteers } from "@/assets/locales/data.json";
+import { advisors, volunteers, faq } from "@/assets/locales/data.json";
 
 const StyledAboutPage = styled.main`
   background-color: black;
@@ -32,6 +33,12 @@ const AboutPage = () => (
         <AdvisorsSection
           title={volunteers.title[context.lang]}
           text={volunteers.text[context.lang]}
+        />
+        <FAQSection
+          title={faq.title[context.lang]}
+          footer={faq.footer[context.lang]}
+          lang={context.lang}
+          questionList={faq.questionList}
         />
       </StyledAboutPage>
     )}

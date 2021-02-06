@@ -40,5 +40,67 @@
       "en": "Veronica Leon, Alexa Rocero, Nasteha Mohamed, Miski Abdi, Marie Alyse Rodriguez, Jazmin Marquez, Yamel Thompson",
       "es": "Veronica Leon, Alexa Rocero, Nasteha Mohamed, Miski Abdi, Marie Alyse Rodriguez, Jazmin Marquez, Yamel Thompson"
     }
+  },
+  "faq": {
+    "title": {
+      "en": "Frequently Asked Questions",
+      "es": "Preguntas Frecuentes"
+    },
+    "footer": {
+      "en": "For all other inquiries, please contact us directly.",
+      "es": "Para cualquier otra consulta, por favor contáctanos directamente."
+    },
+    "questionList": [
+      {
+        "question": {
+          "en": "What is the genesis of the project?",
+          "es": "¿Cómo se originó el proyecto?"
+        },
+        "answer": {
+          "en": "1800 Happy Birthday is created in the legacy of the 'Happy Birthday Project', a film series created with the families and loved ones on the birthdays of Oscar Grant, Mario Woods, and Philando Castile. The films were created with support from The Campaign for Black Male Achievement, The Mission Entertainment, and Blackout for Human Rights.",
+          "es": "1800 Happy Birthday se creó en el legado de 'Happy Birthday Project', una serie de videos con las familias y seres queridos de Oscar Grant, Mario Woods, y Philando Castile en sus cumpleaños. Los videos fueron producidos con el apoyo de The Campaign for Black Male Achievement, The Mission Entertainment, y Blackout for Human Rights."
+        }
+      },
+      {
+        "question": {
+          "en": "How will the voicemails be used?",
+          "es": "¿Cómo se usarán los mensajes de voz?"
+        },
+        "answer": {
+          "en": "All voicemails will be screened with the intention of being shared with the families of victims. A select amount of voicemails will be added to our public gallery on each individual’s memorial page on the site.",
+          "es": "Todos los mensajes de voz serán revisados con la intención de compartirlos con las familias de las víctimas. Una selección de mensajes de voz será agregada a nuestra galería pública en la página conmemorativa de cada individuo."
+        }
+      },
+      {
+        "question": {
+          "en": "Is this project for profit?",
+          "es": "¿Tiene fines de lucro el proyecto?"
+        },
+        "answer": {
+          "en": "1800 Happy Birthday will never make a profit and is currently volunteer based. All donations will be used to sustain the website and the hard costs associated with keeping the project alive and running.",
+          "es": "1800 Happy Birthday nunca generará ganancias y actualmente es manejado por voluntarios. Todas las donaciones se utilizarán para mantener el sitio web y los costos asociados con mantener el proyecto en funcionamiento."
+        }
+      },
+      {
+        "question": {
+          "en": "Can I request to add a name to the index?",
+          "es": "¿Puedo solicitar que se agregue un nombre al índice?"
+        },
+        "answer": {
+          "en": "Family members who would like to request to add, edit, or remove a person from the index can contact us directly. We will respond as quickly as possible.",
+          "es": "Miembros de la familia que deseen agregar, editar o eliminar a una persona en el índice pueden contactarnos directamente. Responderemos lo más rápido posible."
+        }
+      },
+      {
+        "question": {
+          "en": "How can I support the project?",
+          "es": "¿Cómo puedo apoyar el proyecto?"
+        },
+        "answer": {
+          "en": "Please spread the work on social media and follow us on Instagram. If you would like to volunteer your time to the project, please contact us directly.",
+          "es": "Por favor difunde el proyecto en las redes sociales y síguenos en Instagram. Si deseas unirte al proyecto como voluntario, por favor contáctanos directamente."
+        }
+      }
+    ]
   }
 }
