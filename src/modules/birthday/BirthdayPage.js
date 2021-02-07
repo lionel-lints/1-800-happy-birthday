@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Airtable from "airtable";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ const StyledRowPage = styled.div`
   height: 100vh;
 `;
 
-export default class BirthdayPage extends React.Component {
+class BirthdayPage extends Component {
   constructor(props) {
     super(props);
     this.state = { row: null };
@@ -59,3 +59,5 @@ BirthdayPage.propTypes = {
     })
   }).isRequired
 };
+
+export default BirthdayPage;

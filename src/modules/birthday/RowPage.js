@@ -10,15 +10,18 @@ const StyledRowPage = styled.div`
   background-color: black;
   color: white;
 `;
-const RowPage = ({ rowData }) => (
-  <StyledRowPage>
-    <Row
-      fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
-      rowData={rowData}
-    />
-    <LinkOrAnchor to="/">Back</LinkOrAnchor>
-  </StyledRowPage>
-);
+const RowPage = ({ rowData }) => {
+  console.log("rowData", rowData);
+  return (
+    <StyledRowPage>
+      <Row
+        fieldsToDisplay={getFieldsToDisplay(process.env.FIELD_ORDER)}
+        rowData={rowData}
+      />
+      <LinkOrAnchor to="/">Back</LinkOrAnchor>
+    </StyledRowPage>
+  );
+};
 
 RowPage.propTypes = {
   rowData: PropTypes.shape({
