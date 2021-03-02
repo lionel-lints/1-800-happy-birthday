@@ -18,7 +18,6 @@ const StyledIndexPage = styled.div`
 export default class IndexPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props", props);
     this.state = { rows: null };
   }
 

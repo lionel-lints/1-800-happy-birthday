@@ -14,6 +14,9 @@ import MontserratMedium from "@/assets/fonts/Montserrat-Medium.ttf";
 
 const GlobalStyleReset = createGlobalStyle`
   ${reset}
+  body {
+    background-color: black;
+  }
 
   /* Webfont: MontserratExtraBold */
   @font-face {
