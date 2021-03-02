@@ -13,6 +13,11 @@ const StyledRow = styled.span`
   margin-right: 10px;
 `;
 
+const StyledTextPosition = styled.div`
+  position: absolute;
+  top: 35vh;
+  width: 100%;
+`;
 const StyledName = styled.h1`
   font-family: BradleyDisplay, serif;
   font-size: 100px;
@@ -27,24 +32,45 @@ const StyledDates = styled.h2`
   text-align: center;
 `;
 
+const StyledDiv = styled.div`
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vh;
+  padding-top: 30vh;
+  height: 100%;
+  position: relative;
+`;
+
+const StyledImg = styled.img`
+  -webkit-filter: grayscale(100%) brightness(0.5); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%) brightness(0.5);
+  position: absolute;
+  top: 0;
+  width: -webkit-fill-available;
+`;
+
 const getPhotoURL = arr => {
   return arr[Math.floor(Math.random() * arr.length)].url;
 };
 
 const Row = ({
   name = "Unknown",
-  DOB = "unknown",
-  DOD = "unknown",
+  DOB = "Unknown",
+  DOD = "Unknown",
   photoArr = []
 }) => {
   return (
-    <div>
-      <StyledName>{name}</StyledName>
-      <StyledDates>
-        {DOB} to {DOD}
-      </StyledDates>
-      {photoArr.length > 0 ? <img src={getPhotoURL(photoArr)} /> : null}
-    </div>
+    <>
+      <StyledDiv>
+        {photoArr.length > 0 ? <StyledImg src={getPhotoURL(photoArr)} /> : null}
+        <StyledTextPosition>
+          <StyledName>{name}</StyledName>
+          <StyledDates>
+            {DOB} to {DOD}
+          </StyledDates>
+        </StyledTextPosition>
+      </StyledDiv>
+    </>
   );
 };
 
