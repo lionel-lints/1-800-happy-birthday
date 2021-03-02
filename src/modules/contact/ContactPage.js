@@ -57,6 +57,7 @@ const StyledAnchor = styled.a`
   font-size: 40px;
   margin-bottom: 5vh;
 `;
+
 const StyledParagraph = styled.p`
   font-family: Pinyon Script;
   font-size: 40px;
@@ -77,7 +78,7 @@ const ContactPage = () => (
           <Header title={contact.title[context.lang]} />
           <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>
           <StyledParagraph>{contact.email[context.lang]}</StyledParagraph>
-          <StyledAnchor href="1800happybirthday@gmail.com">
+          <StyledAnchor href={`mailto:1800happybirthday@gmail.com`}>
             1800happybirthday@gmail.com
           </StyledAnchor>
           <StyledParagraph>{contact.instagram[context.lang]}</StyledParagraph>
