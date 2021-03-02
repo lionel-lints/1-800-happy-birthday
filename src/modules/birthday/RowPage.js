@@ -11,7 +11,6 @@ const StyledRowPage = styled.div`
   color: white;
 `;
 const RowPage = ({ rowData }) => {
-  console.log("rowData", rowData);
   return (
     <StyledRowPage>
       <Row

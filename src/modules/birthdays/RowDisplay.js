@@ -3,7 +3,7 @@ import _ from "underscore";
 import PropTypes from "prop-types";
 
 import { Header, Hero, LinkOrAnchor } from "@/modules/_common";
-import Row from "@/modules/birthday/Row.js";
+import Row from "@/modules/birthdays/Row.js";
 import getFieldsToDisplay from "@/utils/getFieldsToDisplay";
 import { default as customRenderers } from "@/modules/renderers";
 

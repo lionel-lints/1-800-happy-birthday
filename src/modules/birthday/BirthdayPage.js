@@ -3,7 +3,7 @@ import Airtable from "airtable";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Row from "@/modules/birthday/RowPage";
+import Row from "@/modules/birthday/Row.js";
 import { NavBar, Hero } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
@@ -17,7 +17,9 @@ const StyledRowPage = styled.div`
 class BirthdayPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { row: null };
+    this.state = {
+      fields: null
+    };
   }
 
   componentDidMount() {
@@ -35,18 +37,27 @@ class BirthdayPage extends Component {
 
     base(process.env.TABLE_ID).find(slugOrId, (err, record) => {
       that.setState({
-        row: formatAirtableRowData(record)
+        fields: record.fields
       });
     });
   }
 
   render() {
-    const { row } = this.state;
+    const { fields } = this.state;
+    console.log(fields);
     return (
       <StyledRowPage>
         <NavBar />
         <Hero />
-        {row ? <Row rowData={row} /> : null}
+        {!!fields ? (
+          <Row
+            name={fields.Name}
+            DOB={fields.Birthday}
+            DOD={fields["Date of passing"]}
+            age={fields.Age}
+            photoArr={fields.Photo}
+          />
+        ) : null}
       </StyledRowPage>
     );
   }
