@@ -7,6 +7,7 @@ import styled from "styled-components";
 import TextField from "@/modules/birthdays/TextField.js";
 import Attachments from "@/modules/birthday/Attachments.js";
 import { default as customRenderers } from "@/modules/renderers";
+import { LanguageContextConsumer } from "@/modules/_common";
 
 const StyledRow = styled.span`
   font-size: 20px;
@@ -54,6 +55,32 @@ const getPhotoURL = arr => {
   return arr[Math.floor(Math.random() * arr.length)].url;
 };
 
+const getDateString = (lang, dob, dod) => {
+  if (lang === "es") {
+    let birth = moment(dob)
+      .locale("es")
+      .format("LL");
+    let death = moment(dod)
+      .locale("es")
+      .format("LL");
+
+    return `${birth == "Fetcha inválida" ? "Desconocido" : birth} al ${
+      death == "Fetcha inválida" ? "Desconocido" : death
+    }`;
+  } else if (lang === "en") {
+    let birth = moment(dob)
+      .locale("en")
+      .format("MMMM Do, YYYY");
+    let death = moment(dod)
+      .locale("en")
+      .format("MMMM Do, YYYY");
+    return `${birth} to ${death}`;
+    return `${birth == "Invalid Date" ? "Unknown" : birth} to ${
+      death == "Invalid Date" ? "Unknown" : death
+    }`;
+  }
+};
+
 const Row = ({
   name = "Unknown",
   DOB = "Unknown",
@@ -61,18 +88,19 @@ const Row = ({
   photoArr = []
 }) => {
   return (
-    <>
-      <StyledDiv>
-        {photoArr.length > 0 ? <StyledImg src={getPhotoURL(photoArr)} /> : null}
-        <StyledTextPosition>
-          <StyledName>{name}</StyledName>
-          <StyledDates>
-            {moment(DOB).format("MMMM Do, YYYY")} to{" "}
-            {moment(DOD).format("MMMM Do, YYYY")}
-          </StyledDates>
-        </StyledTextPosition>
-      </StyledDiv>
-    </>
+    <LanguageContextConsumer>
+      {context => (
+        <StyledDiv>
+          {photoArr.length > 0 ? (
+            <StyledImg src={getPhotoURL(photoArr)} />
+          ) : null}
+          <StyledTextPosition>
+            <StyledName>{name}</StyledName>
+            <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
+          </StyledTextPosition>
+        </StyledDiv>
+      )}
+    </LanguageContextConsumer>
   );
 };
 
