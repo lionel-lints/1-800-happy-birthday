@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
@@ -28,7 +29,7 @@ const StyledName = styled.h1`
 const StyledDates = styled.h2`
   font-family: Pinyon Script;
   font-size: 100px;
-  font-size: calc(1vw + 1vh + 1vmin);
+  font-size: calc(1vw + 2vh + 1vmin);
   text-align: center;
 `;
 
@@ -66,7 +67,8 @@ const Row = ({
         <StyledTextPosition>
           <StyledName>{name}</StyledName>
           <StyledDates>
-            {DOB} to {DOD}
+            {moment(DOB).format("MMMM Do, YYYY")} to{" "}
+            {moment(DOD).format("MMMM Do, YYYY")}
           </StyledDates>
         </StyledTextPosition>
       </StyledDiv>

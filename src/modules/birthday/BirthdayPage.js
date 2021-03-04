@@ -52,8 +52,8 @@ class BirthdayPage extends Component {
         {!!fields ? (
           <Row
             name={fields.Name}
-            DOB={fields.Birthday}
-            DOD={fields["Date of passing"]}
+            DOB={fields.dob}
+            DOD={fields.dod}
             age={fields.Age}
             photoArr={fields.Photo}
           />
