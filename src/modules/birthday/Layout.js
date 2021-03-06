@@ -7,6 +7,7 @@ import styled from "styled-components";
 import TextField from "@/modules/birthdays/TextField.js";
 import Attachments from "@/modules/birthday/Attachments.js";
 import AudioPlayer from "@/modules/birthday/AudioPlayer.js";
+import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 
 import Voicemails from "@/modules/renderers/Voicemails.js";
 import { LanguageContextConsumer } from "@/modules/_common";
@@ -32,7 +33,7 @@ const StyledDates = styled.h2`
 `;
 
 const StyledDiv = styled.div`
-  width: 80%;
+  width: 100%;
   position: absolute;
   margin: auto;
   top: 0;
