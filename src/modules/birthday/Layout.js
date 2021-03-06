@@ -6,7 +6,9 @@ import styled from "styled-components";
 
 import TextField from "@/modules/birthdays/TextField.js";
 import Attachments from "@/modules/birthday/Attachments.js";
-import { default as customRenderers } from "@/modules/renderers";
+import AudioPlayer from "@/modules/birthday/AudioPlayer.js";
+
+import Voicemails from "@/modules/renderers/Voicemails.js";
 import { LanguageContextConsumer } from "@/modules/_common";
 
 const StyledTextPosition = styled.div`
@@ -83,9 +85,8 @@ const getDateString = (lang, dob, dod) => {
     let death = moment(dod)
       .locale("en")
       .format("MMMM Do, YYYY");
-    return `${birth} to ${death}`;
-    return `${birth == "Invalid Date" ? "Unknown" : birth} to ${
-      death == "Invalid Date" ? "Unknown" : death
+    return `${birth === "Invalid date" ? "Unknown" : birth} to ${
+      death == "Invalid date" ? "Unknown" : death
     }`;
   }
 };
@@ -111,6 +112,7 @@ const Layout = ({
               <StyledName>{name}</StyledName>
               <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
             </StyledTextPosition>
+            {voicemails.length > 0 ? <Voicemails vms={voicemails} /> : null}
           </StyledDiv>
         </StyledSection>
       )}
