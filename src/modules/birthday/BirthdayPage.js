@@ -3,7 +3,7 @@ import Airtable from "airtable";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Row from "@/modules/birthday/Row.js";
+import Layout from "@/modules/birthday/Layout.js";
 import { NavBar, Hero } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
@@ -50,7 +50,7 @@ class BirthdayPage extends Component {
         <NavBar />
         <Hero />
         {!!fields ? (
-          <Row
+          <Layout
             name={fields.Name}
             DOB={fields.dob}
             DOD={fields.dod}

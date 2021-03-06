@@ -16,8 +16,6 @@ const StyledRow = styled.span`
 `;
 
 const StyledTextPosition = styled.div`
-  position: absolute;
-  top: 35vh;
   width: 100%;
 `;
 const StyledName = styled.h1`
@@ -35,20 +33,21 @@ const StyledDates = styled.h2`
 `;
 
 const StyledDiv = styled.div`
-  margin-left: 10vw;
-  margin-right: 10vw;
   margin-top: 5vh;
-  padding-top: 30vh;
+  margin: auto;
   height: 100%;
-  position: relative;
+  width: 80%;
+  background-color: yellow;
 `;
 
+const StyledSection = styled.section`
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+`;
 const StyledImg = styled.img`
   -webkit-filter: grayscale(100%) brightness(0.5); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%) brightness(0.5);
-  position: absolute;
-  top: 0;
-  width: -webkit-fill-available;
 `;
 
 const getPhotoURL = arr => {
@@ -81,7 +80,7 @@ const getDateString = (lang, dob, dod) => {
   }
 };
 
-const Row = ({
+const Layout = ({
   name = "Unknown",
   DOB = "Unknown",
   DOD = "Unknown",
@@ -90,18 +89,20 @@ const Row = ({
   return (
     <LanguageContextConsumer>
       {context => (
-        <StyledDiv>
-          {photoArr.length > 0 ? (
-            <StyledImg src={getPhotoURL(photoArr)} />
-          ) : null}
-          <StyledTextPosition>
-            <StyledName>{name}</StyledName>
-            <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
-          </StyledTextPosition>
-        </StyledDiv>
+        <StyledSection>
+          <StyledDiv>
+            {photoArr.length > 0 ? (
+              <StyledImg src={getPhotoURL(photoArr)} />
+            ) : null}
+            <StyledTextPosition>
+              <StyledName>{name}</StyledName>
+              <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
+            </StyledTextPosition>
+          </StyledDiv>
+        </StyledSection>
       )}
     </LanguageContextConsumer>
   );
 };
 
-export default Row;
+export default Layout;
