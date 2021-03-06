@@ -54,8 +54,10 @@ class BirthdayPage extends Component {
             name={fields.Name}
             DOB={fields.dob}
             DOD={fields.dod}
-            age={fields.Age}
             photoArr={fields.Photo}
+            voicemails={fields.Voicemails}
+            voicemailNumber={fields["Voicemail Number"]}
+            quote={fields.Quote}
           />
         ) : null}
       </StyledRowPage>

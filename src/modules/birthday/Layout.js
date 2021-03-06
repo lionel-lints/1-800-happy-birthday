@@ -9,14 +9,11 @@ import Attachments from "@/modules/birthday/Attachments.js";
 import { default as customRenderers } from "@/modules/renderers";
 import { LanguageContextConsumer } from "@/modules/_common";
 
-const StyledRow = styled.span`
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-`;
-
 const StyledTextPosition = styled.div`
   width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 50%;
 `;
 const StyledName = styled.h1`
   font-family: BradleyDisplay, serif;
@@ -33,21 +30,34 @@ const StyledDates = styled.h2`
 `;
 
 const StyledDiv = styled.div`
-  margin-top: 5vh;
-  margin: auto;
-  height: 100%;
   width: 80%;
-  background-color: yellow;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const StyledSection = styled.section`
   margin-top: 5vh;
   display: flex;
   justify-content: center;
+  position: relative;
+  height: 100vh;
 `;
+
 const StyledImg = styled.img`
   -webkit-filter: grayscale(100%) brightness(0.5); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%) brightness(0.5);
+  max-width: 100%;
+  min-width: 50%;
+  max-height: 100%;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
 `;
 
 const getPhotoURL = arr => {
@@ -84,7 +94,10 @@ const Layout = ({
   name = "Unknown",
   DOB = "Unknown",
   DOD = "Unknown",
-  photoArr = []
+  photoArr = [],
+  voicemails = [],
+  voicemailNumber = "",
+  quote = ""
 }) => {
   return (
     <LanguageContextConsumer>
