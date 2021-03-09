@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const StyledDiv = styled.div``;
+const StyledDiv = styled.div`
+  position: absolute;
+  canvas {
+    visibility: ${p => (p.isPlaying === true ? "inherit" : "hidden")};
+  }
+`;
 
 class AudioVisualizer extends Component {
   constructor(props) {
@@ -42,10 +47,10 @@ class AudioVisualizer extends Component {
 
   render() {
     return (
-      <StyledDiv>
+      <StyledDiv isPlaying={this.props.isPlaying}>
         <canvas
           width={this.state.width}
-          height="300"
+          height="30"
           ref={this.canvas}
           resize="true"
         />

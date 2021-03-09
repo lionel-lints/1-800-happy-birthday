@@ -17,6 +17,7 @@ const StyledDiv = styled.div`
   width: 30%;
   display: flex;
   justify-content: space-around;
+  z-index: 1;
 `;
 
 const AudioControls = ({ isPlaying, forward, back, playPause }) => {

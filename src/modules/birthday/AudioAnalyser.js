@@ -30,7 +30,12 @@ class AudioAnalyser extends Component {
   }
 
   render() {
-    return <AudioVisualizer audioData={this.dataArray} />;
+    return (
+      <AudioVisualizer
+        audioData={this.dataArray}
+        isPlaying={this.props.isPlaying}
+      />
+    );
   }
 }
 

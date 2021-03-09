@@ -114,7 +114,9 @@ const Layout = ({
               <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
               {voicemails.length > 0 ? (
                 <Voicemails
+                  lang={context.lang}
                   vms={voicemails}
+                  name={name.split(" ")[0]}
                   voicemailNumber={voicemailNumber}
                 />
               ) : null}

@@ -44,7 +44,6 @@ class BirthdayPage extends Component {
 
   render() {
     const { fields } = this.state;
-    console.log(fields);
     return (
       <StyledRowPage>
         <NavBar />
