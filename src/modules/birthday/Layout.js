@@ -106,9 +106,9 @@ const Layout = ({
       {context => (
         <StyledSection>
           <StyledDiv>
-            {/*photoArr.length > 0 ? (
+            {photoArr.length > 0 ? (
               <StyledImg src={getPhotoURL(photoArr)} />
-            ) : null*/}
+            ) : null}
             <StyledTextPosition>
               <StyledName>{name}</StyledName>
               <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>

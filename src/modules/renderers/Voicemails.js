@@ -5,7 +5,6 @@ import AudioPlayer from "@/modules/birthday/AudioPlayer.js";
 import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 
 const StyledDiv = styled.div`
-  background-color: green;
   display: flex;
   align-items: center;
   flex-direction: column;
