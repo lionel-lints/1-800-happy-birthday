@@ -6,9 +6,17 @@ import styled from "styled-components";
 import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 
 import Play from "@/assets/icons/play-button.svg";
+import Pause from "@/assets/icons/pause.svg";
 import Fwd from "@/assets/icons/skip-fwd.svg";
 import Back from "@/assets/icons/skip-back.svg";
 
+const StyledImg = styled.img`
+  height: 29px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+`;
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
@@ -38,13 +46,15 @@ class AudioPlayer extends Component {
       this.state.currentSrcIndex >= this.state.sources.length - 1
         ? 0
         : this.state.currentSrcIndex + 1;
-    this.setState({ currentSrcIndex: nextIndex });
+    this.setState({ currentSrcIndex: nextIndex, playing: false });
   }
 
   handlePrev() {
     const nextIndex =
-      this.state.currentSrcIndex > 0 ? this.state.currentSrcIndex - 1 : 0;
-    this.setState({ currentSrcIndex: nextIndex });
+      this.state.currentSrcIndex > 0
+        ? this.state.currentSrcIndex - 1
+        : this.state.sources.length - 1;
+    this.setState({ currentSrcIndex: nextIndex, playing: false });
   }
 
   togglePlay() {
@@ -68,14 +78,12 @@ class AudioPlayer extends Component {
           {this.state.sources.length}
         </div>
         <StyledDiv>
-          <img src={Back} onClick={this.handlePrev} />
-          <button onClick={this.togglePlay}>
-            {this.state.playing ? "Pause" : "Play"}
-          </button>
-          <img src={Fwd} onClick={this.handleNext} />
-          <button className="full" onClick={this.handleNext}>
-            Next Recording
-          </button>
+          <StyledImg src={Back} onClick={this.handlePrev} />
+          <StyledImg
+            src={this.state.playing ? Pause : Play}
+            onClick={this.togglePlay}
+          />
+          <StyledImg src={Fwd} onClick={this.handleNext} />
         </StyledDiv>
       </>
     );
