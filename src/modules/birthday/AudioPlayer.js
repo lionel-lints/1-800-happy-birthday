@@ -56,7 +56,7 @@ class AudioPlayer extends Component {
           ref={ref => (this.player = ref)}
         />
         <AudioControls
-          isPlaying={this.state.playing}
+          isPlaying={this.props.isPlaying}
           forward={this.handleNext}
           back={this.handlePrev}
           playPause={this.togglePlay}

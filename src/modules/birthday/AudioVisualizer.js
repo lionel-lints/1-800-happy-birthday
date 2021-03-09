@@ -50,7 +50,7 @@ class AudioVisualizer extends Component {
       <StyledDiv isPlaying={this.props.isPlaying}>
         <canvas
           width={this.state.width}
-          height="30"
+          height="90"
           ref={this.canvas}
           resize="true"
         />

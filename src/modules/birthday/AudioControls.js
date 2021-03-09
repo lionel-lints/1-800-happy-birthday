@@ -14,6 +14,7 @@ const StyledImg = styled.img`
   }
 `;
 const StyledDiv = styled.div`
+  margin-top: 10vh;
   width: 30%;
   display: flex;
   justify-content: space-around;
