@@ -34,7 +34,7 @@ const StyledDates = styled.h2`
 
 const StyledDiv = styled.div`
   width: 100%;
-  position: absolute;
+  /*position: absolute*/
   margin: auto;
   top: 0;
   bottom: 0;
@@ -106,14 +106,19 @@ const Layout = ({
       {context => (
         <StyledSection>
           <StyledDiv>
-            {photoArr.length > 0 ? (
+            {/*photoArr.length > 0 ? (
               <StyledImg src={getPhotoURL(photoArr)} />
-            ) : null}
+            ) : null*/}
             <StyledTextPosition>
               <StyledName>{name}</StyledName>
               <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
+              {voicemails.length > 0 ? (
+                <Voicemails
+                  vms={voicemails}
+                  voicemailNumber={voicemailNumber}
+                />
+              ) : null}
             </StyledTextPosition>
-            {voicemails.length > 0 ? <Voicemails vms={voicemails} /> : null}
           </StyledDiv>
         </StyledSection>
       )}

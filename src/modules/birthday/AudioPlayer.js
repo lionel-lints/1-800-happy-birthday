@@ -5,10 +5,11 @@ import styled from "styled-components";
 
 import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 
+import Play from "@/assets/icons/play-button.svg";
+import Fwd from "@/assets/icons/skip-fwd.svg";
+import Back from "@/assets/icons/skip-back.svg";
+
 const StyledDiv = styled.div`
-  margin: auto;
-  position: absolute;
-  bottom: 10%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -67,12 +68,11 @@ class AudioPlayer extends Component {
           {this.state.sources.length}
         </div>
         <StyledDiv>
-          <button className="full" onClick={this.handlePrev}>
-            Previous Recording
-          </button>
+          <img src={Back} onClick={this.handlePrev} />
           <button onClick={this.togglePlay}>
             {this.state.playing ? "Pause" : "Play"}
           </button>
+          <img src={Fwd} onClick={this.handleNext} />
           <button className="full" onClick={this.handleNext}>
             Next Recording
           </button>
