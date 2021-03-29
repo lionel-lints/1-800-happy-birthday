@@ -21,6 +21,7 @@ class AudioPlayer extends Component {
     this.handlePrev = this.handlePrev.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.togglePlay = this.togglePlay.bind(this);
+    this.endPlay = this.endPlay.bind(this);
   }
 
   handleNext() {
@@ -43,6 +44,10 @@ class AudioPlayer extends Component {
     this.props.setIsPlaying(!this.props.isPlaying);
   }
 
+  endPlay() {
+    this.props.setIsPlaying(false);
+  }
+
   render() {
     return (
       <>
@@ -54,6 +59,7 @@ class AudioPlayer extends Component {
           // a new Howler.js instance
           src={this.state.sources[this.state.currentSrcIndex]}
           ref={ref => (this.player = ref)}
+          onEnd={this.endPlay}
         />
         <AudioControls
           isPlaying={this.props.isPlaying}
