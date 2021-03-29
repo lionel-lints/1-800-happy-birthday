@@ -1,15 +1,22 @@
 import React from "react";
 import _ from "underscore";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 import { Header, Hero, LinkOrAnchor } from "@/modules/_common";
 import Row from "@/modules/birthdays/Row.js";
 import getFieldsToDisplay from "@/utils/getFieldsToDisplay";
 import { default as customRenderers } from "@/modules/renderers";
 
+const StyledDiv = styled.div`
+  text-align: justify;
+  margin-left: 2vw;
+  margin-right: 2vw;
+`;
+
 const RowDisplay = ({ rows }) => {
   return (
-    <div>
+    <StyledDiv>
       {rows.map((row, ind) => {
         const slugField = _.find(row.fields, field => field.name === "Slug");
         const slug =
@@ -28,7 +35,7 @@ const RowDisplay = ({ rows }) => {
           </LinkOrAnchor>
         );
       })}
-    </div>
+    </StyledDiv>
   );
 };
 

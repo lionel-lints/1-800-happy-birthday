@@ -8,6 +8,8 @@ const StyledSpan = styled.span`
   color: ${p => (p.isEven ? "#CCCCCC" : "#FFFFFF")};
   outline: none;
   font-size: 24px;
+  font-size calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  line-height: 1.5;
   letter-spacing: 2px;
 `;
 const TextField = ({ data, ind }) => {

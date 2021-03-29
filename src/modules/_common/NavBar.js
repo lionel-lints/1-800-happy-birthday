@@ -30,6 +30,7 @@ const StyledNav = styled.section`
 const activeClassName = "nav-item-active";
 
 const StyledLink = styled(NavLink).attrs({ activeClassName })`
+  padding: 10px;
   display: block;
   color: #cccccc;
   text-decoration: none;

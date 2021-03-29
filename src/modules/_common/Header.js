@@ -6,6 +6,7 @@ const StyledHeader = styled.h1`
   font-family: BradleyDisplay;
   font-size: 120px;
   width: 100%;
+  min-width: 800px;
   text-align: center;
   height: 15vh;
   padding-top: 2vh;

@@ -40,7 +40,7 @@ const getRenderer = (field, ind = 0) => {
 
 const StyledRow = styled.span`
   font-family: MontserratExtraBold, sans-serif;
-  font-size: 20px;
+  font-size: 30px;
   margin-left: 10px;
   margin-right: 10px;
 `;
