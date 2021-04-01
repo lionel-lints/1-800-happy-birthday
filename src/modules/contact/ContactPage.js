@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -68,28 +68,34 @@ const StyledBlurb = styled(StyledParagraph)`
   margin-bottom: 5vh;
 `;
 
-const ContactPage = () => (
-  <LanguageContextConsumer>
-    {context => (
-      <StyledContactPage>
-        <NavBar />
-        <Hero />
-        <StyledContactDetails>
-          <Header title={contact.title[context.lang]} />
-          <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>
-          <StyledParagraph>{contact.email[context.lang]}</StyledParagraph>
-          <StyledAnchor href={`mailto:1800happybirthday@gmail.com`}>
-            1800happybirthday@gmail.com
-          </StyledAnchor>
-          <StyledParagraph>{contact.instagram[context.lang]}</StyledParagraph>
-          <StyledAnchor href="https://www.instagram.com/1800HappyBirthday">
-            @1800HappyBirthday
-          </StyledAnchor>
-        </StyledContactDetails>
-      </StyledContactPage>
-    )}
-  </LanguageContextConsumer>
-);
+const ContactPage = () => {
+  useLayoutEffect(() => {
+    // scroll to top of page on link transistion
+    window.scrollTo(0, 0);
+  });
+  return (
+    <LanguageContextConsumer>
+      {context => (
+        <StyledContactPage>
+          <NavBar />
+          <Hero />
+          <StyledContactDetails>
+            <Header title={contact.title[context.lang]} />
+            <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>
+            <StyledParagraph>{contact.email[context.lang]}</StyledParagraph>
+            <StyledAnchor href={`mailto:1800happybirthday@gmail.com`}>
+              1800happybirthday@gmail.com
+            </StyledAnchor>
+            <StyledParagraph>{contact.instagram[context.lang]}</StyledParagraph>
+            <StyledAnchor href="https://www.instagram.com/1800HappyBirthday">
+              @1800HappyBirthday
+            </StyledAnchor>
+          </StyledContactDetails>
+        </StyledContactPage>
+      )}
+    </LanguageContextConsumer>
+  );
+};
 
 ContactPage.propTypes = {};
 

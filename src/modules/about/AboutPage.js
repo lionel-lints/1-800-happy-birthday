@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -19,31 +19,37 @@ const StyledAboutPage = styled.main`
   height: 100vh;
 `;
 
-const AboutPage = () => (
-  <LanguageContextConsumer>
-    {context => (
-      <StyledAboutPage>
-        <NavBar />
-        <Hero />
-        <Blurb />
-        <AdvisorsSection
-          title={advisors.title[context.lang]}
-          text={advisors.text[context.lang]}
-        />
-        <AdvisorsSection
-          title={volunteers.title[context.lang]}
-          text={volunteers.text[context.lang]}
-        />
-        <FAQSection
-          title={faq.title[context.lang]}
-          footer={faq.footer[context.lang]}
-          lang={context.lang}
-          questionList={faq.questionList}
-        />
-      </StyledAboutPage>
-    )}
-  </LanguageContextConsumer>
-);
+const AboutPage = () => {
+  useLayoutEffect(() => {
+    // scroll to top of page on link transistion
+    window.scrollTo(0, 0);
+  });
+  return (
+    <LanguageContextConsumer>
+      {context => (
+        <StyledAboutPage>
+          <NavBar />
+          <Hero />
+          <Blurb />
+          <AdvisorsSection
+            title={advisors.title[context.lang]}
+            text={advisors.text[context.lang]}
+          />
+          <AdvisorsSection
+            title={volunteers.title[context.lang]}
+            text={volunteers.text[context.lang]}
+          />
+          <FAQSection
+            title={faq.title[context.lang]}
+            footer={faq.footer[context.lang]}
+            lang={context.lang}
+            questionList={faq.questionList}
+          />
+        </StyledAboutPage>
+      )}
+    </LanguageContextConsumer>
+  );
+};
 
 AboutPage.propTypes = {};
 

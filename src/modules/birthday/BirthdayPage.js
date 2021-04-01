@@ -23,6 +23,9 @@ class BirthdayPage extends Component {
   }
 
   componentDidMount() {
+    // scroll to top of page on link transistion
+    window.scrollTo(0, 0);
+
     const {
       match: {
         params: { slugOrId }

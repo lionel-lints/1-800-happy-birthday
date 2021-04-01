@@ -19,6 +19,13 @@ const StyledLayout = styled.section`
   }
 `;
 
+const StyledAttributionBlurb = styled.p`
+  font-family: "Roboto Mono", monospace;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+`;
 const Footer = () => {
   return (
     <LanguageContextConsumer>
@@ -26,13 +33,17 @@ const Footer = () => {
         <StyledLayout>
           <NavRow context={context} />
           <p>{footer.donationBlurb[context.lang]} Happy Birthday Project</p>
-          <p>
-            {footer.created[context.lang]} Even/Odd,
-            {footer.site[context.lang]} Lionel Lints {footer.and[context.lang]}{" "}
-            Alex Marple,
-            {footer.design[context.lang]} Luke Beard.
+          <StyledAttributionBlurb>
+            {footer.created[context.lang]}{" "}
+            <a href="https://www.evenoddfilms.com">Even/Odd</a>,
+            {footer.site[context.lang]}{" "}
+            <a href="https://www.lionellints.com">Lionel Lints</a>{" "}
+            {footer.and[context.lang]}{" "}
+            <a href="https://www.alexmarple.com">Alex Marple</a>,
+            {footer.design[context.lang]}{" "}
+            <a href="https://twitter.com/lukesbeard">Luke Beard</a>.
             {footer.notPossible[context.lang]} {footer.volunteers[context.lang]}
-          </p>
+          </StyledAttributionBlurb>
         </StyledLayout>
       )}
     </LanguageContextConsumer>

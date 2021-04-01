@@ -22,6 +22,9 @@ export default class IndexPage extends React.Component {
   }
 
   componentDidMount() {
+    // scroll to top of page on link transistion
+    window.scrollTo(0, 0);
+
     const that = this;
     const allRows = [];
     let currentRow = 1;
