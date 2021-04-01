@@ -1,5 +1,6 @@
-import NavBar from "@/modules/_common/NavBar.js";
+import NavBar, { NavRow } from "@/modules/_common/NavBar.js";
 import Header from "@/modules/_common/Header.js";
+import Footer from "@/modules/_common/Footer.js";
 import Hero from "@/modules/_common/Hero.js";
 import Icon from "@/modules/_common/Icon.js";
 import Blurb from "@/modules/_common/Blurb.js";
@@ -15,11 +16,13 @@ export {
   Blurb,
   Icon,
   GlobalStyleReset,
+  Footer,
   Header,
   Hero,
   LanguageButton,
   LanguageContextConsumer,
   LanguageContextProvider,
   LinkOrAnchor,
-  NavBar
+  NavBar,
+  NavRow
 };

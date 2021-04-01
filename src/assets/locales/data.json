@@ -13,6 +13,36 @@
       "es": "Contacto"
     }
   },
+  "footer": {
+    "created": {
+      "en": "Created by",
+      "es": "Creado por"
+    },
+    "site": {
+      "en": " site by",
+      "es": " sitio de"
+    },
+    "and": {
+      "en": " and",
+      "es": " y"
+    },
+    "design": {
+      "en": " design by",
+      "es": " diseño de"
+    },
+    "notPossible": {
+      "en": " Not Possible without our",
+      "es": " No es posible sin nuestros"
+    },
+    "volunteers": {
+      "en": "Volunteers.",
+      "es": "Voluntarios."
+    },
+    "donationBlurb": {
+      "en": "Donate to The",
+      "es": "Donar al"
+    }
+  },
   "hero": {
     "en": "Voicemails for Lives Lost",
     "es": "Correos de Voz por las Vidas Perdidas"

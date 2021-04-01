@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import { NavBar, Hero } from "@/modules/_common";
+import { NavBar, Hero, Footer } from "@/modules/_common";
 import RowDisplay from "@/modules/birthdays/RowDisplay.js";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
@@ -88,6 +88,7 @@ export default class IndexPage extends React.Component {
         <NavBar />
         <Hero />
         {rows ? <RowDisplay rows={rows} /> : null}
+        <Footer />
       </StyledIndexPage>
     );
   }

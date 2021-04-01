@@ -51,6 +51,31 @@ const StyledLanguageRow = styled.div`
   height: 5vh;
   text-transform: uppercase;
 `;
+
+export const NavRow = ({ context }) => {
+  return (
+    <StyledNavRow>
+      <StyledLink to="/about">{navBar.about[context.lang]}</StyledLink>
+      <StyledLink exact to="/">
+        {navBar.birthday[context.lang]}
+      </StyledLink>
+      <StyledLink to="/contact">{navBar.contact[context.lang]}</StyledLink>
+      <div>
+        <Icon
+          src={Insta}
+          alt={"instagram icon"}
+          href={"https://instagram.com/1800HappyBirthday/"}
+        />
+        <Icon
+          src={Twitter}
+          alt={"twitter icon"}
+          href={"https://twitter.com/1800hbd"}
+        />
+      </div>
+    </StyledNavRow>
+  );
+};
+
 const NavBar = () => {
   return (
     <LanguageContextConsumer>
@@ -61,27 +86,7 @@ const NavBar = () => {
             <LanguageButton language={"Español"} />
           </StyledLanguageRow>
           <Header title={"1 800 Happy Birthday"} />
-          <StyledNavRow>
-            <StyledLink to="/about">{navBar.about[context.lang]}</StyledLink>
-            <StyledLink exact to="/">
-              {navBar.birthday[context.lang]}
-            </StyledLink>
-            <StyledLink to="/contact">
-              {navBar.contact[context.lang]}
-            </StyledLink>
-            <div>
-              <Icon
-                src={Insta}
-                alt={"instagram icon"}
-                href={"https://instagram.com/1800HappyBirthday/"}
-              />
-              <Icon
-                src={Twitter}
-                alt={"twitter icon"}
-                href={"https://twitter.com/1800hbd"}
-              />
-            </div>
-          </StyledNavRow>
+          <NavRow context={context} />
         </StyledNav>
       )}
     </LanguageContextConsumer>
