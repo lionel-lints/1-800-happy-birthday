@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { NavRow, LanguageContextConsumer } from "@/modules/_common";
 
@@ -42,7 +43,8 @@ const Footer = () => {
             <a href="https://www.alexmarple.com">Alex Marple</a>,
             {footer.design[context.lang]}{" "}
             <a href="https://twitter.com/lukesbeard">Luke Beard</a>.
-            {footer.notPossible[context.lang]} {footer.volunteers[context.lang]}
+            {footer.notPossible[context.lang]}{" "}
+            <Link to={"/about"}>{footer.volunteers[context.lang]}</Link>
           </StyledAttributionBlurb>
         </StyledLayout>
       )}
