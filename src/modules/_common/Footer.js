@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { NavRow, LanguageContextConsumer } from "@/modules/_common";
 
 import { footer } from "@/assets/locales/data.json";
+import breakpoints from "@/utils/breakpoints";
 
 const StyledLayout = styled.section`
   display: flex;
@@ -25,6 +26,11 @@ const StyledDonate = styled.div`
   padding-bottom: 10px;
   border-bottom: 5px solid red;
   padding-top: 4rem;
+
+  @media ${breakpoints.laptop} {
+    font-size: 3.5rem;
+    line-height: calc(3.5rem * 1.3);
+  }
 
   a {
     text-decoration: none;
@@ -60,7 +66,7 @@ const Footer = () => {
         <StyledLayout>
           <NavRow context={context} />
           <StyledDonate>
-            <a href="https://cash.app/$1800HBD">
+            <a href="https://cash.app/$1800HBD" target="_blank">
               {footer.donationBlurb[context.lang]} Happy Birthday Project
             </a>
           </StyledDonate>
