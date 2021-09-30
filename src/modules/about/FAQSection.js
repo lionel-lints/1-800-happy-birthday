@@ -2,37 +2,46 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import breakpoints from "@/utils/breakpoints";
+
 const StyledFAQSection = styled.section`
-  font-family: "Roboto Mono", monospace;
-  margin-left: 25%;
-  width: 50vw;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  font-family: RobotoMono;
+  margin: 2rem 5%;
+
+  @media ${breakpoints.laptop} {
+    margin: 2rem 25%;
+  }
+
   h3 {
-    margin-top: 5vh;
-    font-size: 40px;
-    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
+
   h5 {
-    margin-top: 5vh;
-    font-size: 25px;
-    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+    color: red;
   }
+
   p {
-    margin-top: 2vh;
-    font-size: 16px;
-    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: red;
+
+    &:hover {
+      color: white;
+    }
   }
 `;
-
-const Question = ({ question, answer }) => {
-  return (
-    <>
-      <h5>{question}</h5>
-      <p>{answer}</p>
-    </>
-  );
-};
 
 const FAQSection = ({ title, footer, questionList, lang }) => {
   return (
@@ -40,11 +49,32 @@ const FAQSection = ({ title, footer, questionList, lang }) => {
       <h3>{title}</h3>
       {questionList.length > 0 &&
         questionList.map(curr => (
-          <Question question={curr.question[lang]} answer={curr.answer[lang]} />
+          <>
+            <h5>{curr.question[lang]}</h5>
+            <p>{curr.answer[lang]}</p>
+          </>
         ))}
-      <h3>{footer}</h3>
+      <h5>
+        <a
+          href="mailto:1800happybirthday@gmail.com"
+          title="Email 1800happybirthday@gmail.com "
+        >
+          {footer}
+        </a>
+      </h5>
     </StyledFAQSection>
   );
+};
+
+FAQSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  footer: PropTypes.node.isRequired,
+  questionList: PropTypes.instanceOf(Array),
+  lang: PropTypes.string.isRequired
+};
+
+FAQSection.defaultProps = {
+  questionList: []
 };
 
 export default FAQSection;
