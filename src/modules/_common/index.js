@@ -6,6 +6,7 @@ import Hero from "@/modules/_common/Hero.js";
 import Icon from "@/modules/_common/Icon.js";
 import Logo from "@/modules/_common/Logo.js";
 import Blurb from "@/modules/_common/Blurb.js";
+import Marquee from "@/modules/_common/Marquee.js";
 import GlobalStyleReset from "@/modules/_common/GlobalStyleReset.js";
 import LanguageButton from "@/modules/_common/LanguageButton.js";
 import LinkOrAnchor from "@/modules/_common/LinkOrAnchor.js";
@@ -27,5 +28,6 @@ export {
   LanguageContextProvider,
   LinkOrAnchor,
   NavBar,
-  NavRow
+  NavRow,
+  Marquee
 };
