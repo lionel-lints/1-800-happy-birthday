@@ -24,7 +24,9 @@ const StyledFAQSection = styled.section`
     line-height: 1.5rem;
     font-weight: 500;
     font-variation-settings: "wght" 500;
-    color: red;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    display: inline-block;
   }
 
   p {
@@ -34,6 +36,11 @@ const StyledFAQSection = styled.section`
   }
 
   a {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
     text-decoration: none;
     color: red;
 
@@ -48,20 +55,18 @@ const FAQSection = ({ title, footer, questionList, lang }) => {
     <StyledFAQSection>
       <h3>{title}</h3>
       {questionList.length > 0 &&
-        questionList.map(curr => (
-          <>
+        questionList.map((curr, index) => (
+          <div key={index}>
             <h5>{curr.question[lang]}</h5>
             <p>{curr.answer[lang]}</p>
-          </>
+          </div>
         ))}
-      <h5>
-        <a
-          href="mailto:1800happybirthday@gmail.com"
-          title="Email 1800happybirthday@gmail.com "
-        >
-          {footer}
-        </a>
-      </h5>
+      <a
+        href="mailto:1800happybirthday@gmail.com"
+        title="Email 1800happybirthday@gmail.com "
+      >
+        {footer}
+      </a>
     </StyledFAQSection>
   );
 };
