@@ -7,6 +7,7 @@ import {
   NavBar,
   Footer,
   Blurb,
+  Marquee,
   LanguageContextConsumer
 } from "@/modules/_common";
 import { advisors, volunteers, faq } from "@/assets/locales/data.json";
@@ -42,6 +43,7 @@ const AboutPage = () => {
             lang={context.lang}
             questionList={faq.questionList}
           />
+          <Marquee />
           <Footer />
         </StyledAboutPage>
       )}
