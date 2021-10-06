@@ -3,27 +3,31 @@ import styled from "styled-components";
 import { LanguageContextConsumer } from "@/modules/_common/";
 
 const StyledButton = styled.button`
-  color: ${p => (p.isActive ? "#FFFFFF" : "#CCCCCC")};
+  color: white;
   background-color: black;
   cursor: pointer;
   outline: none;
   border: none;
-  font-family: MontserratExtraBold, sans-serif;
-  font-size: 20px;
+
+  font-family: RobotoMono;
+  font-size: 14px;
   text-transform: uppercase;
+
+  &:hover {
+    color: red;
+  }
 `;
 
-const LanguageButton = ({ language }) => {
+const LanguageButton = () => {
   return (
     <LanguageContextConsumer>
       {context => (
         <StyledButton
-          isActive={context.lang === language.toLowerCase().slice(0, 2)}
           onClick={
-            language === "English" ? context.setEnglish : context.setEspanol
+            context.lang === "en" ? context.setEspanol : context.setEnglish
           }
         >
-          {language}
+          {context.lang === "en" ? "Español" : "English"}
         </StyledButton>
       )}
     </LanguageContextConsumer>
