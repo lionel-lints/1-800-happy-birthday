@@ -1,33 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Airtable from "airtable";
-import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import { NavBar, Hero, Footer } from "@/modules/_common";
 import RowDisplay from "@/modules/birthdays/RowDisplay.js";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
-const StyledIndexPage = styled.div`
-  background-color: black;
+const StyledAllNames = styled.div`
   color: white;
-  width: 100vw;
-  height: 100vh;
 `;
 
-export default class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { rows: null };
-  }
+const AllNames = () => {
+  const [rows, setRows] = useState(null);
 
-  componentDidMount() {
-    // scroll to top of page on link transistion
-    window.scrollTo(0, 0);
-
-    const that = this;
+  useEffect(() => {
     const allRows = [];
-    let currentRow = 1;
 
     const base = new Airtable({
       apiKey: process.env.AIRTABLE_API_KEY
@@ -63,7 +50,6 @@ export default class IndexPage extends React.Component {
                 ...row,
                 fields
               });
-              currentRow += 1;
             });
 
             // calls page function again while there are still pages left
@@ -75,32 +61,19 @@ export default class IndexPage extends React.Component {
               console.error(err);
             }
 
-            that.setState({
-              rows: allRows
-            });
+            setRows(allRows);
           }
         )
     );
-  }
+  });
 
-  render() {
-    const { rows } = this.state;
-
-    return (
-      <StyledIndexPage>
-        <NavBar />
-        <Hero />
-        {rows ? <RowDisplay rows={rows} /> : null}
-        <Footer />
-      </StyledIndexPage>
-    );
-  }
-}
-
-IndexPage.propTypes = {
-  currentPage: PropTypes.number
+  return (
+    <StyledAllNames>{rows ? <RowDisplay rows={rows} /> : null}</StyledAllNames>
+  );
 };
 
-IndexPage.defaultProps = {
-  currentPage: 1
-};
+AllNames.propTypes = {};
+
+AllNames.defaultProps = {};
+
+export default AllNames;
