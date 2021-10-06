@@ -1,41 +1,29 @@
 import React from "react";
-import _ from "underscore";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { Header, Hero, LinkOrAnchor } from "@/modules/_common";
-import Row from "@/modules/birthdays/Row.js";
-import getFieldsToDisplay from "@/utils/getFieldsToDisplay";
-import { default as customRenderers } from "@/modules/renderers";
+import { LinkOrAnchor } from "@/modules/_common";
 
-const StyledDiv = styled.div`
-  text-align: justify;
-  margin-left: 2vw;
-  margin-right: 2vw;
+const StyledName = styled.span`
+  font-family: BradleyMicro;
+  color: ${p => (p.isEven ? "gray" : "white")};
+  font-size: 2rem;
+  line-height: 3rem;
 `;
 
 const RowDisplay = ({ rows }) => {
   return (
-    <StyledDiv>
-      {rows.map((row, ind) => {
-        const slugField = _.find(row.fields, field => field.name === "Slug");
-        const slug =
-          (typeof window === "undefined" && slugField && slugField.value) ||
-          row.id;
+    <>
+      {rows.map((row, index) => {
+        const name = row.fields.find(field => field.name === "Name").value;
 
         return (
-          <LinkOrAnchor key={row.id} to={`/${slug}.html`}>
-            <Row
-              fieldsToDisplay={getFieldsToDisplay(
-                process.env.HOMEPAGE_FIELD_ORDER
-              )}
-              rowData={row}
-              ind={ind}
-            />
+          <LinkOrAnchor key={name} to={`/${row.id}`}>
+            <StyledName isEven={index % 2 === 0}>{name}</StyledName>
           </LinkOrAnchor>
         );
       })}
-    </StyledDiv>
+    </>
   );
 };
 
