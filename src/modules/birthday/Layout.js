@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import _ from "underscore";
 import styled from "styled-components";
 
-import TextField from "@/modules/birthdays/TextField.js";
 import Attachments from "@/modules/birthday/Attachments.js";
 import AudioPlayer from "@/modules/birthday/AudioPlayer.js";
 import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";

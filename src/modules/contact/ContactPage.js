@@ -11,24 +11,6 @@ import {
 
 import { contact } from "@/assets/locales/data.json";
 
-const StyledAdvisorSection = styled.section`
-  margin-left: 15%;
-  width: 70vw;
-  height: 10vh;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  h3 {
-    font-family: Pinyon Script;
-    font-size: 60px;
-    text-align: center;
-  }
-  p {
-    font-family: "Roboto Mono", monospace;
-    font-size: 20px;
-    text-align: center;
-  }
-`;
-
 const StyledContactPage = styled.div`
   background-color: black;
   color: white;
@@ -73,17 +55,17 @@ const ContactPage = () => {
     // scroll to top of page on link transistion
     window.scrollTo(0, 0);
   });
+
   return (
     <LanguageContextConsumer>
       {context => (
         <StyledContactPage>
           <NavBar />
-          <Hero />
           <StyledContactDetails>
             <Header title={contact.title[context.lang]} />
             <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>
             <StyledParagraph>{contact.email[context.lang]}</StyledParagraph>
-            <StyledAnchor href={`mailto:1800happybirthday@gmail.com`}>
+            <StyledAnchor href="mailto:1800happybirthday@gmail.com">
               1800happybirthday@gmail.com
             </StyledAnchor>
             <StyledParagraph>{contact.instagram[context.lang]}</StyledParagraph>

@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 import logo from "@/assets/logo/1800-happy-birthday-logo.svg";
 
+// TODO: click target area, change margins?
 const StyledLogo = styled.img`
-  margin: 5%;
+  margin: 2% 5%;
 `;
+
 const Logo = () => {
   return (
     <a target="_blank" rel="noopener noreferrer" href="/">

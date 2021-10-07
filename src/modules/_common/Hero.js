@@ -26,7 +26,7 @@ Hero.defaultProps = {
 };
 
 Hero.propTypes = {
-  siteDescription: PropTypes.string
+  siteDescription: PropTypes.string // TODO
 };
 
 export default Hero;

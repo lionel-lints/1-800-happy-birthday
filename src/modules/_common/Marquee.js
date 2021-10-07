@@ -10,7 +10,7 @@ const StyledMarquee = styled.div`
   border-bottom: solid 2px white;
   padding-top: 10px;
   font-size: 40px;
-  margin: 10rem 0;
+  margin: 8rem 0;
   position: relative;
   overflow: hidden;
   width: 100vw;

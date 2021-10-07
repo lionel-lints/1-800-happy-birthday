@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const StyledAdvisorSection = styled.section`
-  margin: 40px 5%;
+  margin: 5rem 5%;
 
   h3 {
     font-family: PinyonScript;

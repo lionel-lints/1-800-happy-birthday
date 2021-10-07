@@ -12,6 +12,7 @@ const StyledLayout = styled.section`
   flex-direction: column;
   align-items: center;
   margin: 32px 5%;
+  color: white;
 
   div {
     display: flex;
