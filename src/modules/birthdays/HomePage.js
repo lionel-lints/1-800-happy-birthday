@@ -1,33 +1,30 @@
-import React from "react";
-import Airtable from "airtable";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
-import _ from "underscore";
 import styled from "styled-components";
+import _ from "underscore";
 
-import { NavBar, Hero, Footer } from "@/modules/_common";
-import RowDisplay from "@/modules/birthdays/RowDisplay.js";
+import Airtable from "airtable";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
-const StyledIndexPage = styled.div`
-  background-color: black;
+import { PageHeader, Footer, Blurb, Marquee } from "@/modules/_common";
+import ActiveNames from "@/modules/birthdays/ActiveNames.js";
+import AllNamesList from "@/modules/birthdays/AllNamesList.js";
+
+const StyledHomePage = styled.div`
   color: white;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
 `;
 
-export default class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { rows: null };
-  }
+const HomePage = () => {
+  const [data, setData] = useState(null);
 
-  componentDidMount() {
-    // scroll to top of page on link transistion
-    window.scrollTo(0, 0);
+  // useLayoutEffect(() => {
+  //   // scroll to top of page on link transition
+  //   window.scrollTo(0, 0);
+  // });
 
-    const that = this;
+  useEffect(() => {
     const allRows = [];
-    let currentRow = 1;
 
     const base = new Airtable({
       apiKey: process.env.AIRTABLE_API_KEY
@@ -63,7 +60,6 @@ export default class IndexPage extends React.Component {
                 ...row,
                 fields
               });
-              currentRow += 1;
             });
 
             // calls page function again while there are still pages left
@@ -75,32 +71,30 @@ export default class IndexPage extends React.Component {
               console.error(err);
             }
 
-            that.setState({
-              rows: allRows
-            });
+            setData(allRows);
           }
         )
     );
-  }
+  });
 
-  render() {
-    const { rows } = this.state;
-
-    return (
-      <StyledIndexPage>
-        <NavBar />
-        <Hero />
-        {rows ? <RowDisplay rows={rows} /> : null}
-        <Footer />
-      </StyledIndexPage>
-    );
-  }
-}
-
-IndexPage.propTypes = {
-  currentPage: PropTypes.number
+  return (
+    <StyledHomePage>
+      <PageHeader />
+      <Blurb />
+      {data ? (
+        <>
+          <ActiveNames data={data} />
+          <AllNamesList data={data} />
+        </>
+      ) : null}
+      <Marquee />
+      <Footer />
+    </StyledHomePage>
+  );
 };
 
-IndexPage.defaultProps = {
-  currentPage: 1
-};
+HomePage.propTypes = {};
+
+HomePage.defaultProps = {};
+
+export default HomePage;

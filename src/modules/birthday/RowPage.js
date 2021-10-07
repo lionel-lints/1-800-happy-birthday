@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Row from "@/modules/birthday/Row.js";
-import { NavBar, Header, LinkOrAnchor } from "@/modules/_common";
+import { PageHeader, Header, LinkOrAnchor } from "@/modules/_common";
 import getFieldsToDisplay from "@/utils/getFieldsToDisplay";
 
 const StyledRowPage = styled.div`

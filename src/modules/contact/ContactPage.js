@@ -1,71 +1,64 @@
 import React, { useLayoutEffect } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 import {
-  NavBar,
-  Header,
-  Hero,
+  PageHeader,
+  Marquee,
+  Blurb,
+  Footer,
   LanguageContextConsumer
 } from "@/modules/_common";
 
 import { contact } from "@/assets/locales/data.json";
 
-const StyledAdvisorSection = styled.section`
-  margin-left: 15%;
-  width: 70vw;
-  height: 10vh;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  h3 {
-    font-family: Pinyon Script;
-    font-size: 60px;
-    text-align: center;
-  }
-  p {
-    font-family: "Roboto Mono", monospace;
-    font-size: 20px;
-    text-align: center;
-  }
-`;
-
 const StyledContactPage = styled.div`
-  background-color: black;
   color: white;
-  width: 100vw;
-  height: 100vh;
 `;
 
 const StyledContactDetails = styled.section`
-  margin-left: 15%;
-  width: 70vw;
-  height: 10vh;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-
+  margin: 0 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h3 {
+    font-family: PinyonScript;
+    font-size: 3.125rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: RobotoMono;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 600px;
+  }
+
   a {
+    font-family: BradleyMicro;
+    font-size: 2rem;
+    color: red;
     text-decoration: none;
-    color: white;
+
+    &:hover {
+      color: white;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
   }
 `;
 
-const StyledAnchor = styled.a`
-  font-family: BradleyDisplay;
-  font-size: 40px;
-  margin-bottom: 5vh;
-`;
-
-const StyledParagraph = styled.p`
-  font-family: Pinyon Script;
-  font-size: 40px;
+const StyledHeader = styled.h1`
+  font-family: BradleyMicro;
+  font-size: 6rem;
   text-align: center;
-`;
-
-const StyledBlurb = styled(StyledParagraph)`
-  margin-bottom: 5vh;
+  letter-spacing: -0.5rem;
+  margin-bottom: 2rem;
 `;
 
 const ContactPage = () => {
@@ -73,24 +66,27 @@ const ContactPage = () => {
     // scroll to top of page on link transistion
     window.scrollTo(0, 0);
   });
+
   return (
     <LanguageContextConsumer>
       {context => (
         <StyledContactPage>
-          <NavBar />
-          <Hero />
+          <PageHeader />
           <StyledContactDetails>
-            <Header title={contact.title[context.lang]} />
-            <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>
-            <StyledParagraph>{contact.email[context.lang]}</StyledParagraph>
-            <StyledAnchor href={`mailto:1800happybirthday@gmail.com`}>
+            <StyledHeader>{contact.title[context.lang]}</StyledHeader>
+            <p>{contact.text[context.lang]}</p>
+            <h3>{contact.email[context.lang]}</h3>
+            <a href="mailto:1800happybirthday@gmail.com">
               1800happybirthday@gmail.com
-            </StyledAnchor>
-            <StyledParagraph>{contact.instagram[context.lang]}</StyledParagraph>
-            <StyledAnchor href="https://www.instagram.com/1800HappyBirthday">
+            </a>
+            <h3>{contact.instagram[context.lang]}</h3>
+            <a href="https://www.instagram.com/1800HappyBirthday">
               @1800HappyBirthday
-            </StyledAnchor>
+            </a>
           </StyledContactDetails>
+          <Marquee />
+          <Blurb />
+          <Footer />
         </StyledContactPage>
       )}
     </LanguageContextConsumer>
