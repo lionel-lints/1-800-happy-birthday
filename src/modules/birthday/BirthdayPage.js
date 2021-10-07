@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Layout from "@/modules/birthday/Layout.js";
-import { NavBar, Hero } from "@/modules/_common";
+import { PageHeader, Hero } from "@/modules/_common";
 import formatAirtableRowData from "@/utils/formatAirtableRowData";
 
 const StyledRowPage = styled.div`
@@ -49,7 +49,7 @@ class BirthdayPage extends Component {
     const { fields } = this.state;
     return (
       <StyledRowPage>
-        <NavBar />
+        <PageHeader />
         <Hero />
         {!!fields ? (
           <Layout

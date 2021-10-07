@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AdvisorsSection from "@/modules/about/AdvisorsSection.js";
 import FAQSection from "@/modules/about/FAQSection.js";
 import {
-  NavBar,
+  PageHeader,
   Footer,
   Blurb,
   Marquee,
@@ -27,7 +27,7 @@ const AboutPage = () => {
     <LanguageContextConsumer>
       {context => (
         <StyledAboutPage>
-          <NavBar />
+          <PageHeader />
           <Blurb />
           <AdvisorsSection
             title={advisors.title[context.lang]}

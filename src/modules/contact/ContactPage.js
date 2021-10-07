@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import {
-  NavBar,
+  PageHeader,
   Header,
   Hero,
   LanguageContextConsumer
@@ -60,7 +60,7 @@ const ContactPage = () => {
     <LanguageContextConsumer>
       {context => (
         <StyledContactPage>
-          <NavBar />
+          <PageHeader />
           <StyledContactDetails>
             <Header title={contact.title[context.lang]} />
             <StyledBlurb>{contact.text[context.lang]}</StyledBlurb>

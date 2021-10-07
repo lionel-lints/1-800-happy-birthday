@@ -6,7 +6,7 @@ import _ from "underscore";
 import Airtable from "airtable";
 import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
-import { NavBar, Footer, Blurb, Marquee } from "@/modules/_common";
+import { PageHeader, Footer, Blurb, Marquee } from "@/modules/_common";
 import ActiveNames from "@/modules/birthdays/ActiveNames.js";
 import AllNamesList from "@/modules/birthdays/AllNamesList.js";
 
@@ -79,7 +79,7 @@ const HomePage = () => {
 
   return (
     <StyledHomePage>
-      <NavBar />
+      <PageHeader />
       <Blurb />
       {data ? (
         <>

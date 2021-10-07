@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { NavRow, LanguageContextConsumer } from "@/modules/_common";
+import { NavMenu, LanguageContextConsumer } from "@/modules/_common";
 
 import { footer } from "@/assets/locales/data.json";
 import breakpoints from "@/utils/breakpoints";
@@ -65,7 +65,7 @@ const Footer = () => {
     <LanguageContextConsumer>
       {context => (
         <StyledLayout>
-          <NavRow context={context} />
+          <NavMenu context={context} />
           <StyledDonate>
             <a href="https://cash.app/$1800HBD" target="_blank">
               {footer.donationBlurb[context.lang]} Happy Birthday Project

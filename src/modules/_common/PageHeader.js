@@ -5,7 +5,7 @@ import {
   LanguageButton,
   LanguageContextConsumer,
   Logo,
-  NavRow
+  NavMenu
 } from "@/modules/_common";
 
 const StyledNav = styled.section`
@@ -26,7 +26,7 @@ const StyledLanguageRow = styled.div`
   text-transform: uppercase;
 `;
 
-const NavBar = () => {
+const PageHeader = () => {
   return (
     <LanguageContextConsumer>
       {context => (
@@ -34,7 +34,7 @@ const NavBar = () => {
           <StyledLanguageRow>
             <LanguageButton />
           </StyledLanguageRow>
-          <NavRow context={context} />
+          <NavMenu context={context} />
           <Logo />
         </StyledNav>
       )}
@@ -42,8 +42,7 @@ const NavBar = () => {
   );
 };
 
-NavBar.defaultProps = {};
-NavBar.propTypes = {};
+PageHeader.defaultProps = {};
+PageHeader.propTypes = {};
 
-export default NavBar;
-
+export default PageHeader;

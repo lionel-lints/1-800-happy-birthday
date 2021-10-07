@@ -1,5 +1,5 @@
-import NavBar from "@/modules/_common/NavBar.js";
-import NavRow from "@/modules/_common/NavRow.js";
+import PageHeader from "@/modules/_common/PageHeader.js";
+import NavMenu from "@/modules/_common/NavMenu.js";
 import Header from "@/modules/_common/Header.js";
 import Footer from "@/modules/_common/Footer.js";
 import Hero from "@/modules/_common/Hero.js";
@@ -27,7 +27,7 @@ export {
   LanguageContextConsumer,
   LanguageContextProvider,
   LinkOrAnchor,
-  NavBar,
-  NavRow,
+  PageHeader,
+  NavMenu,
   Marquee
 };
