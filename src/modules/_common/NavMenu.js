@@ -30,6 +30,29 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   }
 `;
 
+const StyledLink = styled.a.attrs({ activeClassName })`
+  text-decoration: none;
+  font-family: PinyonScript;
+  display: block;
+  color: red;
+
+  margin: 1rem 0;
+  font-size: 4rem;
+
+  @media ${breakpoints.tablet} {
+    font-size: 3rem;
+  }
+
+  @media ${breakpoints.laptop} {
+    font-size: 3.5rem;
+    padding: 20px 30px;
+  }
+
+  &.${activeClassName}, &:hover {
+    color: white;
+  }
+`;
+
 const StyledNavMenu = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,9 +69,12 @@ const NavMenu = ({ context }) => {
         {navMenu.birthday[context.lang]}
       </StyledNavLink>
       <StyledNavLink to="/about">{navMenu.about[context.lang]}</StyledNavLink>
-      <StyledNavLink to="https://instagram.com/1800HappyBirthday/">
+      <StyledLink
+        target="_blank"
+        href="https://instagram.com/1800HappyBirthday/"
+      >
         {navMenu.instagram[context.lang]}
-      </StyledNavLink>
+      </StyledLink>
       <StyledNavLink to="/store">{navMenu.store[context.lang]}</StyledNavLink>
       <StyledNavLink to="/contact">
         {navMenu.contact[context.lang]}
