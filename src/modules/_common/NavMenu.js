@@ -30,7 +30,7 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   }
 `;
 
-const StyledLink = styled.a.attrs({ activeClassName })`
+const StyledAnchor = styled.a.attrs({ activeClassName })`
   text-decoration: none;
   font-family: PinyonScript;
   display: block;
@@ -69,18 +69,18 @@ const NavMenu = ({ context }) => {
         {navMenu.birthday[context.lang]}
       </StyledNavLink>
       <StyledNavLink to="/about">{navMenu.about[context.lang]}</StyledNavLink>
-      <StyledLink
+      <StyledAnchor
         target="_blank"
         href="https://instagram.com/1800HappyBirthday/"
       >
         {navMenu.instagram[context.lang]}
-      </StyledLink>
-      <StyledLink
+      </StyledAnchor>
+      <StyledAnchor
         target="_blank"
         href="https://1800happybirthday.gumroad.com/l/kxeNp"
       >
         {navMenu.store[context.lang]}
-      </StyledLink>
+      </StyledAnchor>
       <StyledNavLink to="/contact">
         {navMenu.contact[context.lang]}
       </StyledNavLink>
