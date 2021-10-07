@@ -75,7 +75,12 @@ const NavMenu = ({ context }) => {
       >
         {navMenu.instagram[context.lang]}
       </StyledLink>
-      <StyledNavLink to="/store">{navMenu.store[context.lang]}</StyledNavLink>
+      <StyledLink
+        target="_blank"
+        href="https://1800happybirthday.gumroad.com/l/kxeNp"
+      >
+        {navMenu.store[context.lang]}
+      </StyledLink>
       <StyledNavLink to="/contact">
         {navMenu.contact[context.lang]}
       </StyledNavLink>
