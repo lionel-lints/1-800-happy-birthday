@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Airtable from "airtable";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Layout from "@/modules/birthday/Layout.js";
 import { PageHeader } from "@/modules/_common";
-import formatAirtableRowData from "@/utils/formatAirtableRowData";
+
+import AirtableClient from "@/lib/AirtableClient";
 
 const StyledRowPage = styled.div`
   background-color: black;
@@ -14,57 +14,50 @@ const StyledRowPage = styled.div`
   height: 100vh;
 `;
 
-class BirthdayPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fields: null
-    };
-  }
+const BirthdayPage = props => {
+  const [fields, setFields] = useState(null);
 
-  componentDidMount() {
-    // scroll to top of page on link transistion
+  useLayoutEffect(() => {
+    // scroll to top of page on link transition
     window.scrollTo(0, 0);
+  });
 
+  useEffect(() => {
     const {
       match: {
         params: { slugOrId }
       }
-    } = this.props;
+    } = props;
 
-    const base = new Airtable({
-      apiKey: process.env.AIRTABLE_API_KEY
-    }).base(process.env.BASE_ID);
+    const getData = async () => {
+      const response = await AirtableClient.fetchData();
+      const currentPerson = response.find(person => person.id === slugOrId);
 
-    const that = this;
+      if (currentPerson) {
+        setFields(currentPerson.fields);
+      }
+    };
 
-    base(process.env.TABLE_ID).find(slugOrId, (err, record) => {
-      that.setState({
-        fields: record.fields
-      });
-    });
-  }
+    getData();
+  }, []);
 
-  render() {
-    const { fields } = this.state;
-    return (
-      <StyledRowPage>
-        <PageHeader />
-        {!!fields ? (
-          <Layout
-            name={fields.Name}
-            DOB={fields.dob}
-            DOD={fields.dod}
-            photoArr={fields.Photo}
-            voicemails={fields.Voicemails}
-            voicemailNumber={fields["Voicemail Number"]}
-            quote={fields.Quote}
-          />
-        ) : null}
-      </StyledRowPage>
-    );
-  }
-}
+  return (
+    <StyledRowPage>
+      <PageHeader />
+      {!!fields && (
+        <Layout
+          name={fields.Name}
+          DOB={fields.dob}
+          DOD={fields.dod}
+          photoArr={fields.Photo}
+          voicemails={fields.Voicemails}
+          voicemailNumber={fields["Voicemail Number"]}
+          quote={fields.Quote}
+        />
+      )}
+    </StyledRowPage>
+  );
+};
 
 BirthdayPage.propTypes = {
   match: PropTypes.shape({
