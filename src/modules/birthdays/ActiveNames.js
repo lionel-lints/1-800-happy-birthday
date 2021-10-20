@@ -53,10 +53,10 @@ const StyledDate = styled.div`
 const ActiveNames = ({ data }) => {
   return (
     <StyledActiveNames>
-      {data.map(row => {
-        const isLive = row.fields["Voicemail Number"];
-        const name = row.fields.Name;
-        const dobField = row.fields.dob;
+      {data.map(person => {
+        const isLive = person.fields["Voicemail Number"];
+        const name = person.fields.Name;
+        const dobField = person.fields.dob;
 
         let dob;
         if (dobField) {
@@ -68,7 +68,7 @@ const ActiveNames = ({ data }) => {
         return (
           <StyledWrapper key={name}>
             {isLive ? (
-              <LinkOrAnchor to={`/${row.id}.html`}>
+              <LinkOrAnchor to={`/${person.id}.html`}>
                 <StyledDate>{dob.join(" ")}</StyledDate>
                 <StyledName>{name}</StyledName>
               </LinkOrAnchor>

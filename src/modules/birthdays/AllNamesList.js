@@ -30,8 +30,8 @@ const StyledName = styled.li`
 const AllNamesList = ({ data }) => {
   return (
     <StyledList>
-      {data.map((row, index) => {
-        const name = row.fields.Name;
+      {data.map((person, index) => {
+        const name = person.fields.Name;
 
         return (
           <StyledName key={name} isEven={index % 2 === 0}>

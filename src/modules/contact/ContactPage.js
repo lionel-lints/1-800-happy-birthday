@@ -63,7 +63,7 @@ const StyledHeader = styled.h1`
 
 const ContactPage = () => {
   useLayoutEffect(() => {
-    // scroll to top of page on link transistion
+    // scroll to top of page on link transition
     window.scrollTo(0, 0);
   });
 

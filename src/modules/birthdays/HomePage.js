@@ -23,7 +23,6 @@ const HomePage = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await AirtableClient.fetchData();
-      console.log(response);
       setData(response);
     };
 
