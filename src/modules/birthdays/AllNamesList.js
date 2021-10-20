@@ -31,7 +31,7 @@ const AllNamesList = ({ data }) => {
   return (
     <StyledList>
       {data.map((row, index) => {
-        const name = row.fields.find(field => field.name === "Name").value;
+        const name = row.fields.Name;
 
         return (
           <StyledName key={name} isEven={index % 2 === 0}>
@@ -46,12 +46,10 @@ const AllNamesList = ({ data }) => {
 AllNamesList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      fields: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string
-        })
-      ),
-      name: PropTypes.string
+      fields: PropTypes.shape({
+        Name: PropTypes.string
+      }),
+      id: PropTypes.string
     })
   )
 };

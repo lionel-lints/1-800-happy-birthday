@@ -54,16 +54,13 @@ const ActiveNames = ({ data }) => {
   return (
     <StyledActiveNames>
       {data.map(row => {
-        const isLive = row.fields.find(
-          field => field.name === "Voicemail Number"
-        );
-
-        const name = row.fields.find(field => field.name === "Name").value;
-        const dobField = row.fields.find(field => field.name === "dob");
+        const isLive = row.fields["Voicemail Number"];
+        const name = row.fields.Name;
+        const dobField = row.fields.dob;
 
         let dob;
         if (dobField) {
-          dob = new Date(Date.parse(dobField.value));
+          dob = new Date(Date.parse(dobField));
           dob = dob.toDateString().split(" ");
           dob.shift();
         }
@@ -86,12 +83,12 @@ const ActiveNames = ({ data }) => {
 ActiveNames.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      fields: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string
-        })
-      ),
-      name: PropTypes.string
+      fields: PropTypes.shape({
+        dob: PropTypes.string,
+        "Voicemail Number": PropTypes.string,
+        Name: PropTypes.string
+      }),
+      id: PropTypes.string
     })
   )
 };

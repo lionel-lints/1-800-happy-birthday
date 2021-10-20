@@ -15,10 +15,10 @@ const StyledHomePage = styled.div`
 const HomePage = () => {
   const [data, setData] = useState(null);
 
-  // useLayoutEffect(() => {
-  //   // scroll to top of page on link transition
-  //   window.scrollTo(0, 0);
-  // });
+  useLayoutEffect(() => {
+    // scroll to top of page on link transition
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     const getData = async () => {
