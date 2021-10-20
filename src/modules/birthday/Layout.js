@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
-import _ from "underscore";
 import styled from "styled-components";
 
 import Attachments from "@/modules/birthday/Attachments.js";
@@ -17,6 +16,7 @@ const StyledTextPosition = styled.div`
   position: absolute;
   bottom: 50%;
 `;
+
 const StyledName = styled.h1`
   font-family: BradleyDisplay, serif;
   font-size: 100px;
@@ -33,7 +33,6 @@ const StyledDates = styled.h2`
 
 const StyledDiv = styled.div`
   width: 100%;
-  /*position: absolute*/
   margin: auto;
   top: 0;
   bottom: 0;
@@ -68,27 +67,28 @@ const getPhotoURL = arr => {
 
 const getDateString = (lang, dob, dod) => {
   if (lang === "es") {
-    let birth = moment(dob)
+    const birth = moment(dob)
       .locale("es")
       .format("LL");
-    let death = moment(dod)
+    const death = moment(dod)
       .locale("es")
       .format("LL");
 
-    return `${birth == "Fetcha inválida" ? "Desconocido" : birth} al ${
-      death == "Fetcha inválida" ? "Desconocido" : death
-    }`;
-  } else if (lang === "en") {
-    let birth = moment(dob)
-      .locale("en")
-      .format("MMMM Do, YYYY");
-    let death = moment(dod)
-      .locale("en")
-      .format("MMMM Do, YYYY");
-    return `${birth === "Invalid date" ? "Unknown" : birth} to ${
-      death == "Invalid date" ? "Unknown" : death
+    return `${birth === "Fetcha inválida" ? "Desconocido" : birth} al ${
+      death === "Fetcha inválida" ? "Desconocido" : death
     }`;
   }
+
+  const birth = moment(dob)
+    .locale("en")
+    .format("MMMM Do, YYYY");
+  const death = moment(dod)
+    .locale("en")
+    .format("MMMM Do, YYYY");
+
+  return `${birth === "Invalid date" ? "Unknown" : birth} to ${
+    death === "Invalid date" ? "Unknown" : death
+  }`;
 };
 
 const Layout = ({
