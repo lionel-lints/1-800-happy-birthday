@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -17,7 +17,9 @@ const StyledActiveNames = styled.div`
 const StyledWrapper = styled.div`
   position: relative;
 
-  a:hover {
+  &:hover {
+    cursor: pointer;
+
     > div:first-child {
       opacity: 0.3;
       color: white;
@@ -51,10 +53,16 @@ const StyledDate = styled.div`
 `;
 
 const ActiveNames = ({ data }) => {
+  const [activeID, setActiveID] = useState(null);
+
+  const showBirthday = id => {
+    setActiveID(id);
+  };
+
   return (
     <StyledActiveNames>
       {data.map(person => {
-        const isLive = person.fields["Voicemail Number"];
+        const isLive = !!person.fields.dob;
         const name = person.fields.Name;
         const dobField = person.fields.dob;
 
@@ -66,12 +74,12 @@ const ActiveNames = ({ data }) => {
         }
 
         return (
-          <StyledWrapper key={name}>
+          <StyledWrapper onClick={() => showBirthday(person.id)} key={name}>
             {isLive ? (
-              <LinkOrAnchor to={`/${person.id}.html`}>
+              <>
                 <StyledDate>{dob.join(" ")}</StyledDate>
                 <StyledName>{name}</StyledName>
-              </LinkOrAnchor>
+              </>
             ) : null}
           </StyledWrapper>
         );

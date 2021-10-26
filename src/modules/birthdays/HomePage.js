@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { PageHeader, Footer, Blurb, Marquee } from "@/modules/_common";
 import ActiveNames from "@/modules/birthdays/ActiveNames.js";
 import AllNamesList from "@/modules/birthdays/AllNamesList.js";
+import AllNamesLoader from "@/modules/birthdays/AllNamesLoader.js";
+
+import useLocalStorage from "@/utils/hooks/useLocalStorage";
 
 import AirtableClient from "@/lib/AirtableClient";
 
@@ -13,7 +16,7 @@ const StyledHomePage = styled.div`
 `;
 
 const HomePage = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useLocalStorage("hbd-data", "");
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
@@ -21,9 +24,11 @@ const HomePage = () => {
   });
 
   useEffect(() => {
+    localStorage.clear();
+
     const getData = async () => {
       const response = await AirtableClient.fetchData();
-      setData(response);
+      setData(response); // store as serialized data {id: Person} to access on Birthday Page
     };
 
     getData();
@@ -35,6 +40,7 @@ const HomePage = () => {
       <Blurb />
       {data ? (
         <>
+          <AllNamesLoader data={data} />
           <ActiveNames data={data} />
           <AllNamesList data={data} />
         </>
