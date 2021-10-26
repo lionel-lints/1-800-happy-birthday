@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const StyledList = styled.ul`
   padding: 0;
-  margin: 0;
   text-align: center;
   margin: 2%;
   opacity: 0.1;

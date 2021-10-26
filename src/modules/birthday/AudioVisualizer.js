@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  position: absolute;
   canvas {
     visibility: ${p => (p.isPlaying === true ? "inherit" : "hidden")};
   }
@@ -30,8 +29,8 @@ class AudioVisualizer extends Component {
     let x = 0;
     const sliceWidth = (width * 1.0) / audioData.length;
 
-    context.lineWidth = 2;
-    context.strokeStyle = "#FFFFFF";
+    context.lineWidth = 5;
+    context.strokeStyle = "red";
     context.clearRect(0, 0, width, height);
 
     context.beginPath();

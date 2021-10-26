@@ -6,6 +6,11 @@ import logo from "@/assets/logo/1800-happy-birthday-logo.svg";
 // TODO: click target area, change margins?
 const StyledLogo = styled.img`
   margin: 2% 5%;
+  transition: opacity 0.25s ease-out;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const Logo = () => {
