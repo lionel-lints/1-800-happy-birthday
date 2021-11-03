@@ -9,9 +9,9 @@ import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 
 const StyledAction = styled.p`
   font-family: RobotoMono;
+  display: inline-block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 1rem;
-  margin-top: 4rem;
   margin-bottom: 1rem;
 `;
 
@@ -26,6 +26,7 @@ const StyledNumber = styled.h2`
   font-family: PinyonScript;
   font-size: 3rem;
   text-align: center;
+  transition: color 0.25s ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -80,14 +81,12 @@ const Voicemails = ({ vms, voicemailNumber, lang, name }) => {
       <StyledNumber onClick={callNumber}>
         <span>{voicemailNumber}</span>
       </StyledNumber>
+
       <AudioPlayer
         sources={urls}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <StyledParagraph>
-        {birthday.listenStart[lang] + name + birthday.listenEnd[lang]}.
-      </StyledParagraph>
       <AudioAnalyser isPlaying={isPlaying} />
     </StyledDiv>
   );

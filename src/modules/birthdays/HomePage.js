@@ -15,6 +15,16 @@ const StyledHomePage = styled.div`
   position: relative;
 `;
 
+const serializeData = res => {
+  const result = {};
+
+  res.forEach(item => {
+    result[item.id] = item.fields;
+  });
+
+  return result;
+};
+
 const HomePage = () => {
   const [data, setData] = useLocalStorage("hbd-data", "");
 
@@ -28,7 +38,7 @@ const HomePage = () => {
 
     const getData = async () => {
       const response = await AirtableClient.fetchData();
-      setData(response); // store as serialized data {id: Person} to access on Birthday Page
+      setData(serializeData(response));
     };
 
     getData();
@@ -40,7 +50,7 @@ const HomePage = () => {
       <Blurb />
       {data ? (
         <>
-          <AllNamesLoader data={data} />
+          {/* <AllNamesLoader data={data} /> */}
           <ActiveNames data={data} />
           <AllNamesList data={data} />
         </>

@@ -8,7 +8,7 @@ const StyledLoader = styled.ul`
   opacity: 1;
   position: absolute;
   top: 0;
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
   user-select: none;
   height: 100vh;
   background: black;

@@ -9,7 +9,7 @@ const StyledList = styled.ul`
   opacity: 0.1;
   position: fixed;
   top: 0;
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
   user-select: none;
   padding-bottom: 10rem;
   z-index: -1;
@@ -29,8 +29,8 @@ const StyledName = styled.li`
 const AllNamesList = ({ data }) => {
   return (
     <StyledList>
-      {data.map((person, index) => {
-        const name = person.fields.Name;
+      {Object.keys(data).map((id, index) => {
+        const name = data[id].Name;
 
         return (
           <StyledName key={name} isEven={index % 2 === 0}>
@@ -43,18 +43,18 @@ const AllNamesList = ({ data }) => {
 };
 
 AllNamesList.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      fields: PropTypes.shape({
-        Name: PropTypes.string
-      }),
-      id: PropTypes.string
-    })
-  )
+  data: PropTypes.shape({
+    fields: PropTypes.shape({
+      dob: PropTypes.string,
+      "Voicemail Number": PropTypes.string,
+      Name: PropTypes.string
+    }),
+    id: PropTypes.string
+  })
 };
 
 AllNamesList.defaultProps = {
-  data: []
+  data: {}
 };
 
 export default AllNamesList;

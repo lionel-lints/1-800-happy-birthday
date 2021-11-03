@@ -2,20 +2,21 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Layout from "@/modules/birthday/Layout.js";
-import { PageHeader } from "@/modules/_common";
+import BirthdaySection from "@/modules/birthday/BirthdaySection.js";
+import AllNamesList from "@/modules/birthdays/AllNamesList.js";
+import { PageHeader, Marquee, Blurb, Footer } from "@/modules/_common";
 
 import AirtableClient from "@/lib/AirtableClient";
+import useLocalStorage from "@/utils/hooks/useLocalStorage";
 
-const StyledRowPage = styled.div`
-  background-color: black;
+const StyledBirthdayPage = styled.div`
   color: white;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
 `;
 
 const BirthdayPage = props => {
   const [fields, setFields] = useState(null);
+  const [data, setData] = useLocalStorage("hbd-data", "");
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
@@ -31,8 +32,9 @@ const BirthdayPage = props => {
 
     const getData = async () => {
       const response = await AirtableClient.fetchData();
-      const currentPerson = response.find(person => person.id === slugOrId);
+      setData(response);
 
+      const currentPerson = response.find(person => person.id === slugOrId);
       if (currentPerson) {
         setFields(currentPerson.fields);
       }
@@ -42,20 +44,28 @@ const BirthdayPage = props => {
   }, []);
 
   return (
-    <StyledRowPage>
+    <StyledBirthdayPage>
       <PageHeader />
-      {!!fields && (
-        <Layout
+      {data ? (
+        <>
+          <AllNamesList data={data} />
+        </>
+      ) : null}
+      {fields ? (
+        <BirthdaySection
           name={fields.Name}
           DOB={fields.dob}
           DOD={fields.dod}
-          photoArr={fields.Photo}
+          photo={fields.Photo}
           voicemails={fields.Voicemails}
           voicemailNumber={fields["Voicemail Number"]}
           quote={fields.Quote}
         />
-      )}
-    </StyledRowPage>
+      ) : null}
+      <Marquee />
+      <Blurb />
+      <Footer />
+    </StyledBirthdayPage>
   );
 };
 
