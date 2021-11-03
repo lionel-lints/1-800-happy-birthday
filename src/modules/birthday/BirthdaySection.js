@@ -104,7 +104,8 @@ const StyledQuote = styled.div`
   font-family: PinyonScript;
   font-size: 3rem;
   line-height: 4rem;
-  margin: 0 5%;
+  margin: 0 10%;
+  margin-top: 5rem;
 `;
 
 const StyledAttribution = styled.div`
@@ -276,7 +277,7 @@ const BirthdaySection = ({
   photo = [],
   voicemails = [],
   voicemailNumber = "",
-  quote = "Mario always told me to keep fighting. I will always fight for Mario, I will be his voice.",
+  quote = "1800 Happy Birthday is a voicemail project created to honor the Black and Brown victims of Police Killings and Systemic Racism by allowing people to leave and listen to voicemails left for the victims on their birthday",
   actions = "",
   donation = ""
 }) => {
