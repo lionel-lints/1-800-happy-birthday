@@ -15,6 +15,18 @@ const StyledBlurb = styled.h2`
   font-weight: 400;
   margin: 0 5%;
 
+  animation: fadeInBlurb ease-in 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  @keyframes fadeInBlurb {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   @media ${breakpoints.tablet} {
     font-size: 2.2rem;
     line-height: calc(2.2rem * 1.3);

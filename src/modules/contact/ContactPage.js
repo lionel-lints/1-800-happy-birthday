@@ -21,6 +21,18 @@ const StyledContactDetails = styled.section`
   flex-direction: column;
   align-items: center;
 
+  animation: fadeInContact ease-in 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  @keyframes fadeInContact {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   h3 {
     font-family: PinyonScript;
     font-size: 3.125rem;
