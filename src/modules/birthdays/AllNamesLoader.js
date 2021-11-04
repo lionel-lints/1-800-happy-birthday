@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import $ from "jquery";
+
+import loadingAnimator from "@/utils/loadingAnimator";
+import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledLoader = styled.ul`
   padding: 2%;
@@ -42,71 +44,41 @@ const StyledName = styled.li`
 `;
 
 const AllNamesLoader = ({ data }) => {
-  // ANIMATION:
-  // 0. names start as 0 opacity
-  // 1. disable scrolling
-  // 2. each name fades in over time
-  // 3. then entire animation fades out
-  // 4. once animation is done, allow scrolling
-
-  // TODO:
-  // 5. do not play again in same browser session
-
-  const disableScrolling = () => {
-    $("html, body").css({
-      overflow: "hidden",
-      height: "100%"
-    });
-  };
-
-  const enableScrolling = () => {
-    $("html, body").css({
-      overflow: "auto",
-      height: "auto"
-    });
-  };
-
-  const animateLoader = () => {
-    const listItems = $("li");
-    listItems.each(function() {
-      $(this)
-        .delay(15 * Math.random() * listItems.length)
-        .fadeTo("fast", 1);
-    });
-  };
-
-  const removeLoader = () => {
-    setTimeout(() => {
-      const loader = $("ul")[0];
-      $(loader).fadeTo("slow", 0, function() {
-        enableScrolling();
-
-        setTimeout(() => {
-          $(loader).fadeOut();
-        }, 2000);
-      });
-    }, 4000);
-  };
+  const [storedData] = useSessionStorage("hbd-data", {});
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    disableScrolling();
-    animateLoader();
-    removeLoader();
-  }, [data]);
+    const dataIsLoading = !Object.keys(storedData).length;
 
-  if (!Object.keys(data).length) {
+    if (dataIsLoading) {
+      setShowLoader(true);
+    } else {
+      setShowLoader(false);
+    }
+
+    if (showLoader) {
+      loadingAnimator.disableScrolling();
+      loadingAnimator.animateLoader();
+      loadingAnimator.removeLoader();
+    } else {
+      loadingAnimator.enableScrolling();
+    }
+  }, [data, storedData]);
+
+  // Before data has loaded, show a blank black screen.
+  if (showLoader && !Object.keys(data).length) {
     return <StyledBlackBackground />;
   }
 
-  return (
-    <StyledLoader>
+  return showLoader ? (
+    <StyledLoader className="Loader">
       {Object.keys(data).map(id => {
         const name = data[id].Name;
 
         return <StyledName key={name}>{name}</StyledName>;
       })}
     </StyledLoader>
-  );
+  ) : null;
 };
 
 AllNamesLoader.propTypes = {
