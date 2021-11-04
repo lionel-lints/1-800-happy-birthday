@@ -6,7 +6,7 @@ import ActiveNames from "@/modules/birthdays/ActiveNames.js";
 import AllNamesList from "@/modules/birthdays/AllNamesList.js";
 import AllNamesLoader from "@/modules/birthdays/AllNamesLoader.js";
 
-import useLocalStorage from "@/utils/hooks/useLocalStorage";
+import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 import AirtableClient from "@/lib/AirtableClient";
 
@@ -26,7 +26,7 @@ const serializeData = res => {
 };
 
 const HomePage = () => {
-  const [data, setData] = useLocalStorage("hbd-data", {});
+  const [data, setData] = useSessionStorage("hbd-data", {});
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
@@ -34,8 +34,6 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    localStorage.clear();
-
     const getData = async () => {
       const response = await AirtableClient.fetchData();
       setData(serializeData(response));

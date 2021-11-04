@@ -7,7 +7,7 @@ import AllNamesList from "@/modules/birthdays/AllNamesList.js";
 import { PageHeader, Marquee, Blurb, Footer } from "@/modules/_common";
 
 import AirtableClient from "@/lib/AirtableClient";
-import useLocalStorage from "@/utils/hooks/useLocalStorage";
+import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledBirthdayPage = styled.div`
   color: white;
@@ -16,7 +16,7 @@ const StyledBirthdayPage = styled.div`
 
 const BirthdayPage = props => {
   const [fields, setFields] = useState(null);
-  const [data, setData] = useLocalStorage("hbd-data", "");
+  const [data, setData] = useSessionStorage("hbd-data", "");
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
