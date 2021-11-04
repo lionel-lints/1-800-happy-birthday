@@ -1,81 +1,48 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import _ from "underscore";
-
-import Airtable from "airtable";
-import tableHasPublishedColumn from "@/utils/tableHasPublishedColumn";
 
 import { PageHeader, Footer, Blurb, Marquee } from "@/modules/_common";
 import ActiveNames from "@/modules/birthdays/ActiveNames.js";
 import AllNamesList from "@/modules/birthdays/AllNamesList.js";
+import AllNamesLoader from "@/modules/birthdays/AllNamesLoader.js";
+
+import useLocalStorage from "@/utils/hooks/useLocalStorage";
+
+import AirtableClient from "@/lib/AirtableClient";
 
 const StyledHomePage = styled.div`
   color: white;
   position: relative;
 `;
 
-const HomePage = () => {
-  const [data, setData] = useState(null);
+const serializeData = res => {
+  const result = {};
 
-  // useLayoutEffect(() => {
-  //   // scroll to top of page on link transition
-  //   window.scrollTo(0, 0);
-  // });
+  res.forEach(item => {
+    result[item.id] = item.fields;
+  });
+
+  return result;
+};
+
+const HomePage = () => {
+  const [data, setData] = useLocalStorage("hbd-data", "");
+
+  useLayoutEffect(() => {
+    // scroll to top of page on link transition
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
-    const allRows = [];
+    localStorage.clear();
 
-    const base = new Airtable({
-      apiKey: process.env.AIRTABLE_API_KEY
-    }).base(process.env.BASE_ID);
+    const getData = async () => {
+      const response = await AirtableClient.fetchData();
+      setData(serializeData(response));
+    };
 
-    tableHasPublishedColumn(base, includePublished =>
-      base(process.env.TABLE_ID)
-        .select({
-          view: process.env.VIEW,
-          ...(includePublished ? { filterByFormula: "{Published}" } : {})
-        })
-        .eachPage(
-          function page(records, fetchNextPage) {
-            records.forEach(row => {
-              const fieldsArray = _.map(row.fields, (value, name) => ({
-                name,
-                value
-              }));
-
-              const fieldOrderMapped = process.env.FIELD_ORDER
-                ? _.object(
-                    process.env.FIELD_ORDER.split(",").map((field, idx) => [
-                      field,
-                      idx
-                    ])
-                  )
-                : null;
-              const fields = fieldOrderMapped
-                ? _.sortBy(fieldsArray, field => fieldOrderMapped[field.name])
-                : fieldsArray;
-
-              allRows.push({
-                ...row,
-                fields
-              });
-            });
-
-            // calls page function again while there are still pages left
-            fetchNextPage();
-          },
-          err => {
-            if (err) {
-              // eslint-disable-next-line no-console
-              console.error(err);
-            }
-
-            setData(allRows);
-          }
-        )
-    );
-  });
+    getData();
+  }, []);
 
   return (
     <StyledHomePage>
@@ -83,6 +50,7 @@ const HomePage = () => {
       <Blurb />
       {data ? (
         <>
+          {/* <AllNamesLoader data={data} /> */}
           <ActiveNames data={data} />
           <AllNamesList data={data} />
         </>

@@ -1,71 +1,73 @@
-import React, { Component } from "react";
-import Airtable from "airtable";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Layout from "@/modules/birthday/Layout.js";
-import { PageHeader, Hero } from "@/modules/_common";
-import formatAirtableRowData from "@/utils/formatAirtableRowData";
+import BirthdaySection from "@/modules/birthday/BirthdaySection.js";
+import AllNamesList from "@/modules/birthdays/AllNamesList.js";
+import { PageHeader, Marquee, Blurb, Footer } from "@/modules/_common";
 
-const StyledRowPage = styled.div`
-  background-color: black;
+import AirtableClient from "@/lib/AirtableClient";
+import useLocalStorage from "@/utils/hooks/useLocalStorage";
+
+const StyledBirthdayPage = styled.div`
   color: white;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
 `;
 
-class BirthdayPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fields: null
-    };
-  }
+const BirthdayPage = props => {
+  const [fields, setFields] = useState(null);
+  const [data, setData] = useLocalStorage("hbd-data", "");
 
-  componentDidMount() {
-    // scroll to top of page on link transistion
+  useLayoutEffect(() => {
+    // scroll to top of page on link transition
     window.scrollTo(0, 0);
+  });
 
+  useEffect(() => {
     const {
       match: {
         params: { slugOrId }
       }
-    } = this.props;
+    } = props;
 
-    const base = new Airtable({
-      apiKey: process.env.AIRTABLE_API_KEY
-    }).base(process.env.BASE_ID);
+    const getData = async () => {
+      const response = await AirtableClient.fetchData();
+      setData(response);
 
-    const that = this;
+      const currentPerson = response.find(person => person.id === slugOrId);
+      if (currentPerson) {
+        setFields(currentPerson.fields);
+      }
+    };
 
-    base(process.env.TABLE_ID).find(slugOrId, (err, record) => {
-      that.setState({
-        fields: record.fields
-      });
-    });
-  }
+    getData();
+  }, []);
 
-  render() {
-    const { fields } = this.state;
-    return (
-      <StyledRowPage>
-        <PageHeader />
-        <Hero />
-        {!!fields ? (
-          <Layout
-            name={fields.Name}
-            DOB={fields.dob}
-            DOD={fields.dod}
-            photoArr={fields.Photo}
-            voicemails={fields.Voicemails}
-            voicemailNumber={fields["Voicemail Number"]}
-            quote={fields.Quote}
-          />
-        ) : null}
-      </StyledRowPage>
-    );
-  }
-}
+  return (
+    <StyledBirthdayPage>
+      <PageHeader />
+      {data ? (
+        <>
+          <AllNamesList data={data} />
+        </>
+      ) : null}
+      {fields ? (
+        <BirthdaySection
+          name={fields.Name}
+          DOB={fields.dob}
+          DOD={fields.dod}
+          photo={fields.Photo}
+          voicemails={fields.Voicemails}
+          voicemailNumber={fields["Voicemail Number"]}
+          quote={fields.Quote}
+        />
+      ) : null}
+      <Marquee />
+      <Blurb />
+      <Footer />
+    </StyledBirthdayPage>
+  );
+};
 
 BirthdayPage.propTypes = {
   match: PropTypes.shape({

@@ -3,8 +3,43 @@ import PropTypes from "prop-types";
 import ReactHowler from "react-howler";
 import styled from "styled-components";
 
-import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
 import AudioControls from "@/modules/birthday/AudioControls.js";
+
+const StyledPlayButton = styled.div`
+  border: 3px solid red;
+  padding: 1rem;
+  font-size: 2rem;
+  transition: border-color 0.25s ease-in-out;
+  font-family: BradleyMicro;
+
+  &:hover {
+    cursor: pointer;
+    border-color: white;
+  }
+`;
+
+const StyledControls = styled.div`
+  margin-top: 3rem;
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 50%;
+
+  > span {
+    font-size: 1rem;
+    font-family: RobotoMono;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+    transition: border-color 0.25s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      border-color: white;
+    }
+  }
+`;
 
 class AudioPlayer extends Component {
   constructor(props) {
@@ -61,12 +96,19 @@ class AudioPlayer extends Component {
           ref={ref => (this.player = ref)}
           onEnd={this.endPlay}
         />
-        <AudioControls
+        <StyledControls>
+          <span onClick={this.handlePrev}>Previous</span>
+          <StyledPlayButton onClick={this.togglePlay}>
+            {this.props.isPlaying ? `Pause` : `Play`}
+          </StyledPlayButton>
+          <span onClick={this.handleNext}>Next</span>
+        </StyledControls>
+        {/* <AudioControls
           isPlaying={this.props.isPlaying}
           forward={this.handleNext}
           back={this.handlePrev}
           playPause={this.togglePlay}
-        />
+        /> */}
       </>
     );
   }

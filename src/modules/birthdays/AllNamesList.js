@@ -4,13 +4,12 @@ import styled from "styled-components";
 
 const StyledList = styled.ul`
   padding: 0;
-  margin: 0;
   text-align: center;
   margin: 2%;
   opacity: 0.1;
   position: fixed;
   top: 0;
-  transition: all 1s ease-out;
+  transition: all 1s ease-in-out;
   user-select: none;
   padding-bottom: 10rem;
   z-index: -1;
@@ -30,8 +29,8 @@ const StyledName = styled.li`
 const AllNamesList = ({ data }) => {
   return (
     <StyledList>
-      {data.map((row, index) => {
-        const name = row.fields.find(field => field.name === "Name").value;
+      {Object.keys(data).map((id, index) => {
+        const name = data[id].Name;
 
         return (
           <StyledName key={name} isEven={index % 2 === 0}>
@@ -44,20 +43,18 @@ const AllNamesList = ({ data }) => {
 };
 
 AllNamesList.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      fields: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string
-        })
-      ),
-      name: PropTypes.string
-    })
-  )
+  data: PropTypes.shape({
+    fields: PropTypes.shape({
+      dob: PropTypes.string,
+      "Voicemail Number": PropTypes.string,
+      Name: PropTypes.string
+    }),
+    id: PropTypes.string
+  })
 };
 
 AllNamesList.defaultProps = {
-  data: []
+  data: {}
 };
 
 export default AllNamesList;
