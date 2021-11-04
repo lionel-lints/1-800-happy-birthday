@@ -38,6 +38,7 @@ const StyledName = styled.div`
   transition: all 0.25s ease-in-out;
   padding-top: 3rem;
   padding-bottom: 2rem;
+  background: black;
 
   &:hover {
     color: white;

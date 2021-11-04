@@ -6,13 +6,25 @@ const StyledList = styled.ul`
   padding: 0;
   text-align: center;
   margin: 2%;
-  opacity: 0.1;
+  opacity: 0.1 !important;
   position: fixed;
   top: 0;
   transition: all 1s ease-in-out;
   user-select: none;
   padding-bottom: 10rem;
   z-index: -1;
+
+  animation: fadeInList ease-in 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  @keyframes fadeInList {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
 `;
 
 const StyledName = styled.li`
