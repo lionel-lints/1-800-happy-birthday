@@ -26,7 +26,7 @@ const serializeData = res => {
 };
 
 const HomePage = () => {
-  const [data, setData] = useLocalStorage("hbd-data", "");
+  const [data, setData] = useLocalStorage("hbd-data", {});
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
@@ -48,13 +48,15 @@ const HomePage = () => {
     <StyledHomePage>
       <PageHeader />
       <Blurb />
+      <AllNamesLoader data={data} />
+
       {data ? (
         <>
-          {/* <AllNamesLoader data={data} /> */}
           <ActiveNames data={data} />
           <AllNamesList data={data} />
         </>
       ) : null}
+
       <Marquee />
       <Footer />
     </StyledHomePage>
