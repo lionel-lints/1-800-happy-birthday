@@ -15,19 +15,43 @@ const loadingAnimator = () => {
     });
   };
 
-  const animateLoader = () => {
-    const listItems = $("li");
+  const animateBlurb = () => {
+    setTimeout(() => {
+      const blurb = $(".Blurb")[0];
+      const bg = $(".BlurbLoaderBackground")[0];
+      const loader = $("ul.Loader")[0];
+      $(blurb).fadeOut("slow", () => {
+        enableScrolling();
+        $(bg).fadeOut("slow");
+        $(loader).hide();
+      });
+    }, 8000);
+  };
+
+  const animateBackgroundNames = () => {
+    const listItems = $("ul.BackgroundNames > li");
     listItems.each(function() {
       $(this)
-        .delay(15 * Math.random() * listItems.length)
-        .fadeTo("fast", 1);
+        .delay(40 * Math.random() * listItems.length)
+        .fadeTo("slow", 1);
     });
+  };
+
+  const animateLoader = () => {
+    setTimeout(() => {
+      const listItems = $("ul.Loader > li");
+      listItems.each(function() {
+        $(this)
+          .delay(40 * Math.random() * listItems.length)
+          .fadeTo("slow", 1);
+      });
+    }, 1000);
   };
 
   const removeLoader = () => {
     setTimeout(() => {
       const loader = $("ul.Loader")[0];
-      $(loader).fadeTo("slow", 0, function() {
+      $(loader).fadeTo("slow", 0, () => {
         enableScrolling();
 
         setTimeout(() => {
@@ -37,7 +61,14 @@ const loadingAnimator = () => {
     }, 4000);
   };
 
-  return { disableScrolling, enableScrolling, animateLoader, removeLoader };
+  return {
+    disableScrolling,
+    enableScrolling,
+    animateLoader,
+    removeLoader,
+    animateBackgroundNames,
+    animateBlurb
+  };
 };
 
 export default loadingAnimator();
