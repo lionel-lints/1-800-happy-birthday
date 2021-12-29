@@ -7,7 +7,6 @@ import BirthdaySection from "@/modules/birthday/BirthdaySection.js";
 const StyledBirthday = styled.div`
   color: white;
   z-index: 5;
-  background: black;
   top: 1rem;
   right: 1rem;
   bottom: 1rem;
@@ -36,7 +35,7 @@ const Birthday = ({ data, activeID, isOpen }) => {
         name={person.Name}
         DOB={person.dob}
         DOD={person.dod}
-        photo={person.Photo}
+        photo={person["Hero Photo"]}
         voicemails={person.Voicemails}
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}

@@ -14,6 +14,7 @@ const StyledBirthdayPage = styled.div`
   position: relative;
 `;
 
+// TODO: DEPRECATED, NEED TO  REMOVE
 const BirthdayPage = props => {
   const [fields, setFields] = useState(null);
   const [data, setData] = useSessionStorage("hbd-data", "");
@@ -34,7 +35,7 @@ const BirthdayPage = props => {
       const response = await AirtableClient.fetchData();
       setData(response);
 
-      const currentPerson = response.find(person => person.id === slugOrId);
+      const currentPerson = response.find(person => person.Slug === slugOrId);
       if (currentPerson) {
         setFields(currentPerson.fields);
       }
@@ -60,6 +61,8 @@ const BirthdayPage = props => {
           voicemails={fields.Voicemails}
           voicemailNumber={fields["Voicemail Number"]}
           quote={fields.Quote}
+          actions={fields["Call to Action"]}
+          donation={fields["Organization for Donation"]}
         />
       ) : null}
       <Marquee />

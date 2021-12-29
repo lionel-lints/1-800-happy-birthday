@@ -15,12 +15,6 @@ const StyledAction = styled.p`
   margin-bottom: 1rem;
 `;
 
-const StyledParagraph = styled.p`
-  font-family: RobotoMono;
-  font-size: 0.75rem;
-  margin-top: 2rem;
-`;
-
 const StyledNumber = styled.h2`
   color: red;
   font-family: PinyonScript;

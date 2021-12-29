@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import Birthday from "@/modules/birthday/Birthday.js";
 
+import breakpoints from "@/utils/breakpoints";
+
 const StyledActiveNames = styled.div`
   position: relative;
   text-align: center;
@@ -13,17 +15,15 @@ const StyledActiveNames = styled.div`
 const StyledWrapper = styled.div`
   position: relative;
   transition: all 0.25s ease-in-out;
-  border-bottom: 5px solid white;
-
-  &:first-child {
-    border-top: 5px solid white;
-  }
 
   &:hover {
     cursor: pointer;
 
-    div:first-child {
-      opacity: 1;
+    @media ${breakpoints.tablet} {
+      div.date,
+      img {
+        opacity: 1;
+      }
     }
   }
 `;
@@ -31,17 +31,29 @@ const StyledWrapper = styled.div`
 const StyledName = styled.div`
   position: relative;
   font-family: BradleyMicro;
-  font-size: 15rem;
-  letter-spacing: -1rem;
-  line-height: 14rem;
   color: red;
   transition: all 0.25s ease-in-out;
   padding-top: 3rem;
   padding-bottom: 2rem;
-  background: black;
+  font-size: 4rem;
+  line-height: 4rem;
+  letter-spacing: -0.2rem;
 
-  &:hover {
-    color: white;
+  @media ${breakpoints.tablet} {
+    font-size: 8rem;
+    line-height: 8rem;
+    letter-spacing: -0.5rem;
+
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
+
+  @media ${breakpoints.laptop} {
+    font-size: 15rem;
+    letter-spacing: -1rem;
+    line-height: 14rem;
   }
 `;
 
@@ -50,10 +62,10 @@ const StyledDate = styled.div`
   color: red;
   opacity: 0;
   font-family: PinyonScript;
-  font-size: 4rem;
+  font-size: 6rem;
   transition: opacity 0.25s ease-in-out;
   width: 100%;
-  height: 50px;
+  height: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -68,48 +80,74 @@ const StyledBirthdayWrapper = styled.div`
   opacity: ${props => (props.isOpen ? 1 : 0)};
 `;
 
+
 const ActiveNames = ({ data }) => {
   const [activeID, setActiveID] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [navName, setNavName] = useState("");
 
   const showBirthday = id => {
     setActiveID(id);
     setIsOpen(true);
   };
 
-  // const isLive = !!data[id][""];
+  useEffect(() => {
+    if (activeID) {
+      setNavName(data[activeID].Name);
+    }
+  }, [activeID]);
 
   return (
-    <StyledActiveNames>
-      {Object.keys(data).map(id => {
-        const isLive = !!data[id].dob;
-        const name = data[id].Name;
-        const dobField = data[id].dob;
+    <StyledActiveNamesWrapper>
+      <StyledActiveNames>
+        {Object.keys(data).map((id, index) => {
+          const isLive = !!data[id]["Live Voicemail Number"];
+          const name = data[id].Name;
+          const dobField = data[id].dob;
 
-        let dob;
-        if (dobField) {
-          dob = new Date(Date.parse(dobField));
-          dob = dob.toDateString().split(" ");
-          dob.shift();
-        }
+          // TODO: image rotate + left/right: random number between range
 
-        return (
-          <StyledWrapper onClick={() => showBirthday(id)} key={name}>
-            {isLive ? (
-              <>
-                <StyledDate>{dob.join(" ")}</StyledDate>
-                <StyledName isActive={id === activeID}>{name}</StyledName>
-                <StyledBirthdayWrapper isOpen={isOpen}>
-                  {id === activeID ? (
-                    <Birthday data={data} activeID={activeID} isOpen={isOpen} />
-                  ) : null}
-                </StyledBirthdayWrapper>
-              </>
-            ) : null}
-          </StyledWrapper>
-        );
-      })}
-    </StyledActiveNames>
+          let dob;
+          if (dobField) {
+            dob = new Date(Date.parse(dobField));
+            dob = dob.toDateString().split(" ");
+            dob.shift();
+            dob.pop();
+          }
+
+          let photoUrl;
+          if (data[id]["Hero Photo"]) {
+            photoUrl = data[id]["Hero Photo"][0].url;
+          }
+
+          return (
+            <StyledWrapper onClick={() => showBirthday(id)} key={name}>
+              {isLive ? (
+                <>
+                  {!!navName && id === activeID && (
+                    <StyledNameNavigation>{navName}</StyledNameNavigation>
+                  )}
+                  <StyledDate className="date">{dob.join(" ")}</StyledDate>
+                  <StyledName isActive={id === activeID}>{name}</StyledName>
+                  {photoUrl && (
+                    <StyledImg src={photoUrl} isEven={index % 2 === 0} />
+                  )}
+                  <StyledBirthdayWrapper isOpen={isOpen}>
+                    {id === activeID ? (
+                      <Birthday
+                        data={data}
+                        activeID={activeID}
+                        isOpen={isOpen}
+                      />
+                    ) : null}
+                  </StyledBirthdayWrapper>
+                </>
+              ) : null}
+            </StyledWrapper>
+          );
+        })}
+      </StyledActiveNames>
+    </StyledActiveNamesWrapper>
   );
 };
 

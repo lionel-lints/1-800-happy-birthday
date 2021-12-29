@@ -45,7 +45,6 @@ const HomePage = () => {
   return (
     <StyledHomePage>
       <PageHeader />
-      <Blurb />
       <AllNamesLoader data={data} />
 
       {data ? (

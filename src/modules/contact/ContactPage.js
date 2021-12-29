@@ -97,7 +97,6 @@ const ContactPage = () => {
             </a>
           </StyledContactDetails>
           <Marquee />
-          <Blurb />
           <Footer />
         </StyledContactPage>
       )}
