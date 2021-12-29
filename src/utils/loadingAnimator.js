@@ -17,13 +17,11 @@ const loadingAnimator = () => {
 
   const animateBlurb = () => {
     setTimeout(() => {
-      const blurb = $(".Blurb")[0];
-      const bg = $(".BlurbLoaderBackground")[0];
+      const bg = $(".BlurbLoaderContainer")[0];
       const loader = $("ul.Loader")[0];
-      $(blurb).fadeOut("slow", () => {
+      $(loader).hide();
+      $(bg).fadeOut("slow", () => {
         enableScrolling();
-        $(bg).fadeOut("slow");
-        $(loader).hide();
       });
     }, 8000);
   };

@@ -81,7 +81,7 @@ const AllNamesLoader = ({ data }) => {
 
   return showLoader ? (
     <>
-      <StyledBlackBackground className="BlurbLoaderBackground">
+      <StyledBlackBackground className="BlurbLoaderContainer">
         <StyledBlurbContainer>
           <Blurb />
         </StyledBlurbContainer>
