@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Birthday from "@/modules/birthday/Birthday.js";
-
 import breakpoints from "@/utils/breakpoints";
+
+import Birthday from "@/modules/birthday/Birthday.js";
 
 const StyledActiveNames = styled.div`
   position: relative;
@@ -73,6 +73,20 @@ const StyledDate = styled.div`
   pointer-events: none;
 `;
 
+const StyledImg = styled.img`
+  position: absolute;
+  transition: all 0.25s ease-in-out;
+  opacity: 0;
+  right: ${p => (p.isEven ? `inherit` : `20%`)};
+  left: ${p => (p.isEven ? `20%` : `inherit`)};
+  bottom: 20%;
+  width: 200px;
+  filter: grayscale(100%) brightness(0.8);
+  transform: ${p => (p.isEven ? `rotate(-5deg)` : `rotate(5deg)`)};
+  pointer-events: none;
+  border: 3px solid red;
+`;
+
 const StyledBirthdayWrapper = styled.div`
   position: relative;
   z-index: 5;
@@ -80,22 +94,99 @@ const StyledBirthdayWrapper = styled.div`
   opacity: ${props => (props.isOpen ? 1 : 0)};
 `;
 
+const StyledActiveNamesWrapper = styled.div`
+  position: relative;
+`;
+
+const StyledNameNavigation = styled.div`
+  background: black;
+  font-size: 3rem;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  padding: 1rem 2%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: -3px;
+`;
+
+const StyledNameNavigationClose = styled.span`
+  border: 1px solid transparent;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid red;
+  }
+`;
+
+const StyledNameNavigationLeft = styled.div`
+  font-family: RobotoMono;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-transform: uppercase;
+  margin-right: auto;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const StyledNameNavigationName = styled.div`
+  font-family: BradleyMicro;
+  color: red;
+`;
+
+const StyledNameNavigationRight = styled.div`
+  margin-left: auto;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const ActiveNames = ({ data }) => {
-  const [activeID, setActiveID] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [navName, setNavName] = useState("");
+  const [activeIDs, setActiveIDs] = useState([]);
 
-  const showBirthday = id => {
-    setActiveID(id);
-    setIsOpen(true);
+  const container = useRef(null);
+
+  const handleOpenBirthday = id => {
+    setActiveIDs([...activeIDs, id]);
   };
 
-  useEffect(() => {
-    if (activeID) {
-      setNavName(data[activeID].Name);
+  const handleCloseBirthday = id => {
+    const newActiveIDs = activeIDs.filter(item => item !== id);
+    setActiveIDs(newActiveIDs);
+  };
+
+  const closeBirthday = (event, id) => {
+    event.stopPropagation();
+    handleCloseBirthday(id);
+  };
+
+  const isBirthdayOpen = id => {
+    return activeIDs.includes(id);
+  };
+
+  const openBirthday = id => {
+    if (!isBirthdayOpen(id)) {
+      handleOpenBirthday(id);
     }
-  }, [activeID]);
+  };
+
+  const scrollToBirthday = (event, id) => {
+    event.stopPropagation();
+  };
+
+  useLayoutEffect(() => {
+    if (container && container.current) {
+      window.scroll({
+        top: container.current.getBoundingClientRect().top + window.scrollY + 5,
+        behavior: "smooth"
+      });
+    }
+  }, [activeIDs]);
 
   return (
     <StyledActiveNamesWrapper>
@@ -121,23 +212,47 @@ const ActiveNames = ({ data }) => {
           }
 
           return (
-            <StyledWrapper onClick={() => showBirthday(id)} key={name}>
+            <StyledWrapper onClick={() => openBirthday(id)} key={name}>
               {isLive ? (
                 <>
-                  {!!navName && id === activeID && (
-                    <StyledNameNavigation>{navName}</StyledNameNavigation>
+                  {isBirthdayOpen(id) && (
+                    <StyledNameNavigation
+                      ref={container}
+                      onClick={event => scrollToBirthday(event, id)}
+                    >
+                      <StyledNameNavigationLeft>
+                        <StyledNameNavigationClose
+                          onClick={event => closeBirthday(event, id)}
+                        >
+                          Close
+                        </StyledNameNavigationClose>
+                      </StyledNameNavigationLeft>
+                      <StyledNameNavigationName>
+                        {name}
+                      </StyledNameNavigationName>
+                      <StyledNameNavigationRight>
+                        Right
+                      </StyledNameNavigationRight>
+                    </StyledNameNavigation>
                   )}
-                  <StyledDate className="date">{dob.join(" ")}</StyledDate>
-                  <StyledName isActive={id === activeID}>{name}</StyledName>
-                  {photoUrl && (
+
+                  {!isBirthdayOpen(id) && (
+                    <StyledDate className="date">{dob.join(" ")}</StyledDate>
+                  )}
+
+                  {!isBirthdayOpen(id) && <StyledName>{name}</StyledName>}
+
+                  {photoUrl && !isBirthdayOpen(id) && (
                     <StyledImg src={photoUrl} isEven={index % 2 === 0} />
                   )}
-                  <StyledBirthdayWrapper isOpen={isOpen}>
-                    {id === activeID ? (
+
+                  <StyledBirthdayWrapper isOpen={isBirthdayOpen(id)}>
+                    {isBirthdayOpen(id) ? (
                       <Birthday
                         data={data}
-                        activeID={activeID}
-                        isOpen={isOpen}
+                        id={id}
+                        isOpen={isBirthdayOpen(id)}
+                        animatedHeight={isBirthdayOpen(id) ? "auto" : 0}
                       />
                     ) : null}
                   </StyledBirthdayWrapper>
