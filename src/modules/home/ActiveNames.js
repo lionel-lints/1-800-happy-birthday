@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import breakpoints from "@/utils/breakpoints";
 
-import { Birthday } from "@/modules/birthday";
+import { Birthday, AudioPlayer } from "@/modules/birthday";
 
 const StyledActiveNames = styled.div`
   position: relative;
@@ -146,7 +146,7 @@ const StyledNameNavigationRight = styled.div`
   justify-content: flex-end;
 `;
 
-const ActiveNames = ({ data }) => {
+const ActiveNames = ({ data, setActiveVoicemail, isPlaying, setIsPlaying }) => {
   const [activeIDs, setActiveIDs] = useState([]);
 
   const container = useRef(null);
@@ -195,6 +195,7 @@ const ActiveNames = ({ data }) => {
           const isLive = !!data[id]["Live Voicemail Number"];
           const name = data[id].Name;
           const dobField = data[id].dob;
+          const voicemails = data[id].Voicemails;
 
           // TODO: image rotate + left/right: random number between range
 
@@ -231,7 +232,14 @@ const ActiveNames = ({ data }) => {
                         {name}
                       </StyledNameNavigationName>
                       <StyledNameNavigationRight>
-                        Right
+                        {voicemails && voicemails.length > 0 ? (
+                          <AudioPlayer
+                            sources={voicemails.map(voicemail => voicemail.url)}
+                            isPlaying={isPlaying}
+                            setIsPlaying={setIsPlaying}
+                            type="icon"
+                          />
+                        ) : null}
                       </StyledNameNavigationRight>
                     </StyledNameNavigation>
                   )}
@@ -274,11 +282,13 @@ ActiveNames.propTypes = {
       Name: PropTypes.string
     }),
     id: PropTypes.string
-  })
+  }),
+  setActiveVoicemail: PropTypes.func
 };
 
 ActiveNames.defaultProps = {
-  data: {}
+  data: {},
+  setActiveVoicemail: () => {}
 };
 
 export default ActiveNames;

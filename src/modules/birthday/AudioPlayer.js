@@ -12,8 +12,7 @@ class AudioPlayer extends Component {
       // The source audio files that we'll switch between
       sources: props.sources,
       currentSrcIndex: 0,
-      playing: props.isPlaying,
-      audioCTX: null
+      type: "icon"
     };
 
     this.handlePrev = this.handlePrev.bind(this);
@@ -47,24 +46,27 @@ class AudioPlayer extends Component {
   }
 
   render() {
+    const { isPlaying } = this.props;
+    const { sources, currentSrcIndex, type } = this.state;
+
     return (
       <>
         <ReactHowler
-          playing={this.props.isPlaying}
+          playing={isPlaying}
           // When the sources are swapped we'll pass a new
           // src prop into ReactHowler which will destroy our
           // currently playing Howler.js and initialize
           // a new Howler.js instance
-          src={this.state.sources[this.state.currentSrcIndex]}
+          src={sources[currentSrcIndex]}
           ref={ref => (this.player = ref)}
           onEnd={this.endPlay}
         />
         <AudioControls
-          isPlaying={this.props.isPlaying}
+          isPlaying={isPlaying}
           forward={this.handleNext}
           back={this.handlePrev}
           playPause={this.togglePlay}
-          showPlayButton
+          showPlayButton={type === "button"}
         />
       </>
     );
@@ -72,7 +74,8 @@ class AudioPlayer extends Component {
 }
 
 AudioPlayer.propTypes = {
-  sources: PropTypes.arrayOf(PropTypes.string).isRequired
+  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default AudioPlayer;
