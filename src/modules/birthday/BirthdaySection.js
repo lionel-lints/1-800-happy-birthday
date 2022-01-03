@@ -199,8 +199,6 @@ const StyledTakeActionCloseButton = styled.div`
   position: absolute;
   width: 50px;
   height: 50px;
-  border-right: 3px solid white;
-  border-bottom: 3px solid white;
   left: 0;
   top: 0;
   font-family: RobotoMono;
@@ -224,17 +222,15 @@ const StyledAction = styled.div`
   line-height: 1.5rem;
   margin-top: 1.5rem;
 
-  > div {
-    &:nth-child(2) {
-      color: red;
-      text-decoration: underline;
-      margin-top: 0.5rem;
-      transition: color 0.25s ease-in-out;
+  a {
+    color: red;
+    text-decoration: underline;
+    margin-top: 0.5rem;
+    transition: color 0.25s ease-in-out;
 
-      &:hover {
-        cursor: pointer;
-        color: white;
-      }
+    &:hover {
+      cursor: pointer;
+      color: white;
     }
   }
 `;
@@ -286,14 +282,24 @@ const BirthdaySection = ({
   voicemailNumber,
   quote,
   quoteAttribution,
-  actions,
   donation,
-  animatedHeight
+  animatedHeight,
+  callToActionText1,
+  callToActionText2,
+  callToActionText3,
+  callToActionLink1,
+  callToActionLink2,
+  callToActionLink3
 }) => {
   const [actionsOpen, setActionsOpen] = useState(false);
 
   const handleOpenActions = () => {
     setActionsOpen(!actionsOpen);
+  };
+
+  const isPhoneNumber = link => {
+    const phoneRegex = /^[0-9+()#.\s/ext-]+$/;
+    return phoneRegex.test(link);
   };
 
   return (
@@ -350,16 +356,52 @@ const BirthdaySection = ({
                       {`Take action for ${name.split(" ")[0]}`}
                     </StyledTakeActionHeaderOpen>
                     <StyledAction>
-                      <div>Attorney General: Josh Kaul</div>
-                      <div>608-266-1221</div>
+                      <div>{callToActionText1}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink1}`}>
+                          {callToActionLink1}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink1}
+                        >
+                          {callToActionLink1}
+                        </a>
+                      )}
                     </StyledAction>
                     <StyledAction>
-                      <div>Mayor: Satya Rhodes-Conway</div>
-                      <div>608-266-1221</div>
+                      <div>{callToActionText2}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink2}`}>
+                          {callToActionLink2}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink2}
+                        >
+                          {callToActionLink2}
+                        </a>
+                      )}
                     </StyledAction>
                     <StyledAction>
-                      <div>Dane County District Attorney: Ismael R. Ozanne</div>
-                      <div>608-266-1221</div>
+                      <div>{callToActionText3}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink3}`}>
+                          {callToActionLink3}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink3}
+                        >
+                          {callToActionLink3}
+                        </a>
+                      )}
                     </StyledAction>
                   </StyledTakeActionContainer>
                 </StyledActions>
@@ -381,7 +423,12 @@ BirthdaySection.propTypes = {
   voicemailNumber: PropTypes.string,
   quote: PropTypes.string,
   quoteAttribution: PropTypes.string,
-  actions: PropTypes.string,
+  callToActionText1: PropTypes.string,
+  callToActionText2: PropTypes.string,
+  callToActionText3: PropTypes.string,
+  callToActionLink1: PropTypes.string,
+  callToActionLink2: PropTypes.string,
+  callToActionLink3: PropTypes.string,
   donation: PropTypes.string,
   animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
@@ -395,7 +442,12 @@ BirthdaySection.defaultProps = {
   voicemailNumber: "",
   quote: "",
   quoteAttribution: "",
-  actions: "",
+  callToActionText1: "",
+  callToActionText2: "",
+  callToActionText3: "",
+  callToActionLink1: "",
+  callToActionLink2: "",
+  callToActionLink3: "",
   donation: "",
   animatedHeight: 0
 };

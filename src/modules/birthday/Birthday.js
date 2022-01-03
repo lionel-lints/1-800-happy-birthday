@@ -28,8 +28,6 @@ const Birthday = ({ data, id, isOpen, animatedHeight }) => {
 
   if (!person) return null;
 
-  console.log(person);
-
   return (
     <StyledBirthday isOpen={isOpen}>
       <BirthdaySection
@@ -41,9 +39,14 @@ const Birthday = ({ data, id, isOpen, animatedHeight }) => {
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}
         quoteAttribution={person["Quote Attribution"]}
-        actions={person["Call to Action"]}
         donation={person["Organization for Donations"]}
         animatedHeight={animatedHeight}
+        callToActionText1={person["Call to Action 1 Text"]}
+        callToActionText2={person["Call to Action 2 Text"]}
+        callToActionText3={person["Call to Action 3 Text"]}
+        callToActionLink1={person["Call to Action 1 Link"]}
+        callToActionLink2={person["Call to Action 2 Link"]}
+        callToActionLink3={person["Call to Action 3 Link"]}
       />
     </StyledBirthday>
   );
