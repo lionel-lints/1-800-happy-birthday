@@ -4,19 +4,17 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import AnimateHeight from "react-animate-height";
 
-import Voicemails from "@/modules/renderers/Voicemails.js";
+import { Voicemails } from "@/modules/renderers";
 import { LanguageContextConsumer } from "@/modules/_common";
 
 import breakpoints from "@/utils/breakpoints";
 
 const StyledBirthdaySection = styled.section`
-  background: black;
   z-index: 5;
   margin-top: 5vh;
   display: flex;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   transition: all 2s ease-in-out;
 `;
 
@@ -31,7 +29,7 @@ const StyledName = styled.h1`
   font-family: BradleyMicro;
   font-size: calc(8vw + 8vh + 2vmin);
   text-align: center;
-  letter-spacing: -9px;
+  letter-spacing: -16px;
   margin: 0 5%;
 `;
 
@@ -40,17 +38,13 @@ const StyledDates = styled.h2`
   font-weight: 400;
   font-variation-settings: "wght" 400;
   font-feature-settings: "kern";
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
   margin: 1rem 5%;
   margin-top: 0;
 
   span {
     display: block;
-  }
-
-  @media ${breakpoints.tablet} {
-    font-size: 2rem;
   }
 
   @media ${breakpoints.laptop} {
@@ -68,6 +62,7 @@ const StyledDiv = styled.div`
 `;
 
 const StyledImg = styled.div`
+  z-index: -1;
   background-image: linear-gradient(
       to bottom,
       transparent 0%,
@@ -102,10 +97,15 @@ const StyledImg = styled.div`
 
 const StyledQuote = styled.div`
   font-family: PinyonScript;
-  font-size: 3rem;
-  line-height: 4rem;
+  font-size: 2rem;
+  line-height: 3rem;
   margin: 0 10%;
   margin-top: 5rem;
+
+  @media ${breakpoints.tablet} {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
 `;
 
 const StyledAttribution = styled.div`
@@ -115,20 +115,22 @@ const StyledAttribution = styled.div`
   margin-top: 1rem;
 `;
 
+const StyledActions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0;
+`;
+
 const StyledDonate = styled.div`
   font-family: BradleyMicro;
   display: inline-block;
-  font-size: 1rem;
+  font-size: 2rem;
+  line-height: calc(2rem * 1.3);
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-right: 1rem;
   border: 3px solid red;
-  margin-top: 4rem;
   transition: border-color 0.25s ease-in-out;
-
-  @media ${breakpoints.laptop} {
-    font-size: 2rem;
-    line-height: calc(2rem * 1.3);
-  }
 
   &:hover {
     border-color: white;
@@ -141,74 +143,98 @@ const StyledDonate = styled.div`
   }
 `;
 
-const StyledActionWrapper = styled.div`
-  margin-bottom: 5rem;
-`;
-
-const StyledActionHeader = styled.div`
-  font-family: BradleyMicro;
-  display: inline-block;
-  font-size: 1rem;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  border-bottom: 3px solid white;
-  padding-top: 4rem;
-  transition: all 0.25s ease-in-out;
-  color: red;
+const StyledTakeActionContainer = styled.div`
+  opacity: ${p => (p.isOpen ? 1 : 0)};
+  z-index: ${p => (p.isOpen ? 10 : 0)};
+  transition: opacity 0.25s ease-in-out;
+  border: 3px solid white;
+  padding: 2rem;
+  max-width: 450px;
+  transform: rotate(3deg);
+  background: black;
 
   @media ${breakpoints.laptop} {
-    font-size: 2rem;
-    line-height: calc(2rem * 1.3);
+    position: absolute;
+    right: 26%;
   }
+`;
+
+const StyledTakeActionHeader = styled.div`
+  font-family: BradleyMicro;
+  display: inline-block;
+  font-size: 2rem;
+  line-height: calc(2rem * 1.3);
+  padding: 1rem;
+  border: 3px solid red;
+  transition: all 0.25s ease-in-out;
+  z-index: 1;
+  opacity: ${p => (p.isOpen ? 0 : 1)};
 
   &:hover {
-    color: white;
+    border-color: white;
     cursor: pointer;
   }
 
   a {
     text-decoration: none;
     color: white;
+  }
+`;
 
-    &:hover {
-      color: red;
-    }
+const StyledTakeActionHeaderOpen = styled.div`
+  font-family: BradleyMicro;
+  display: inline-block;
+  font-size: 2rem;
+  line-height: calc(2rem * 1.3);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid white;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+`;
+
+const StyledTakeActionCloseButton = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  left: 0;
+  top: 0;
+  font-family: RobotoMono;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+  transition: color 0.25s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    color: red;
   }
 `;
 
 const StyledAction = styled.div`
   font-family: RobotoMono;
   font-size: 1.25rem;
-  margin-top: 2rem;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
 
-  > div:nth-child(2) {
-    color: red;
-    text-decoration: underline;
-    margin-top: 1rem;
-    transition: color 0.25s ease-in-out;
+  > div {
+    &:nth-child(2) {
+      color: red;
+      text-decoration: underline;
+      margin-top: 0.5rem;
+      transition: color 0.25s ease-in-out;
 
-    &:hover {
-      cursor: pointer;
-      color: white;
-    }
-  }
-`;
-
-const StyledContactUs = styled.div`
-  width: 100%;
-  font-family: RobotoMono;
-  color: red;
-  font-size: 1rem;
-  margin: 2rem 0;
-  margin-bottom: 5rem;
-
-  a {
-    transition: color 0.25s ease-in-out;
-    color: red;
-    text-decoration: none;
-
-    &:hover {
-      color: white;
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
     }
   }
 `;
@@ -251,64 +277,33 @@ const getDateString = (lang, dob, dod) => {
   );
 };
 
-function getCoords(elem) {
-  // crossbrowser version
-  const box = elem.getBoundingClientRect();
-
-  const { body } = document;
-  const docEl = document.documentElement;
-
-  const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-  const scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-
-  const clientTop = docEl.clientTop || body.clientTop || 0;
-  const clientLeft = docEl.clientLeft || body.clientLeft || 0;
-
-  const top = box.top + scrollTop - clientTop;
-  const left = box.left + scrollLeft - clientLeft;
-
-  return { top: Math.round(top), left: Math.round(left) };
-}
-
 const BirthdaySection = ({
-  name = "Unknown",
-  DOB = "Unknown",
-  DOD = "Unknown",
-  photo = [],
-  voicemails = [],
-  voicemailNumber = "",
-  quote = "1800 Happy Birthday is a voicemail project created to honor the Black and Brown victims of Police Killings and Systemic Racism by allowing people to leave and listen to voicemails left for the victims on their birthday",
-  actions = "",
-  donation = ""
+  name,
+  DOB,
+  DOD,
+  photo,
+  voicemails,
+  voicemailNumber,
+  quote,
+  quoteAttribution,
+  actions,
+  donation,
+  animatedHeight
 }) => {
-  const [height, setHeight] = useState(0);
-  const [actionsHeight, setActionsHeight] = useState(0);
+  const [actionsOpen, setActionsOpen] = useState(false);
 
-  useEffect(() => {
-    setHeight("auto");
-  }, [name]);
-
-  useLayoutEffect(() => {
-    const section = document.getElementById("birthday-section");
-    const { top } = getCoords(section);
-
-    window.scrollTo({
-      top
-    });
-  }, [name]);
-
-  const expandActions = () => {
-    if (actionsHeight === 0) {
-      setActionsHeight("auto");
-    } else {
-      setActionsHeight(0);
-    }
+  const handleOpenActions = () => {
+    setActionsOpen(!actionsOpen);
   };
 
   return (
     <LanguageContextConsumer>
       {context => (
-        <AnimateHeight id="birthday-section" duration={2000} height={height}>
+        <AnimateHeight
+          id="birthday-section"
+          duration={1000}
+          height={animatedHeight}
+        >
           <StyledBirthdaySection>
             <StyledDiv>
               {photo.length > 0 ? <StyledImg src={getPhotoURL(photo)} /> : null}
@@ -329,24 +324,31 @@ const BirthdaySection = ({
               <>
                 {!!quote && (
                   <>
-                    <StyledQuote>{quote}</StyledQuote>
-                    <StyledAttribution>{`- ${name}`}</StyledAttribution>
+                    <StyledQuote>{`“${quote}”`}</StyledQuote>
+                    {!!quoteAttribution && (
+                      <StyledAttribution>{`- ${quoteAttribution}`}</StyledAttribution>
+                    )}
                   </>
                 )}
-                <StyledDonate>
-                  <a href={donation} rel="noreferrer" target="_blank">
-                    {`Donate to ${name.split(" ")[0]}'s family`}
-                  </a>
-                </StyledDonate>
-                <StyledActionWrapper>
-                  <StyledActionHeader onClick={expandActions}>
-                    {`Take action for ${name.split(" ")[0]}`}
-                  </StyledActionHeader>
-                  <AnimateHeight
-                    id="birthday-actions"
-                    duration={1000}
-                    height={actionsHeight}
+                <StyledActions>
+                  <StyledDonate>
+                    <a href={donation} rel="noreferrer" target="_blank">
+                      Donate
+                    </a>
+                  </StyledDonate>
+                  <StyledTakeActionHeader
+                    isOpen={actionsOpen}
+                    onClick={handleOpenActions}
                   >
+                    {`Take action for ${name.split(" ")[0]}`}
+                  </StyledTakeActionHeader>
+                  <StyledTakeActionContainer isOpen={actionsOpen}>
+                    <StyledTakeActionCloseButton onClick={handleOpenActions}>
+                      X
+                    </StyledTakeActionCloseButton>
+                    <StyledTakeActionHeaderOpen>
+                      {`Take action for ${name.split(" ")[0]}`}
+                    </StyledTakeActionHeaderOpen>
                     <StyledAction>
                       <div>Attorney General: Josh Kaul</div>
                       <div>608-266-1221</div>
@@ -359,13 +361,8 @@ const BirthdaySection = ({
                       <div>Dane County District Attorney: Ismael R. Ozanne</div>
                       <div>608-266-1221</div>
                     </StyledAction>
-                  </AnimateHeight>
-                </StyledActionWrapper>
-                <StyledContactUs>
-                  <a href="https://cash.app/$1800HBD" target="_blank">
-                    Contact us to feature your family member.
-                  </a>
-                </StyledContactUs>
+                  </StyledTakeActionContainer>
+                </StyledActions>
               </>
             </StyledDiv>
           </StyledBirthdaySection>
@@ -373,6 +370,34 @@ const BirthdaySection = ({
       )}
     </LanguageContextConsumer>
   );
+};
+
+BirthdaySection.propTypes = {
+  name: PropTypes.string,
+  DOB: PropTypes.string,
+  DOD: PropTypes.string,
+  photo: PropTypes.instanceOf(Array),
+  voicemails: PropTypes.instanceOf(Array),
+  voicemailNumber: PropTypes.string,
+  quote: PropTypes.string,
+  quoteAttribution: PropTypes.string,
+  actions: PropTypes.string,
+  donation: PropTypes.string,
+  animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+BirthdaySection.defaultProps = {
+  name: "Unknown",
+  DOB: "Unknown",
+  DOD: "Unknown",
+  photo: [],
+  voicemails: [],
+  voicemailNumber: "",
+  quote: "",
+  quoteAttribution: "",
+  actions: "",
+  donation: "",
+  animatedHeight: 0
 };
 
 export default BirthdaySection;

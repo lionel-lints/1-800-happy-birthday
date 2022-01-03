@@ -11,23 +11,24 @@ const StyledBirthday = styled.div`
   right: 1rem;
   bottom: 1rem;
   left: 1rem;
-  overflow-y: auto;
   transition: all 0.5s ease-in-out;
-  opacity: ${props => (props.isOpen ? 1 : 0)};
+  opacity: ${p => (p.isOpen ? 1 : 0)};
   cursor: auto;
 `;
 
-const Birthday = ({ data, activeID, isOpen }) => {
+const Birthday = ({ data, id, isOpen, animatedHeight }) => {
   const [person, setPerson] = useState(null);
 
   useEffect(() => {
-    const currentPerson = data[activeID];
+    const currentPerson = data[id];
     if (currentPerson) {
       setPerson(currentPerson);
     }
-  }, [activeID]);
+  }, [id]);
 
   if (!person) return null;
+
+  console.log(person);
 
   return (
     <StyledBirthday isOpen={isOpen}>
@@ -39,8 +40,10 @@ const Birthday = ({ data, activeID, isOpen }) => {
         voicemails={person.Voicemails}
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}
+        quoteAttribution={person["Quote Attribution"]}
         actions={person["Call to Action"]}
-        donation={person["Organization for Donation"]}
+        donation={person["Organization for Donations"]}
+        animatedHeight={animatedHeight}
       />
     </StyledBirthday>
   );
@@ -55,14 +58,16 @@ Birthday.propTypes = {
     }),
     id: PropTypes.string
   }),
-  activeID: PropTypes.string,
-  isOpen: PropTypes.bool
+  id: PropTypes.string,
+  isOpen: PropTypes.bool,
+  animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Birthday.defaultProps = {
   data: {},
-  activeID: null,
-  isOpen: false
+  id: null,
+  isOpen: false,
+  animatedHeight: 0
 };
 
 export default Birthday;
