@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import HomePage from "@/modules/birthdays/HomePage.js";
+import { HomePage } from "@/modules/home";
 import AboutPage from "@/modules/about/AboutPage.js";
 import ContactPage from "@/modules/contact/ContactPage.js";
 
