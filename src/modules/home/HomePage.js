@@ -2,9 +2,9 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
 
 import { PageHeader, Footer, Blurb, Marquee } from "@/modules/_common";
-import ActiveNames from "@/modules/birthdays/ActiveNames.js";
-import AllNamesList from "@/modules/birthdays/AllNamesList.js";
-import AllNamesLoader from "@/modules/birthdays/AllNamesLoader.js";
+import ActiveNames from "@/modules/home/ActiveNames.js";
+import AllNamesList from "@/modules/home/AllNamesList.js";
+import AllNamesLoader from "@/modules/home/AllNamesLoader.js";
 
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
