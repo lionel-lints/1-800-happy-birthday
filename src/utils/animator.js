@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const loadingAnimator = () => {
+const animator = () => {
   const disableScrolling = () => {
     $("html, body").css({
       overflow: "hidden",
@@ -10,7 +10,7 @@ const loadingAnimator = () => {
 
   const enableScrolling = () => {
     $("html, body").css({
-      overflow: "auto",
+      overflow: "visible",
       height: "auto"
     });
   };
@@ -69,4 +69,4 @@ const loadingAnimator = () => {
   };
 };
 
-export default loadingAnimator();
+export default animator();

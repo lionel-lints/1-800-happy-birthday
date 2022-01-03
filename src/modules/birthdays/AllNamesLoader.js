@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { Blurb } from "@/modules/_common";
-import loadingAnimator from "@/utils/loadingAnimator";
+import animator from "@/utils/animator";
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledLoader = styled.ul`
@@ -17,7 +17,7 @@ const StyledLoader = styled.ul`
   user-select: none;
   height: 100vh;
   background: black;
-  z-index: 11;
+  z-index: 10;
 `;
 
 const StyledBlurbContainer = styled.div`
@@ -71,11 +71,11 @@ const AllNamesLoader = ({ data }) => {
     }
 
     if (showLoader) {
-      loadingAnimator.disableScrolling();
-      loadingAnimator.animateBlurb();
-      loadingAnimator.animateLoader();
+      animator.disableScrolling();
+      animator.animateBlurb();
+      animator.animateLoader();
     } else {
-      loadingAnimator.enableScrolling();
+      animator.enableScrolling();
     }
   }, [data, storedData]);
 

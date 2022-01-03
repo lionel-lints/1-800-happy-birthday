@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import loadingAnimator from "@/utils/loadingAnimator";
+import animator from "@/utils/animator";
 
 const StyledList = styled.ul`
   padding: 0;
@@ -31,7 +31,7 @@ const StyledName = styled.li`
 
 const AllNamesList = ({ data }) => {
   useEffect(() => {
-    loadingAnimator.animateBackgroundNames();
+    animator.animateBackgroundNames();
   });
 
   return (
