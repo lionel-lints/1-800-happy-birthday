@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import styled from "styled-components";

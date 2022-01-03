@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactHowler from "react-howler";
 
-import AudioControls from "@/modules/birthday/AudioControls.js";
+import { AudioControls } from "@/modules/birthday";
 
 class AudioPlayer extends Component {
   constructor(props) {

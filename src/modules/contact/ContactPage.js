@@ -4,7 +4,6 @@ import styled from "styled-components";
 import {
   PageHeader,
   Marquee,
-  Blurb,
   Footer,
   LanguageContextConsumer
 } from "@/modules/_common";

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import breakpoints from "@/utils/breakpoints";
 
-import Birthday from "@/modules/birthday/Birthday.js";
+import { Birthday } from "@/modules/birthday";
 
 const StyledActiveNames = styled.div`
   position: relative;

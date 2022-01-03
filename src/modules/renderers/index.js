@@ -1,3 +1,3 @@
-import Voicemails from "@/modules/renderers/Voicemails.js";
+import Voicemails from "@/modules/renderers/Voicemails";
 
-export default { Voicemails };
+export { Voicemails };

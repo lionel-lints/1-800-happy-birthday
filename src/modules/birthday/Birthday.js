@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import BirthdaySection from "@/modules/birthday/BirthdaySection.js";
+import { BirthdaySection } from "@/modules/birthday";
 
 const StyledBirthday = styled.div`
   color: white;

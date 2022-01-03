@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { birthday } from "@/assets/locales/data.json";
 import breakpoints from "@/utils/breakpoints";
 
-import AudioPlayer from "@/modules/birthday/AudioPlayer.js";
-import AudioAnalyser from "@/modules/birthday/AudioAnalyser.js";
+import { AudioAnalyser, AudioPlayer } from "@/modules/birthday";
 
 const StyledAction = styled.p`
   font-family: RobotoMono;
@@ -75,13 +74,13 @@ const Voicemails = ({ vms, voicemailNumber, lang, name }) => {
       <StyledNumber onClick={callNumber}>
         <span>{voicemailNumber}</span>
       </StyledNumber>
-
+      {/* 
       <AudioPlayer
         sources={urls}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
-      <AudioAnalyser isPlaying={isPlaying} />
+      <AudioAnalyser isPlaying={isPlaying} /> */}
     </StyledDiv>
   );
 };
