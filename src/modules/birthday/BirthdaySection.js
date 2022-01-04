@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import AnimateHeight from "react-animate-height";
 
-import { Voicemails } from "@/modules/renderers";
+import { PhoneNumber } from "@/modules/birthday";
 import { LanguageContextConsumer } from "@/modules/_common";
 
 import breakpoints from "@/utils/breakpoints";
@@ -156,6 +156,7 @@ const StyledTakeActionContainer = styled.div`
   @media ${breakpoints.laptop} {
     position: absolute;
     right: 26%;
+    bottom: 0;
   }
 `;
 
@@ -278,7 +279,6 @@ const BirthdaySection = ({
   DOB,
   DOD,
   photo,
-  voicemails,
   voicemailNumber,
   quote,
   quoteAttribution,
@@ -318,11 +318,9 @@ const BirthdaySection = ({
                 <StyledDates>
                   {getDateString(context.lang, DOB, DOD)}
                 </StyledDates>
-                {voicemails.length > 0 ? (
-                  <Voicemails
+                {voicemailNumber ? (
+                  <PhoneNumber
                     lang={context.lang}
-                    vms={voicemails}
-                    name={name.split(" ")[0]}
                     voicemailNumber={voicemailNumber}
                   />
                 ) : null}
@@ -419,7 +417,6 @@ BirthdaySection.propTypes = {
   DOB: PropTypes.string,
   DOD: PropTypes.string,
   photo: PropTypes.instanceOf(Array),
-  voicemails: PropTypes.instanceOf(Array),
   voicemailNumber: PropTypes.string,
   quote: PropTypes.string,
   quoteAttribution: PropTypes.string,
@@ -438,7 +435,6 @@ BirthdaySection.defaultProps = {
   DOB: "Unknown",
   DOD: "Unknown",
   photo: [],
-  voicemails: [],
   voicemailNumber: "",
   quote: "",
   quoteAttribution: "",

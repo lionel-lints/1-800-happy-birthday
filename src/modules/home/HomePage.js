@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
+
+import ReactHowler from "react-howler";
 
 import { PageHeader, Footer, Marquee } from "@/modules/_common";
 import {
@@ -30,9 +32,10 @@ const serializeData = res => {
 
 const HomePage = () => {
   const [data, setData] = useSessionStorage("hbd-data", {});
-  const [showVoicemailPlayer, setShowVoicemailPlayer] = useState(false);
-  const [activeVoicemail, setActiveVoicemail] = useState(null);
+  const [activeVoicemail, setActiveVoicemail] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
+  const [voicemailName, setVoicemailName] = useState("");
+  const player = useRef(null);
 
   useLayoutEffect(() => {
     // scroll to top of page on link transition
@@ -48,6 +51,11 @@ const HomePage = () => {
     getData();
   }, []);
 
+  const endPlay = () => {
+    setIsPlaying(false);
+    setActiveVoicemail(null);
+  };
+
   return (
     <StyledHomePage>
       <PageHeader />
@@ -58,6 +66,8 @@ const HomePage = () => {
           <ActiveNames
             data={data}
             setActiveVoicemail={setActiveVoicemail}
+            setVoicemailName={setVoicemailName}
+            activeVoicemail={activeVoicemail}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
           />
@@ -70,8 +80,21 @@ const HomePage = () => {
       <VoicemailFooter
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
-        isVisible={true}
+        isVisible={!!activeVoicemail}
+        voicemailName={voicemailName}
       />
+      {activeVoicemail ? (
+        <ReactHowler
+          playing={isPlaying}
+          // When the sources are swapped we'll pass a new
+          // src prop into ReactHowler which will destroy our
+          // currently playing Howler.js and initialize
+          // a new Howler.js instance
+          src={activeVoicemail}
+          ref={player}
+          onEnd={endPlay}
+        />
+      ) : null}
     </StyledHomePage>
   );
 };

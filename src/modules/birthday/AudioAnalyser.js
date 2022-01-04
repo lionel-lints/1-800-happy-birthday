@@ -12,15 +12,9 @@ class AudioAnalyser extends Component {
     this.analyser = window.Howler.ctx.createAnalyser();
     window.Howler.masterGain.connect(this.analyser);
 
-    let bufferLength = this.analyser.frequencyBinCount;
+    const bufferLength = this.analyser.frequencyBinCount;
     this.dataArray = new Uint8Array(bufferLength);
 
-    this.rafId = requestAnimationFrame(this.tick);
-  }
-
-  tick() {
-    this.analyser.getByteTimeDomainData(this.dataArray);
-    this.setState({ audioData: this.dataArray });
     this.rafId = requestAnimationFrame(this.tick);
   }
 
@@ -29,11 +23,20 @@ class AudioAnalyser extends Component {
     this.analyser.disconnect();
   }
 
+  tick() {
+    this.analyser.getByteTimeDomainData(this.dataArray);
+    this.setState({ audioData: this.dataArray });
+    this.rafId = requestAnimationFrame(this.tick);
+  }
+
   render() {
+    const { isPlaying } = this.props;
+
     return (
       <AudioVisualizer
         audioData={this.dataArray}
-        isPlaying={this.props.isPlaying}
+        isPlaying={isPlaying}
+        analyser={this.analyser}
       />
     );
   }

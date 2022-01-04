@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  opacity: 0.5;
+
   canvas {
-    visibility: ${p => (p.isPlaying === true ? "inherit" : "hidden")};
+    visibility: ${p => (p.isPlaying ? "inherit" : "hidden")};
   }
 `;
 
@@ -21,27 +27,32 @@ class AudioVisualizer extends Component {
   }
 
   draw() {
+    const { analyser } = this.props;
     const { audioData } = this.props;
     const canvas = this.canvas.current;
-    const height = canvas.height;
-    const width = canvas.width;
+    const { height, width } = canvas;
     const context = canvas.getContext("2d");
-    let x = 0;
-    const sliceWidth = (width * 1.0) / audioData.length;
 
-    context.lineWidth = 5;
-    context.strokeStyle = "red";
-    context.clearRect(0, 0, width, height);
+    const meterWidth = 14;
+    const gap = 2;
 
-    context.beginPath();
-    context.moveTo(0, height / 2);
-    for (const item of audioData) {
-      const y = (item / 255.0) * height;
-      context.lineTo(x, y);
-      x += sliceWidth;
-    }
-    context.lineTo(x, height / 2);
-    context.stroke();
+    const renderVis = () => {
+      analyser.getByteFrequencyData(audioData);
+
+      context.fillStyle = "black";
+      context.clearRect(0, 0, width, height);
+
+      audioData.forEach((value, i) => {
+        context.fillRect(
+          i * (meterWidth + gap),
+          height,
+          meterWidth,
+          height - value
+        );
+      });
+      requestAnimationFrame(renderVis);
+    };
+    renderVis();
   }
 
   render() {
@@ -49,7 +60,7 @@ class AudioVisualizer extends Component {
       <StyledDiv isPlaying={this.props.isPlaying}>
         <canvas
           width={this.state.width}
-          height="90"
+          height="65"
           ref={this.canvas}
           resize="true"
         />

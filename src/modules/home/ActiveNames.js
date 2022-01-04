@@ -146,7 +146,14 @@ const StyledNameNavigationRight = styled.div`
   justify-content: flex-end;
 `;
 
-const ActiveNames = ({ data, setActiveVoicemail, isPlaying, setIsPlaying }) => {
+const ActiveNames = ({
+  data,
+  setActiveVoicemail,
+  activeVoicemail,
+  isPlaying,
+  setIsPlaying,
+  setVoicemailName
+}) => {
   const [activeIDs, setActiveIDs] = useState([]);
 
   const container = useRef(null);
@@ -220,6 +227,7 @@ const ActiveNames = ({ data, setActiveVoicemail, isPlaying, setIsPlaying }) => {
                     <StyledNameNavigation
                       ref={container}
                       onClick={event => scrollToBirthday(event, id)}
+                      id={name}
                     >
                       <StyledNameNavigationLeft>
                         <StyledNameNavigationClose
@@ -237,6 +245,11 @@ const ActiveNames = ({ data, setActiveVoicemail, isPlaying, setIsPlaying }) => {
                             sources={voicemails.map(voicemail => voicemail.url)}
                             isPlaying={isPlaying}
                             setIsPlaying={setIsPlaying}
+                            setActiveVoicemail={setActiveVoicemail}
+                            activeVoicemail={activeVoicemail}
+                            setVoicemailName={() => {
+                              setVoicemailName(name);
+                            }}
                             type="icon"
                           />
                         ) : null}
@@ -283,12 +296,15 @@ ActiveNames.propTypes = {
     }),
     id: PropTypes.string
   }),
-  setActiveVoicemail: PropTypes.func
+  setActiveVoicemail: PropTypes.func.isRequired,
+  activeVoicemail: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  setIsPlaying: PropTypes.func.isRequired,
+  setVoicemailName: PropTypes.func.isRequired
 };
 
 ActiveNames.defaultProps = {
-  data: {},
-  setActiveVoicemail: () => {}
+  data: {}
 };
 
 export default ActiveNames;

@@ -1,6 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ReactHowler from "react-howler";
 
 import { AudioControls } from "@/modules/birthday";
 
@@ -9,52 +8,41 @@ const AudioPlayer = ({
   isPlaying,
   setIsPlaying,
   setActiveVoicemail,
+  setVoicemailName,
   type
 }) => {
   const [currentSrcIndex, setCurrentSrcIndex] = useState(0);
-  const player = useRef();
 
   const handleNext = () => {
-    const nextIndex =
+    const next =
       currentSrcIndex >= sources.length - 1 ? 0 : currentSrcIndex + 1;
 
-    setCurrentSrcIndex(nextIndex);
+    setCurrentSrcIndex(next);
+    setActiveVoicemail(sources[next]);
   };
 
   const handlePrevious = () => {
-    const nextIndex =
+    const previous =
       currentSrcIndex > 0 ? currentSrcIndex - 1 : sources.length - 1;
-    setCurrentSrcIndex(nextIndex);
+
+    setCurrentSrcIndex(previous);
+    setActiveVoicemail(sources[previous]);
   };
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
-  };
-
-  const endPlay = () => {
-    setIsPlaying(false);
+    setVoicemailName();
+    setActiveVoicemail(sources[currentSrcIndex]);
   };
 
   return (
-    <>
-      <ReactHowler
-        playing={isPlaying}
-        // When the sources are swapped we'll pass a new
-        // src prop into ReactHowler which will destroy our
-        // currently playing Howler.js and initialize
-        // a new Howler.js instance
-        src={sources[currentSrcIndex]}
-        ref={player}
-        onEnd={endPlay}
-      />
-      <AudioControls
-        isPlaying={isPlaying}
-        forward={handleNext}
-        back={handlePrevious}
-        togglePlay={togglePlay}
-        showPlayButton={type === "button"}
-      />
-    </>
+    <AudioControls
+      isPlaying={isPlaying}
+      forward={handleNext}
+      back={handlePrevious}
+      togglePlay={togglePlay}
+      showPlayButton={type === "button"}
+    />
   );
 };
 
@@ -63,6 +51,7 @@ AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
   setActiveVoicemail: PropTypes.func.isRequired,
+  setVoicemailName: PropTypes.func.isRequired,
   type: PropTypes.string
 };
 
