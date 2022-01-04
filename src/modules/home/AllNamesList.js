@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import animator from "@/utils/animator";
+import breakpoints from "@/utils/breakpoints";
 
 const StyledList = styled.ul`
   text-align: center;
-  opacity: 0.1 !important;
+  opacity: 0.05 !important;
   position: fixed;
   top: -0.5rem;
   left: -5rem;
@@ -24,8 +25,13 @@ const StyledName = styled.li`
 
   font-family: BradleyMicro;
   color: ${p => (p.isEven ? "gray" : "lightgray")};
-  font-size: 2.8rem;
-  line-height: 3.1rem;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+
+  @media ${breakpoints.tablet} {
+    font-size: 2.8rem;
+    line-height: 3.1rem;
+  }
 `;
 
 const AllNamesList = ({ data }) => {

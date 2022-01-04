@@ -15,15 +15,26 @@ const animator = () => {
     });
   };
 
+  const animateFadeIn = () => {
+    const bg = $(".FadeInBackground")[0];
+    $(bg).fadeOut("slow");
+  };
+
+  const animateLoaderFadeIn = () => {
+    const bg = $(".LoaderFadeInBackground")[0];
+    $(bg).fadeOut("slow");
+  };
+
   const animateBlurb = () => {
     setTimeout(() => {
-      const bg = $(".BlurbLoaderContainer")[0];
+      const bg = $(".LoaderBlurbContainer")[0];
       const loader = $("ul.Loader")[0];
-      $(loader).hide();
+      $(loader).fadeOut();
       $(bg).fadeOut("slow", () => {
+        animateFadeIn();
         enableScrolling();
       });
-    }, 8000);
+    }, 6000);
   };
 
   const animateBackgroundNames = () => {
@@ -65,7 +76,9 @@ const animator = () => {
     animateLoader,
     removeLoader,
     animateBackgroundNames,
-    animateBlurb
+    animateBlurb,
+    animateFadeIn,
+    animateLoaderFadeIn
   };
 };
 

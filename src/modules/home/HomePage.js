@@ -7,7 +7,7 @@ import { PageHeader, Footer, Marquee } from "@/modules/_common";
 import {
   ActiveNames,
   AllNamesList,
-  AllNamesLoader,
+  Loader,
   VoicemailFooter
 } from "@/modules/home";
 
@@ -59,7 +59,7 @@ const HomePage = () => {
   return (
     <StyledHomePage>
       <PageHeader />
-      <AllNamesLoader data={data} />
+      <Loader data={data} />
 
       {data ? (
         <>
