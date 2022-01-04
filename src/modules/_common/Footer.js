@@ -24,9 +24,11 @@ const StyledLayout = styled.section`
 const StyledDonate = styled.div`
   font-family: BradleyMicro;
   font-size: 1.6rem;
+  line-height: 1.8rem;
   padding-bottom: 10px;
   border-bottom: 5px solid red;
   padding-top: 4rem;
+  text-align: center;
 
   @media ${breakpoints.laptop} {
     font-size: 3.5rem;

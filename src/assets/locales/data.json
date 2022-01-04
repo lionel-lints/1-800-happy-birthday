@@ -19,6 +19,10 @@
     "store": {
       "en": "Store",
       "es": "Tienda"
+    },
+    "menu": {
+      "en": "Menu",
+      "es": "Menú"
     }
   },
   "footer": {
@@ -79,7 +83,7 @@
       "es": "Contáctenos"
     },
     "text": {
-      "en": " Would you like your loved one to be included in this project or want to work together? Please get in touch via the following methods.",
+      "en": "Would you like your loved one to be included in this project or want to work together? Please get in touch via the following methods.",
       "es": "¿Le gustaría que su ser querido se incluyera en este proyecto o quieren trabajar juntos? Póngase en contacto a través de los siguientes métodos."
     },
     "email": {

@@ -9,7 +9,7 @@ const StyledLogo = styled.img`
   transition: opacity 0.25s ease-in-out;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 `;
 

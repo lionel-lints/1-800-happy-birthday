@@ -2,31 +2,29 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import BirthdaySection from "@/modules/birthday/BirthdaySection.js";
+import { BirthdaySection } from "@/modules/birthday";
 
 const StyledBirthday = styled.div`
   color: white;
   z-index: 5;
-  background: black;
   top: 1rem;
   right: 1rem;
   bottom: 1rem;
   left: 1rem;
-  overflow-y: auto;
   transition: all 0.5s ease-in-out;
-  opacity: ${props => (props.isOpen ? 1 : 0)};
+  opacity: ${p => (p.isOpen ? 1 : 0)};
   cursor: auto;
 `;
 
-const Birthday = ({ data, activeID, isOpen }) => {
+const Birthday = ({ data, id, isOpen, animatedHeight }) => {
   const [person, setPerson] = useState(null);
 
   useEffect(() => {
-    const currentPerson = data[activeID];
+    const currentPerson = data[id];
     if (currentPerson) {
       setPerson(currentPerson);
     }
-  }, [activeID]);
+  }, [id]);
 
   if (!person) return null;
 
@@ -36,12 +34,19 @@ const Birthday = ({ data, activeID, isOpen }) => {
         name={person.Name}
         DOB={person.dob}
         DOD={person.dod}
-        photo={person.Photo}
+        photo={person["Hero Photo"]}
         voicemails={person.Voicemails}
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}
-        actions={person["Call to Action"]}
-        donation={person["Organization for Donation"]}
+        quoteAttribution={person["Quote Attribution"]}
+        donation={person["Organization for Donations"]}
+        animatedHeight={animatedHeight}
+        callToActionText1={person["Call to Action 1 Text"]}
+        callToActionText2={person["Call to Action 2 Text"]}
+        callToActionText3={person["Call to Action 3 Text"]}
+        callToActionLink1={person["Call to Action 1 Link"]}
+        callToActionLink2={person["Call to Action 2 Link"]}
+        callToActionLink3={person["Call to Action 3 Link"]}
       />
     </StyledBirthday>
   );
@@ -56,14 +61,16 @@ Birthday.propTypes = {
     }),
     id: PropTypes.string
   }),
-  activeID: PropTypes.string,
-  isOpen: PropTypes.bool
+  id: PropTypes.string,
+  isOpen: PropTypes.bool,
+  animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Birthday.defaultProps = {
   data: {},
-  activeID: null,
-  isOpen: false
+  id: null,
+  isOpen: false,
+  animatedHeight: 0
 };
 
 export default Birthday;

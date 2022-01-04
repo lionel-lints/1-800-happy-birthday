@@ -8,15 +8,16 @@ const base = new Airtable({
 const AirtableClient = {
   base,
   fetchData: async () => {
-    const response = await fetch(
-      `https://api.airtable.com/v0/${process.env.BASE_ID}/${process.env.TABLE_ID}/`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`
-        }
+    const url = new URL(
+      `https://api.airtable.com/v0/${process.env.BASE_ID}/${process.env.TABLE_ID}?sort%5B0%5D%5Bfield%5D=Live Voicemail Number&sort%5B0%5D%5Bdirection%5D=desc`
+    );
+
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`
       }
-    )
+    })
       .then(res => res.json())
       .then(res => {
         return res.records;

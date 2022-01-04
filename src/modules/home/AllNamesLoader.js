@@ -2,13 +2,14 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import loadingAnimator from "@/utils/loadingAnimator";
+import { Blurb } from "@/modules/_common";
+import animator from "@/utils/animator";
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledLoader = styled.ul`
   padding: 2%;
   text-align: center;
-  opacity: 1;
+  opacity: 0.1 !important;
   position: absolute;
   overflow: auto;
   top: 0;
@@ -16,7 +17,20 @@ const StyledLoader = styled.ul`
   user-select: none;
   height: 100vh;
   background: black;
-  z-index: 11;
+  z-index: 10;
+`;
+
+const StyledBlurbContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  overflow: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
 `;
 
 const StyledBlackBackground = styled.div`
@@ -28,7 +42,7 @@ const StyledBlackBackground = styled.div`
   right: 0;
   height: 100vh;
   background: black;
-  z-index: 11;
+  z-index: 10;
 `;
 
 const StyledName = styled.li`
@@ -37,7 +51,7 @@ const StyledName = styled.li`
   margin-right: 0.5rem;
 
   font-family: BradleyMicro;
-  color: lightgray;
+  color: ${p => (p.isEven ? "gray" : "lightgray")};
   opacity: 0;
   font-size: 2rem;
   line-height: 3rem;
@@ -57,27 +71,33 @@ const AllNamesLoader = ({ data }) => {
     }
 
     if (showLoader) {
-      loadingAnimator.disableScrolling();
-      loadingAnimator.animateLoader();
-      loadingAnimator.removeLoader();
+      animator.disableScrolling();
+      animator.animateBlurb();
+      animator.animateLoader();
     } else {
-      loadingAnimator.enableScrolling();
+      animator.enableScrolling();
     }
   }, [data, storedData]);
 
-  // Before data has loaded, show a blank black screen.
-  if (showLoader && !Object.keys(data).length) {
-    return <StyledBlackBackground />;
-  }
-
   return showLoader ? (
-    <StyledLoader className="Loader">
-      {Object.keys(data).map(id => {
-        const name = data[id].Name;
+    <>
+      <StyledBlackBackground className="BlurbLoaderContainer">
+        <StyledBlurbContainer>
+          <Blurb />
+        </StyledBlurbContainer>
+      </StyledBlackBackground>
+      <StyledLoader className="Loader">
+        {Object.keys(data).map((id, index) => {
+          const name = data[id].Name;
 
-        return <StyledName key={name}>{name}</StyledName>;
-      })}
-    </StyledLoader>
+          return (
+            <StyledName key={name} isEven={index % 2 === 0}>
+              {name}
+            </StyledName>
+          );
+        })}
+      </StyledLoader>
+    </>
   ) : null;
 };
 

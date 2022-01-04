@@ -15,9 +15,7 @@ const StyledBlurb = styled.h2`
   font-weight: 400;
   margin: 0 5%;
 
-  animation: fadeInBlurb ease-in 0.25s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  animation: fadeInBlurb ease-in 0.5s;
   @keyframes fadeInBlurb {
     0% {
       opacity: 0;
@@ -41,7 +39,9 @@ const StyledBlurb = styled.h2`
 const Blurb = () => {
   return (
     <LanguageContextConsumer>
-      {context => <StyledBlurb>{blurb[context.lang]}</StyledBlurb>}
+      {context => (
+        <StyledBlurb className="Blurb">{blurb[context.lang]}</StyledBlurb>
+      )}
     </LanguageContextConsumer>
   );
 };
