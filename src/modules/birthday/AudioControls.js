@@ -63,7 +63,7 @@ const AudioControls = ({
   isPlaying,
   forward,
   back,
-  playPause,
+  togglePlay,
   showPlayButton
 }) => {
   return (
@@ -71,14 +71,14 @@ const AudioControls = ({
       <StyledImg src={Back} onClick={back} />
 
       {showPlayButton ? (
-        <StyledPlayButton onClick={playPause}>
+        <StyledPlayButton onClick={togglePlay}>
           {isPlaying ? `Pause` : `Play`}
         </StyledPlayButton>
       ) : (
         <StyledPlayIcon
           src={isPlaying ? Pause : Play}
           isPlaying={isPlaying}
-          onClick={playPause}
+          onClick={togglePlay}
         />
       )}
 
