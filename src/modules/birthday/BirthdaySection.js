@@ -122,27 +122,6 @@ const StyledActions = styled.div`
   margin: 5rem 0;
 `;
 
-const StyledDonate = styled.div`
-  font-family: BradleyMicro;
-  display: inline-block;
-  font-size: 2rem;
-  line-height: calc(2rem * 1.3);
-  padding: 1rem;
-  margin-right: 1rem;
-  border: 3px solid red;
-  transition: border-color 0.25s ease-in-out;
-
-  &:hover {
-    border-color: white;
-    cursor: pointer;
-  }
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-`;
-
 const StyledTakeActionContainer = styled.div`
   opacity: ${p => (p.isOpen ? 1 : 0)};
   z-index: ${p => (p.isOpen ? 10 : 0)};
@@ -150,12 +129,10 @@ const StyledTakeActionContainer = styled.div`
   border: 3px solid white;
   padding: 2rem;
   max-width: 450px;
-  transform: rotate(3deg);
   background: black;
 
   @media ${breakpoints.laptop} {
     position: absolute;
-    right: 26%;
     bottom: 0;
   }
 `;
@@ -335,11 +312,6 @@ const BirthdaySection = ({
                   </>
                 )}
                 <StyledActions>
-                  <StyledDonate>
-                    <a href={donation} rel="noreferrer" target="_blank">
-                      Donate
-                    </a>
-                  </StyledDonate>
                   <StyledTakeActionHeader
                     isOpen={actionsOpen}
                     onClick={handleOpenActions}
@@ -426,7 +398,6 @@ BirthdaySection.propTypes = {
   callToActionLink1: PropTypes.string,
   callToActionLink2: PropTypes.string,
   callToActionLink3: PropTypes.string,
-  donation: PropTypes.string,
   animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
@@ -444,7 +415,6 @@ BirthdaySection.defaultProps = {
   callToActionLink1: "",
   callToActionLink2: "",
   callToActionLink3: "",
-  donation: "",
   animatedHeight: 0
 };
 
