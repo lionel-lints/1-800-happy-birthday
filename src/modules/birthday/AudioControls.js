@@ -11,7 +11,10 @@ import Back from "@/assets/icons/skip-back.svg";
 const StyledImg = styled.img`
   height: 18px;
   opacity: 1;
-  margin-right: 1.4rem;
+
+  &:first-child {
+    margin-right: 1.4rem;
+  }
 
   &:hover {
     cursor: pointer;
@@ -48,15 +51,10 @@ const StyledPlayIcon = styled.img`
 `;
 
 const StyledDiv = styled.div`
-  width: 50%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   z-index: 1;
-
-  @media ${breakpoints.laptop} {
-    width: 30%;
-  }
+  height: 30px;
 `;
 
 const AudioControls = ({

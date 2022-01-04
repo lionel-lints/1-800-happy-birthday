@@ -5,7 +5,7 @@ import styled from "styled-components";
 import AnimateHeight from "react-animate-height";
 
 import { PhoneNumber } from "@/modules/birthday";
-import { LanguageContextConsumer } from "@/modules/_common";
+import { LanguageContextConsumer, CloseIcon } from "@/modules/_common";
 
 import breakpoints from "@/utils/breakpoints";
 
@@ -175,23 +175,8 @@ const StyledTakeActionHeaderOpen = styled.div`
 
 const StyledTakeActionCloseButton = styled.div`
   position: absolute;
-  width: 50px;
-  height: 50px;
-  left: 0;
-  top: 0;
-  font-family: RobotoMono;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 500;
-  font-variation-settings: "wght" 500;
-  transition: color 0.25s ease-in-out;
-
-  &:hover {
-    cursor: pointer;
-    color: red;
-  }
+  left: 1rem;
+  top: 1rem;
 `;
 
 const StyledAction = styled.div`
@@ -259,7 +244,6 @@ const BirthdaySection = ({
   voicemailNumber,
   quote,
   quoteAttribution,
-  donation,
   animatedHeight,
   callToActionText1,
   callToActionText2,
@@ -320,7 +304,7 @@ const BirthdaySection = ({
                   </StyledTakeActionHeader>
                   <StyledTakeActionContainer isOpen={actionsOpen}>
                     <StyledTakeActionCloseButton onClick={handleOpenActions}>
-                      X
+                      <CloseIcon />
                     </StyledTakeActionCloseButton>
                     <StyledTakeActionHeaderOpen>
                       {`Take action for ${name.split(" ")[0]}`}
