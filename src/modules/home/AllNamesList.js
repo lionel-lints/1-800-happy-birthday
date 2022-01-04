@@ -5,15 +5,14 @@ import styled from "styled-components";
 import animator from "@/utils/animator";
 
 const StyledList = styled.ul`
-  padding: 0;
   text-align: center;
-  margin: 2%;
   opacity: 0.1 !important;
   position: fixed;
-  top: 0;
-  transition: all 1s ease-in-out;
+  top: -0.5rem;
+  left: -5rem;
+  right: -5rem;
   user-select: none;
-  padding-bottom: 10rem;
+  transition: all 1s ease-in-out;
   z-index: -1;
 `;
 
@@ -25,8 +24,8 @@ const StyledName = styled.li`
 
   font-family: BradleyMicro;
   color: ${p => (p.isEven ? "gray" : "lightgray")};
-  font-size: 2rem;
-  line-height: 3rem;
+  font-size: 2.8rem;
+  line-height: 3.1rem;
 `;
 
 const AllNamesList = ({ data }) => {

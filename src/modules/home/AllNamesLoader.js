@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -7,17 +7,17 @@ import animator from "@/utils/animator";
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledLoader = styled.ul`
-  padding: 2%;
   text-align: center;
   opacity: 0.1 !important;
   position: absolute;
-  overflow: auto;
-  top: 0;
-  transition: all 1s ease-in-out;
+  top: -0.5rem;
+  left: -5rem;
+  right: -5rem;
   user-select: none;
-  height: 100vh;
+  transition: all 1s ease-in-out;
   background: black;
   z-index: 10;
+  overflow: auto;
 `;
 
 const StyledBlurbContainer = styled.div`
@@ -49,12 +49,12 @@ const StyledName = styled.li`
   display: inline;
   list-style-type: circle;
   margin-right: 0.5rem;
+  opacity: 0;
 
   font-family: BradleyMicro;
   color: ${p => (p.isEven ? "gray" : "lightgray")};
-  opacity: 0;
-  font-size: 2rem;
-  line-height: 3rem;
+  font-size: 2.8rem;
+  line-height: 3.1rem;
 `;
 
 const AllNamesLoader = ({ data }) => {
