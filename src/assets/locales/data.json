@@ -79,6 +79,18 @@
     "listenEnd": {
       "en": "'s Birthday",
       "es": "'s y su familia por su cumpleaños"
+    },
+    "voicemailsFor": {
+      "en": "Voicemails for",
+      "es": "Correos de voz por"
+    },
+    "listeningToVoicemailsFor": {
+      "en": "Playing voicemails for",
+      "es": "Escuchando correos de voz enviados a"
+    },
+    "takeAction": {
+      "en": "Take action for",
+      "es": "Actúa por"
     }
   },
   "contact": {

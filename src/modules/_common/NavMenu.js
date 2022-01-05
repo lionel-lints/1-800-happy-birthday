@@ -100,7 +100,7 @@ const NavMenu = ({ context }) => {
     if (!mobileMenuIsOpen) {
       setHeight("auto");
     } else {
-      setHeight("0");
+      setHeight(0);
     }
   };
 

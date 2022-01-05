@@ -2,14 +2,20 @@ import React, { useState, useLayoutEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { birthday } from "@/assets/locales/data.json";
 import breakpoints from "@/utils/breakpoints";
 
 import { Birthday, AudioPlayer } from "@/modules/birthday";
+import { LanguageContextConsumer, CloseIcon } from "@/modules/_common";
 
 const StyledActiveNames = styled.div`
   position: relative;
   text-align: center;
   margin: 5rem 0 10rem 0;
+`;
+
+const StyledNameWrapper = styled.div`
+  display: ${p => (p.isOpen ? "none" : "block")};
 `;
 
 const StyledWrapper = styled.div`
@@ -33,8 +39,8 @@ const StyledName = styled.div`
   font-family: BradleyMicro;
   color: red;
   transition: all 0.25s ease-in-out;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-size: 4rem;
   line-height: 4rem;
   letter-spacing: -0.2rem;
@@ -43,6 +49,7 @@ const StyledName = styled.div`
     font-size: 8rem;
     line-height: 8rem;
     letter-spacing: -0.5rem;
+    padding-bottom: 0;
 
     &:hover {
       color: white;
@@ -51,9 +58,18 @@ const StyledName = styled.div`
   }
 
   @media ${breakpoints.laptop} {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
     font-size: 15rem;
     letter-spacing: -1rem;
     line-height: 14rem;
+  }
+
+ ${"" /* TODO: */}
+  @media ${breakpoints.desktop} {
+    font-size: 12rem;
+    letter-spacing: -1rem;
+    line-height: 13rem;
   }
 `;
 
@@ -104,6 +120,7 @@ const StyledNameNavigation = styled.div`
   border-top: 3px solid white;
   border-bottom: 3px solid white;
   padding: 1rem 2%;
+  height: 80px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -114,29 +131,38 @@ const StyledNameNavigation = styled.div`
   top: -3px;
 `;
 
-const StyledNameNavigationClose = styled.span`
-  border: 1px solid transparent;
-
-  &:hover {
-    cursor: pointer;
-    border-bottom: 1px solid red;
-  }
-`;
+const StyledCloseButton = styled.div``;
 
 const StyledNameNavigationLeft = styled.div`
-  font-family: RobotoMono;
-  font-size: 1rem;
-  line-height: 2rem;
-  text-transform: uppercase;
   margin-right: auto;
   flex: 1;
   display: flex;
   justify-content: flex-start;
 `;
 
-const StyledNameNavigationName = styled.div`
-  font-family: BradleyMicro;
-  color: red;
+const StyledNameNavigationMiddle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledNameNavigationText = styled.div`
+  font-family: RobotoMono;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: white;
+  z-index: 6;
+  margin-bottom: 1rem;
+
+  span {
+    border-bottom: 1px solid black;
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+    }
+  }
 `;
 
 const StyledNameNavigationRight = styled.div`
@@ -154,32 +180,21 @@ const ActiveNames = ({
   setIsPlaying,
   setVoicemailName
 }) => {
-  const [activeIDs, setActiveIDs] = useState([]);
+  const [openID, setOpenID] = useState("");
 
   const container = useRef(null);
 
-  const handleOpenBirthday = id => {
-    setActiveIDs([...activeIDs, id]);
-  };
-
-  const handleCloseBirthday = id => {
-    const newActiveIDs = activeIDs.filter(item => item !== id);
-    setActiveIDs(newActiveIDs);
-  };
-
-  const closeBirthday = (event, id) => {
+  const closeBirthday = event => {
     event.stopPropagation();
-    handleCloseBirthday(id);
-  };
-
-  const isBirthdayOpen = id => {
-    return activeIDs.includes(id);
+    setOpenID("");
+    setActiveVoicemail("");
+    setIsPlaying(false);
   };
 
   const openBirthday = id => {
-    if (!isBirthdayOpen(id)) {
-      handleOpenBirthday(id);
-    }
+    setOpenID(id);
+    setActiveVoicemail("");
+    setIsPlaying(false);
   };
 
   const scrollToBirthday = (event, id) => {
@@ -193,7 +208,7 @@ const ActiveNames = ({
         behavior: "smooth"
       });
     }
-  }, [activeIDs]);
+  }, [openID]);
 
   return (
     <StyledActiveNamesWrapper>
@@ -203,8 +218,6 @@ const ActiveNames = ({
           const name = data[id].Name;
           const dobField = data[id].dob;
           const voicemails = data[id].Voicemails;
-
-          // TODO: image rotate + left/right: random number between range
 
           let dob;
           if (dobField) {
@@ -223,23 +236,23 @@ const ActiveNames = ({
             <StyledWrapper onClick={() => openBirthday(id)} key={name}>
               {isLive ? (
                 <>
-                  {isBirthdayOpen(id) && (
+                  {openID === id && (
                     <StyledNameNavigation
                       ref={container}
                       onClick={event => scrollToBirthday(event, id)}
                       id={name}
                     >
-                      <StyledNameNavigationLeft>
-                        <StyledNameNavigationClose
-                          onClick={event => closeBirthday(event, id)}
-                        >
-                          Close
-                        </StyledNameNavigationClose>
-                      </StyledNameNavigationLeft>
-                      <StyledNameNavigationName>
-                        {name}
-                      </StyledNameNavigationName>
-                      <StyledNameNavigationRight>
+                      <StyledNameNavigationLeft />
+                      <StyledNameNavigationMiddle>
+                        <LanguageContextConsumer>
+                          {context => (
+                            <StyledNameNavigationText>
+                              {`${
+                                birthday.voicemailsFor[context.lang]
+                              } ${name}`}
+                            </StyledNameNavigationText>
+                          )}
+                        </LanguageContextConsumer>
                         {voicemails && voicemails.length > 0 ? (
                           <AudioPlayer
                             sources={voicemails.map(voicemail => voicemail.url)}
@@ -253,27 +266,32 @@ const ActiveNames = ({
                             type="icon"
                           />
                         ) : null}
+                      </StyledNameNavigationMiddle>
+                      <StyledNameNavigationRight>
+                        <StyledCloseButton
+                          onClick={event => closeBirthday(event, id)}
+                        >
+                          <CloseIcon />
+                        </StyledCloseButton>
                       </StyledNameNavigationRight>
                     </StyledNameNavigation>
                   )}
 
-                  {!isBirthdayOpen(id) && (
+                  <StyledNameWrapper isOpen={openID === id}>
                     <StyledDate className="date">{dob.join(" ")}</StyledDate>
-                  )}
+                    <StyledName>{name}</StyledName>
+                    {photoUrl ? (
+                      <StyledImg src={photoUrl} isEven={index % 2 === 0} />
+                    ) : null}
+                  </StyledNameWrapper>
 
-                  {!isBirthdayOpen(id) && <StyledName>{name}</StyledName>}
-
-                  {photoUrl && !isBirthdayOpen(id) && (
-                    <StyledImg src={photoUrl} isEven={index % 2 === 0} />
-                  )}
-
-                  <StyledBirthdayWrapper isOpen={isBirthdayOpen(id)}>
-                    {isBirthdayOpen(id) ? (
+                  <StyledBirthdayWrapper isOpen={openID === id}>
+                    {openID === id ? (
                       <Birthday
                         data={data}
                         id={id}
-                        isOpen={isBirthdayOpen(id)}
-                        animatedHeight={isBirthdayOpen(id) ? "auto" : 0}
+                        isOpen={openID === id}
+                        animatedHeight={openID === id ? "auto" : 0}
                       />
                     ) : null}
                   </StyledBirthdayWrapper>

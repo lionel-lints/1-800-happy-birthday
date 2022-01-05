@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import breakpoints from "@/utils/breakpoints";
+
 import Play from "@/assets/icons/play.svg";
 import Pause from "@/assets/icons/pause.svg";
 
 import { AudioAnalyser } from "@/modules/birthday";
+
+import { LanguageContextConsumer } from "@/modules/_common";
+import { birthday } from "@/assets/locales/data.json";
 
 const StyledText = styled.div`
   font-family: RobotoMono;
   font-size: 1rem;
   color: black;
   z-index: 6;
+  margin-left: 1rem;
 
   span {
     border-bottom: 1px solid black;
@@ -41,7 +47,9 @@ const StyledVoicemailFooter = styled.div`
 `;
 
 const StyledPlayIcon = styled.img`
+  margin-left: 0.5rem;
   height: ${p => (p.isPlaying ? "25px" : "30px")};
+  width: 30px;
   vertical-align: middle;
   opacity: 1;
   filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(7500%)
@@ -51,6 +59,10 @@ const StyledPlayIcon = styled.img`
   &:hover {
     filter: none;
     cursor: pointer;
+  }
+
+  @media ${breakpoints.tablet} {
+    margin-left: 0;
   }
 `;
 
@@ -66,6 +78,17 @@ const VoicemailFooter = ({
     setHowlerContext(window.Howler.ctx);
   });
 
+  const scrollToName = name => {
+    const navBar = document.getElementById(name);
+    if (navBar) {
+      window.scroll({
+        top:
+          navBar.parentElement.getBoundingClientRect().top + window.scrollY + 5,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <StyledVoicemailFooter isVisible={isVisible}>
       <StyledPlayIcon
@@ -77,9 +100,20 @@ const VoicemailFooter = ({
       />
       {howlerContext ? <AudioAnalyser isPlaying={isPlaying} /> : null}
       {voicemailName ? (
-        <StyledText>
-          Playing voicemails for <span onClick={() => {}}>{voicemailName}</span>
-        </StyledText>
+        <LanguageContextConsumer>
+          {context => (
+            <StyledText>
+              {birthday.listeningToVoicemailsFor[context.lang]}{" "}
+              <span
+                onClick={() => {
+                  scrollToName(voicemailName);
+                }}
+              >
+                {voicemailName}
+              </span>
+            </StyledText>
+          )}
+        </LanguageContextConsumer>
       ) : null}
     </StyledVoicemailFooter>
   );

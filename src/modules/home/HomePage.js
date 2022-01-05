@@ -53,7 +53,7 @@ const HomePage = () => {
 
   const endPlay = () => {
     setIsPlaying(false);
-    setActiveVoicemail(null);
+    setActiveVoicemail("");
   };
 
   return (
