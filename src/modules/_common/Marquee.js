@@ -4,13 +4,15 @@ import styled from "styled-components";
 import { LanguageContextConsumer } from "@/modules/_common";
 import { hero } from "@/assets/locales/data.json";
 
+import breakpoints from "@/utils/breakpoints";
+
 const StyledMarquee = styled.div`
   font-family: PinyonScript;
   border-top: solid 2px white;
   border-bottom: solid 2px white;
   padding-top: 10px;
   font-size: 40px;
-  margin: 8rem 0;
+  margin: 4rem 0;
   position: relative;
   overflow: hidden;
   width: 100vw;
@@ -18,6 +20,10 @@ const StyledMarquee = styled.div`
   --offset: 15vw;
   --move-initial: calc(-25% + var(--offset));
   --move-final: calc(-50% + var(--offset));
+
+  @media ${breakpoints.laptop} {
+    margin: 8rem 0;
+  }
 
   div {
     white-space: nowrap;

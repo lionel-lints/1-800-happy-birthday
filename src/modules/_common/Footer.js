@@ -11,7 +11,7 @@ const StyledLayout = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 32px 5%;
+  margin: 2rem 5%;
   color: white;
 
   div {
@@ -27,12 +27,13 @@ const StyledDonate = styled.div`
   line-height: 1.8rem;
   padding-bottom: 10px;
   border-bottom: 5px solid red;
-  padding-top: 4rem;
+  padding-top: 2rem;
   text-align: center;
 
   @media ${breakpoints.laptop} {
     font-size: 3.5rem;
     line-height: calc(3.5rem * 1.3);
+    padding-top: 4rem;
   }
 
   a {
