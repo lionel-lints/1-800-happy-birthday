@@ -1,6 +1,8 @@
 import React, { useLayoutEffect } from "react";
 import styled from "styled-components";
 
+import breakpoints from "@/utils/breakpoints";
+
 import {
   PageHeader,
   Marquee,
@@ -50,9 +52,13 @@ const StyledContactDetails = styled.section`
 
   a {
     font-family: BradleyMicro;
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: red;
     text-decoration: none;
+
+    @media ${breakpoints.tablet} {
+      font-size: 2rem;
+    }
 
     &:hover {
       color: white;
@@ -66,10 +72,15 @@ const StyledContactDetails = styled.section`
 
 const StyledHeader = styled.h1`
   font-family: BradleyMicro;
-  font-size: 6rem;
+  font-size: 4rem;
   text-align: center;
-  letter-spacing: -0.5rem;
-  margin-bottom: 2rem;
+  letter-spacing: -6px;
+  margin: 2rem 0;
+
+  @media ${breakpoints.tablet} {
+    font-size: 6rem;
+    letter-spacing: -0.5rem;
+  }
 `;
 
 const ContactPage = () => {

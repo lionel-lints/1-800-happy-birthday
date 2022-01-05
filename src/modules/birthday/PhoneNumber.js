@@ -12,12 +12,13 @@ const StyledCallNow = styled.p`
   margin-bottom: 1rem;
 `;
 
-const StyledNumber = styled.h2`
+const StyledNumber = styled.a`
   color: red;
   font-family: PinyonScript;
   font-size: 3rem;
   text-align: center;
   transition: color 0.25s ease-in-out;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;
@@ -57,14 +58,10 @@ const StyledPhoneNumber = styled.div`
 `;
 
 const Voicemails = ({ voicemailNumber, lang }) => {
-  const callNumber = () => {
-    window.open(`tel:${voicemailNumber}`);
-  };
-
   return (
     <StyledPhoneNumber>
       <StyledCallNow>{birthday.callNow[lang]}</StyledCallNow>
-      <StyledNumber onClick={callNumber}>
+      <StyledNumber href={`tel:${voicemailNumber}`}>
         <span>{voicemailNumber}</span>
       </StyledNumber>
     </StyledPhoneNumber>

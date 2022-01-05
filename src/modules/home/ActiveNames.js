@@ -11,7 +11,7 @@ import { LanguageContextConsumer, CloseIcon } from "@/modules/_common";
 const StyledActiveNames = styled.div`
   position: relative;
   text-align: center;
-  margin: 5rem 0 10rem 0;
+  margin: 2rem 0;
 `;
 
 const StyledNameWrapper = styled.div`
@@ -131,7 +131,13 @@ const StyledNameNavigation = styled.div`
   top: -3px;
 `;
 
-const StyledCloseButton = styled.div``;
+const StyledCloseButton = styled.div`
+  display: none;
+
+  @media ${breakpoints.tablet} {
+    display: block;
+  }
+`;
 
 const StyledNameNavigationLeft = styled.div`
   margin-right: auto;

@@ -14,6 +14,7 @@ const StyledBlurb = styled.h2`
   line-height: 2rem;
   font-weight: 400;
   margin: 0 5%;
+  margin-top: 2rem;
 
   animation: fadeInBlurb ease-in 0.5s;
   @keyframes fadeInBlurb {
@@ -33,6 +34,7 @@ const StyledBlurb = styled.h2`
   @media ${breakpoints.laptop} {
     font-size: 3.5rem;
     line-height: calc(3.5rem * 1.3);
+    margin-top: 0;
   }
 `;
 
