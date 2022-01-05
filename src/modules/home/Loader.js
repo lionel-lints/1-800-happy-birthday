@@ -2,21 +2,22 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { Blurb } from "@/modules/_common";
+import { LoaderBlurb } from "@/modules/home";
+
 import animator from "@/utils/animator";
+import breakpoints from "@/utils/breakpoints";
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 const StyledLoader = styled.ul`
   text-align: center;
-  opacity: 0.1 !important;
+  opacity: 0.05 !important;
   position: absolute;
   top: -0.5rem;
   left: -5rem;
   right: -5rem;
   user-select: none;
   transition: all 1s ease-in-out;
-  background: black;
-  z-index: 10;
+  z-index: 11;
   overflow: auto;
 `;
 
@@ -31,6 +32,7 @@ const StyledBlurbContainer = styled.div`
   left: 0;
   right: 0;
   height: 100vh;
+  z-index: 12;
 `;
 
 const StyledBlackBackground = styled.div`
@@ -43,6 +45,10 @@ const StyledBlackBackground = styled.div`
   height: 100vh;
   background: black;
   z-index: 10;
+
+  &.LoaderFadeInBackground {
+    z-index: 20;
+  }
 `;
 
 const StyledName = styled.li`
@@ -53,13 +59,18 @@ const StyledName = styled.li`
 
   font-family: BradleyMicro;
   color: ${p => (p.isEven ? "gray" : "lightgray")};
-  font-size: 2.8rem;
-  line-height: 3.1rem;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+
+  @media ${breakpoints.tablet} {
+    font-size: 2.8rem;
+    line-height: 3.1rem;
+  }
 `;
 
-const AllNamesLoader = ({ data }) => {
+const Loader = ({ data }) => {
   const [storedData] = useSessionStorage("hbd-data", {});
-  const [showLoader, setShowLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
     const dataIsLoading = !Object.keys(storedData).length;
@@ -71,21 +82,21 @@ const AllNamesLoader = ({ data }) => {
     }
 
     if (showLoader) {
+      animator.animateLoaderFadeIn();
       animator.disableScrolling();
       animator.animateBlurb();
       animator.animateLoader();
     } else {
+      animator.animateFadeIn();
       animator.enableScrolling();
     }
   }, [data, storedData]);
 
   return showLoader ? (
     <>
-      <StyledBlackBackground className="BlurbLoaderContainer">
-        <StyledBlurbContainer>
-          <Blurb />
-        </StyledBlurbContainer>
-      </StyledBlackBackground>
+      <StyledBlurbContainer className="LoaderBlurbContainer">
+        <LoaderBlurb />
+      </StyledBlurbContainer>
       <StyledLoader className="Loader">
         {Object.keys(data).map((id, index) => {
           const name = data[id].Name;
@@ -97,11 +108,15 @@ const AllNamesLoader = ({ data }) => {
           );
         })}
       </StyledLoader>
+      <StyledBlackBackground className="FadeInBackground" />
+      <StyledBlackBackground className="LoaderFadeInBackground" />
     </>
-  ) : null;
+  ) : (
+    <StyledBlackBackground className="FadeInBackground" />
+  );
 };
 
-AllNamesLoader.propTypes = {
+Loader.propTypes = {
   data: PropTypes.shape({
     fields: PropTypes.shape({
       dob: PropTypes.string,
@@ -112,8 +127,8 @@ AllNamesLoader.propTypes = {
   })
 };
 
-AllNamesLoader.defaultProps = {
+Loader.defaultProps = {
   data: {}
 };
 
-export default AllNamesLoader;
+export default Loader;

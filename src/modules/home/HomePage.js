@@ -7,7 +7,7 @@ import { PageHeader, Footer, Marquee } from "@/modules/_common";
 import {
   ActiveNames,
   AllNamesList,
-  AllNamesLoader,
+  Loader,
   VoicemailFooter
 } from "@/modules/home";
 
@@ -53,13 +53,13 @@ const HomePage = () => {
 
   const endPlay = () => {
     setIsPlaying(false);
-    setActiveVoicemail(null);
+    setActiveVoicemail("");
   };
 
   return (
     <StyledHomePage>
       <PageHeader />
-      <AllNamesLoader data={data} />
+      <Loader data={data} />
 
       {data ? (
         <>

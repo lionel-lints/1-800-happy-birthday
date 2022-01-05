@@ -63,6 +63,10 @@
     "en": "1800 Happy Birthday is a voicemail project created to honor the Black and Brown victims of Police Killings and Systemic Racism by allowing people to leave and listen to voicemails left for the victims on their birthday",
     "es": "1800 Happy Birthday es un proyecto de correo de voz creado para honrar a las víctimas negras y morenas de asesinatos policiales y racismo sistémico al permitir que las personas se vayan y escuchen los mensajes de voz que se les dejaron a las víctimas en su cumpleaños."
   },
+  "loaderBlurb": {
+    "en": "A Voicemail Project honoring the lives killed by Police & Systemic Racism",
+    "es": "1800 Happy Birthday es un proyecto de correo de voz creado para honrar a las víctimas negras y morenas de asesinatos policiales y racismo sistémico al permitir que las personas se vayan y escuchen los mensajes de voz que se les dejaron a las víctimas en su cumpleaños."
+  },
   "birthday": {
     "callNow": {
       "en": "Call now to leave a voicemail",
@@ -75,6 +79,18 @@
     "listenEnd": {
       "en": "'s Birthday",
       "es": "'s y su familia por su cumpleaños"
+    },
+    "voicemailsFor": {
+      "en": "Voicemails for",
+      "es": "Correos de voz por"
+    },
+    "listeningToVoicemailsFor": {
+      "en": "Playing voicemails for",
+      "es": "Escuchando correos de voz enviados a"
+    },
+    "takeAction": {
+      "en": "Take action for",
+      "es": "Actúa por"
     }
   },
   "contact": {

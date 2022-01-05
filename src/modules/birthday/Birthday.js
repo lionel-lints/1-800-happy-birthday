@@ -39,7 +39,6 @@ const Birthday = ({ data, id, isOpen, animatedHeight }) => {
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}
         quoteAttribution={person["Quote Attribution"]}
-        donation={person["Organization for Donations"]}
         animatedHeight={animatedHeight}
         callToActionText1={person["Call to Action 1 Text"]}
         callToActionText2={person["Call to Action 2 Text"]}
