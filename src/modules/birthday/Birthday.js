@@ -16,7 +16,7 @@ const StyledBirthday = styled.div`
   cursor: auto;
 `;
 
-const Birthday = ({ data, id, isOpen, animatedHeight }) => {
+const Birthday = ({ data, id, isOpen }) => {
   const [person, setPerson] = useState(null);
 
   useEffect(() => {
@@ -39,7 +39,6 @@ const Birthday = ({ data, id, isOpen, animatedHeight }) => {
         voicemailNumber={person["Voicemail Number"]}
         quote={person.Quote}
         quoteAttribution={person["Quote Attribution"]}
-        animatedHeight={animatedHeight}
         callToActionText1={person["Call to Action 1 Text"]}
         callToActionText2={person["Call to Action 2 Text"]}
         callToActionText3={person["Call to Action 3 Text"]}
@@ -61,15 +60,13 @@ Birthday.propTypes = {
     id: PropTypes.string
   }),
   id: PropTypes.string,
-  isOpen: PropTypes.bool,
-  animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  isOpen: PropTypes.bool
 };
 
 Birthday.defaultProps = {
   data: {},
   id: null,
-  isOpen: false,
-  animatedHeight: 0
+  isOpen: false
 };
 
 export default Birthday;

@@ -187,11 +187,22 @@ const ActiveNames = ({
   setVoicemailID
 }) => {
   const [openID, setOpenID] = useState("");
-
   const container = useRef(null);
+
+  const strollToElement = element => {
+    window.scroll({
+      top: element.getBoundingClientRect().top + window.scrollY + 5,
+      behavior: "smooth"
+    });
+  };
 
   const closeBirthday = event => {
     event.stopPropagation();
+    const name = document.getElementById(openID);
+    if (name) {
+      strollToElement(name.parentElement);
+    }
+
     setOpenID("");
     setActiveVoicemail("");
     setIsPlaying(false);
@@ -209,10 +220,7 @@ const ActiveNames = ({
 
   useLayoutEffect(() => {
     if (container && container.current) {
-      window.scroll({
-        top: container.current.getBoundingClientRect().top + window.scrollY + 5,
-        behavior: "smooth"
-      });
+      strollToElement(container.current);
     }
   }, [openID]);
 
@@ -285,7 +293,7 @@ const ActiveNames = ({
                     </StyledNameNavigation>
                   )}
 
-                  <StyledNameWrapper isOpen={openID === id}>
+                  <StyledNameWrapper isOpen={openID === id} id={id}>
                     <StyledDate className="date">{dob.join(" ")}</StyledDate>
                     <StyledName>{name}</StyledName>
                     {photoUrl ? (
@@ -295,12 +303,7 @@ const ActiveNames = ({
 
                   <StyledBirthdayWrapper isOpen={openID === id}>
                     {openID === id ? (
-                      <Birthday
-                        data={data}
-                        id={id}
-                        isOpen={openID === id}
-                        animatedHeight={openID === id ? "auto" : 0}
-                      />
+                      <Birthday data={data} id={id} isOpen={openID === id} />
                     ) : null}
                   </StyledBirthdayWrapper>
                 </>

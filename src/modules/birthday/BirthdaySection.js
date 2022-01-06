@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import AnimateHeight from "react-animate-height";
 
 import { birthday } from "@/assets/locales/data.json";
 import { PhoneNumber } from "@/modules/birthday";
@@ -270,7 +269,6 @@ const BirthdaySection = ({
   voicemailNumber,
   quote,
   quoteAttribution,
-  animatedHeight,
   callToActionText1,
   callToActionText2,
   callToActionText3,
@@ -292,107 +290,97 @@ const BirthdaySection = ({
   return (
     <LanguageContextConsumer>
       {context => (
-        <AnimateHeight
-          id="birthday-section"
-          duration={1000}
-          height={animatedHeight}
-        >
-          <StyledBirthdaySection>
-            <StyledDiv>
-              {photo.length > 0 ? <StyledImg src={getPhotoURL(photo)} /> : null}
-              <StyledDetailsWrapper>
-                <StyledName>{name}</StyledName>
-                <StyledDates>
-                  {getDateString(context.lang, DOB, DOD)}
-                </StyledDates>
-                {voicemailNumber ? (
-                  <PhoneNumber
-                    lang={context.lang}
-                    voicemailNumber={voicemailNumber}
-                  />
-                ) : null}
-              </StyledDetailsWrapper>
-              <>
-                {!!quote && (
-                  <>
-                    <StyledQuote>{`“${quote}”`}</StyledQuote>
-                    {!!quoteAttribution && (
-                      <StyledAttribution>{`- ${quoteAttribution}`}</StyledAttribution>
-                    )}
-                  </>
-                )}
-                <StyledActions>
-                  <StyledTakeActionHeader
-                    isOpen={actionsOpen}
-                    onClick={handleOpenActions}
-                  >
+        <StyledBirthdaySection>
+          <StyledDiv>
+            {photo.length > 0 ? <StyledImg src={getPhotoURL(photo)} /> : null}
+            <StyledDetailsWrapper>
+              <StyledName>{name}</StyledName>
+              <StyledDates>{getDateString(context.lang, DOB, DOD)}</StyledDates>
+              {voicemailNumber ? (
+                <PhoneNumber
+                  lang={context.lang}
+                  voicemailNumber={voicemailNumber}
+                />
+              ) : null}
+            </StyledDetailsWrapper>
+            <>
+              {!!quote && (
+                <>
+                  <StyledQuote>{`“${quote}”`}</StyledQuote>
+                  {!!quoteAttribution && (
+                    <StyledAttribution>{`- ${quoteAttribution}`}</StyledAttribution>
+                  )}
+                </>
+              )}
+              <StyledActions>
+                <StyledTakeActionHeader
+                  isOpen={actionsOpen}
+                  onClick={handleOpenActions}
+                >
+                  {`${birthday.takeAction[context.lang]} ${name.split(" ")[0]}`}
+                </StyledTakeActionHeader>
+                <StyledTakeActionContainer isOpen={actionsOpen}>
+                  <StyledTakeActionCloseButton onClick={handleOpenActions}>
+                    <CloseIcon />
+                  </StyledTakeActionCloseButton>
+                  <StyledTakeActionHeaderOpen>
                     {`${birthday.takeAction[context.lang]} ${
                       name.split(" ")[0]
                     }`}
-                  </StyledTakeActionHeader>
-                  <StyledTakeActionContainer isOpen={actionsOpen}>
-                    <StyledTakeActionCloseButton onClick={handleOpenActions}>
-                      <CloseIcon />
-                    </StyledTakeActionCloseButton>
-                    <StyledTakeActionHeaderOpen>
-                      {`${birthday.takeAction[context.lang]} ${
-                        name.split(" ")[0]
-                      }`}
-                    </StyledTakeActionHeaderOpen>
-                    <StyledAction>
-                      <div>{callToActionText1}</div>
-                      {isPhoneNumber(callToActionLink1) ? (
-                        <a href={`tel:${callToActionLink1}`}>
-                          {callToActionLink1}
-                        </a>
-                      ) : (
-                        <a
-                          target="_blank"
-                          rel="noreferrer"
-                          href={callToActionLink1}
-                        >
-                          {callToActionLink1}
-                        </a>
-                      )}
-                    </StyledAction>
-                    <StyledAction>
-                      <div>{callToActionText2}</div>
-                      {isPhoneNumber(callToActionLink1) ? (
-                        <a href={`tel:${callToActionLink2}`}>
-                          {callToActionLink2}
-                        </a>
-                      ) : (
-                        <a
-                          target="_blank"
-                          rel="noreferrer"
-                          href={callToActionLink2}
-                        >
-                          {callToActionLink2}
-                        </a>
-                      )}
-                    </StyledAction>
-                    <StyledAction>
-                      <div>{callToActionText3}</div>
-                      {isPhoneNumber(callToActionLink1) ? (
-                        <a href={`tel:${callToActionLink3}`}>
-                          {callToActionLink3}
-                        </a>
-                      ) : (
-                        <a
-                          target="_blank"
-                          rel="noreferrer"
-                          href={callToActionLink3}
-                        >
-                          {callToActionLink3}
-                        </a>
-                      )}
-                    </StyledAction>
-                  </StyledTakeActionContainer>
-                </StyledActions>
-              </>
-            </StyledDiv>
-          </StyledBirthdaySection>
-        </AnimateHeight>
+                  </StyledTakeActionHeaderOpen>
+                  <StyledAction>
+                    <div>{callToActionText1}</div>
+                    {isPhoneNumber(callToActionLink1) ? (
+                      <a href={`tel:${callToActionLink1}`}>
+                        {callToActionLink1}
+                      </a>
+                    ) : (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={callToActionLink1}
+                      >
+                        {callToActionLink1}
+                      </a>
+                    )}
+                  </StyledAction>
+                  <StyledAction>
+                    <div>{callToActionText2}</div>
+                    {isPhoneNumber(callToActionLink1) ? (
+                      <a href={`tel:${callToActionLink2}`}>
+                        {callToActionLink2}
+                      </a>
+                    ) : (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={callToActionLink2}
+                      >
+                        {callToActionLink2}
+                      </a>
+                    )}
+                  </StyledAction>
+                  <StyledAction>
+                    <div>{callToActionText3}</div>
+                    {isPhoneNumber(callToActionLink1) ? (
+                      <a href={`tel:${callToActionLink3}`}>
+                        {callToActionLink3}
+                      </a>
+                    ) : (
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={callToActionLink3}
+                      >
+                        {callToActionLink3}
+                      </a>
+                    )}
+                  </StyledAction>
+                </StyledTakeActionContainer>
+              </StyledActions>
+            </>
+          </StyledDiv>
+        </StyledBirthdaySection>
       )}
     </LanguageContextConsumer>
   );
@@ -411,8 +399,7 @@ BirthdaySection.propTypes = {
   callToActionText3: PropTypes.string,
   callToActionLink1: PropTypes.string,
   callToActionLink2: PropTypes.string,
-  callToActionLink3: PropTypes.string,
-  animatedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  callToActionLink3: PropTypes.string
 };
 
 BirthdaySection.defaultProps = {
@@ -428,8 +415,7 @@ BirthdaySection.defaultProps = {
   callToActionText3: "",
   callToActionLink1: "",
   callToActionLink2: "",
-  callToActionLink3: "",
-  animatedHeight: 0
+  callToActionLink3: ""
 };
 
 export default BirthdaySection;
