@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { birthday } from "@/assets/locales/data.json";
 import breakpoints from "@/utils/breakpoints";
 
-import { Birthday, AudioPlayer } from "@/modules/birthday";
+import { Birthday } from "@/modules/birthday";
+import { AudioPlayer } from "@/modules/player";
 import { LanguageContextConsumer, CloseIcon } from "@/modules/_common";
 
 const StyledActiveNames = styled.div`
@@ -119,7 +120,7 @@ const StyledNameNavigation = styled.div`
   font-size: 3rem;
   border-top: 3px solid white;
   border-bottom: 3px solid white;
-  padding: 1rem 2%;
+  padding: 0 2%;
   height: 80px;
   z-index: 10;
   display: flex;
@@ -148,18 +149,17 @@ const StyledNameNavigationLeft = styled.div`
 
 const StyledNameNavigationMiddle = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 const StyledNameNavigationText = styled.div`
-  font-family: RobotoMono;
-  font-size: 1rem;
-  line-height: 1.2rem;
+  font-family: BradleyMicro;
+  font-size: 2rem;
+  letter-spacing: -1px;
   color: white;
   z-index: 6;
-  margin-bottom: 1rem;
+  margin-top: 2px;
 
   span {
     border-bottom: 1px solid black;
@@ -184,7 +184,7 @@ const ActiveNames = ({
   activeVoicemail,
   isPlaying,
   setIsPlaying,
-  setVoicemailName
+  setVoicemailID
 }) => {
   const [openID, setOpenID] = useState("");
 
@@ -203,8 +203,8 @@ const ActiveNames = ({
     setIsPlaying(false);
   };
 
-  const scrollToBirthday = (event, id) => {
-    event.stopPropagation();
+  const getFirstName = name => {
+    return name.split(" ")[0];
   };
 
   useLayoutEffect(() => {
@@ -245,20 +245,13 @@ const ActiveNames = ({
                   {openID === id && (
                     <StyledNameNavigation
                       ref={container}
-                      onClick={event => scrollToBirthday(event, id)}
                       id={name}
+                      onClick={event => {
+                        event.stopPropagation();
+                      }}
                     >
                       <StyledNameNavigationLeft />
                       <StyledNameNavigationMiddle>
-                        <LanguageContextConsumer>
-                          {context => (
-                            <StyledNameNavigationText>
-                              {`${
-                                birthday.voicemailsFor[context.lang]
-                              } ${name}`}
-                            </StyledNameNavigationText>
-                          )}
-                        </LanguageContextConsumer>
                         {voicemails && voicemails.length > 0 ? (
                           <AudioPlayer
                             sources={voicemails.map(voicemail => voicemail.url)}
@@ -266,12 +259,21 @@ const ActiveNames = ({
                             setIsPlaying={setIsPlaying}
                             setActiveVoicemail={setActiveVoicemail}
                             activeVoicemail={activeVoicemail}
-                            setVoicemailName={() => {
-                              setVoicemailName(name);
+                            setVoicemailID={() => {
+                              setVoicemailID(id);
                             }}
-                            type="icon"
+                            showPlayOnly
                           />
                         ) : null}
+                        <LanguageContextConsumer>
+                          {context => (
+                            <StyledNameNavigationText>
+                              {`${
+                                birthday.voicemailsFor[context.lang]
+                              } ${getFirstName(name)}`}
+                            </StyledNameNavigationText>
+                          )}
+                        </LanguageContextConsumer>
                       </StyledNameNavigationMiddle>
                       <StyledNameNavigationRight>
                         <StyledCloseButton
@@ -324,7 +326,7 @@ ActiveNames.propTypes = {
   activeVoicemail: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
-  setVoicemailName: PropTypes.func.isRequired
+  setVoicemailID: PropTypes.func.isRequired
 };
 
 ActiveNames.defaultProps = {

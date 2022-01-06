@@ -34,7 +34,7 @@ const HomePage = () => {
   const [data, setData] = useSessionStorage("hbd-data", {});
   const [activeVoicemail, setActiveVoicemail] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
-  const [voicemailName, setVoicemailName] = useState("");
+  const [voicemailID, setVoicemailID] = useState("");
   const player = useRef(null);
 
   useLayoutEffect(() => {
@@ -66,7 +66,7 @@ const HomePage = () => {
           <ActiveNames
             data={data}
             setActiveVoicemail={setActiveVoicemail}
-            setVoicemailName={setVoicemailName}
+            setVoicemailID={setVoicemailID}
             activeVoicemail={activeVoicemail}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
@@ -78,10 +78,14 @@ const HomePage = () => {
       <Marquee />
       <Footer />
       <VoicemailFooter
+        data={data}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         isVisible={!!activeVoicemail}
-        voicemailName={voicemailName}
+        setActiveVoicemail={setActiveVoicemail}
+        activeVoicemail={activeVoicemail}
+        voicemailID={voicemailID}
+        setVoicemailID={setVoicemailID}
       />
       {activeVoicemail ? (
         <ReactHowler

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { AudioVisualizer } from "@/modules/birthday";
+import { AudioVisualizer } from "@/modules/player";
 
 class AudioAnalyser extends Component {
   constructor(props) {
