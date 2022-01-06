@@ -4,12 +4,8 @@ import styled from "styled-components";
 import ReactHowler from "react-howler";
 
 import { PageHeader, Footer, Marquee } from "@/modules/_common";
-import {
-  ActiveNames,
-  AllNamesList,
-  Loader,
-  VoicemailFooter
-} from "@/modules/home";
+import { ActiveNames, AllNamesList, Loader } from "@/modules/home";
+import { VoicemailPlayer } from "@/modules/player";
 
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
@@ -77,7 +73,7 @@ const HomePage = () => {
 
       <Marquee />
       <Footer />
-      <VoicemailFooter
+      <VoicemailPlayer
         data={data}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}

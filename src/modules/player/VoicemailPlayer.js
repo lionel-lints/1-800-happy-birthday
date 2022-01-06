@@ -29,7 +29,7 @@ const StyledText = styled.div`
   }
 `;
 
-const StyledVoicemailFooter = styled.div`
+const StyledVoicemailPlayer = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -46,7 +46,7 @@ const StyledVoicemailFooter = styled.div`
   transform: ${p => (p.isVisible ? "translate(0, 0)" : "translate(0, 100%)")};
 `;
 
-const VoicemailFooter = ({
+const VoicemailPlayer = ({
   data,
   isVisible,
   isPlaying,
@@ -78,7 +78,7 @@ const VoicemailFooter = ({
   };
 
   return (
-    <StyledVoicemailFooter isVisible={isVisible}>
+    <StyledVoicemailPlayer isVisible={isVisible}>
       {person.Voicemails && person.Voicemails.length > 0 ? (
         <AudioPlayer
           sources={person.Voicemails.map(voicemail => voicemail.url)}
@@ -105,17 +105,17 @@ const VoicemailFooter = ({
           )}
         </LanguageContextConsumer>
       ) : null}
-    </StyledVoicemailFooter>
+    </StyledVoicemailPlayer>
   );
 };
 
-VoicemailFooter.propTypes = {
+VoicemailPlayer.propTypes = {
   isVisible: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
   voicemailID: PropTypes.string.isRequired
 };
 
-VoicemailFooter.defaultProps = { isVisible: false };
+VoicemailPlayer.defaultProps = { isVisible: false };
 
-export default VoicemailFooter;
+export default VoicemailPlayer;
