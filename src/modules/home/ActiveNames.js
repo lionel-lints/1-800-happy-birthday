@@ -190,8 +190,7 @@ const ActiveNames = ({
 
   const strollToElement = element => {
     window.scroll({
-      top: element.getBoundingClientRect().top + window.scrollY + 5,
-      behavior: "smooth"
+      top: element.getBoundingClientRect().top + window.scrollY + 5
     });
   };
 
