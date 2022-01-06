@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { AudioControls } from "@/modules/birthday";
+import { AudioControls } from "@/modules/player";
 
 const AudioPlayer = ({
   sources,
   isPlaying,
   setIsPlaying,
   setActiveVoicemail,
-  setVoicemailName,
-  type
+  setVoicemailID,
+  showPlayOnly
 }) => {
   const [currentSrcIndex, setCurrentSrcIndex] = useState(0);
 
@@ -31,8 +31,9 @@ const AudioPlayer = ({
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
-    setVoicemailName();
     setActiveVoicemail(sources[currentSrcIndex]);
+
+    if (setVoicemailID) setVoicemailID();
   };
 
   return (
@@ -41,7 +42,7 @@ const AudioPlayer = ({
       forward={handleNext}
       back={handlePrevious}
       togglePlay={togglePlay}
-      showPlayButton={type === "button"}
+      showPlayOnly={showPlayOnly}
     />
   );
 };
@@ -51,10 +52,10 @@ AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
   setActiveVoicemail: PropTypes.func.isRequired,
-  setVoicemailName: PropTypes.func.isRequired,
-  type: PropTypes.string
+  setVoicemailID: PropTypes.func,
+  showPlayOnly: PropTypes.bool
 };
 
-AudioPlayer.defaultProps = { type: "" };
+AudioPlayer.defaultProps = { showPlayOnly: false, setVoicemailID: () => {} };
 
 export default AudioPlayer;

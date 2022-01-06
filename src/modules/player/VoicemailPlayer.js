@@ -7,7 +7,7 @@ import breakpoints from "@/utils/breakpoints";
 import Play from "@/assets/icons/play.svg";
 import Pause from "@/assets/icons/pause.svg";
 
-import { AudioAnalyser } from "@/modules/birthday";
+import { AudioAnalyser, AudioPlayer } from "@/modules/player";
 
 import { LanguageContextConsumer } from "@/modules/_common";
 import { birthday } from "@/assets/locales/data.json";
@@ -29,7 +29,7 @@ const StyledText = styled.div`
   }
 `;
 
-const StyledVoicemailFooter = styled.div`
+const StyledVoicemailPlayer = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -46,37 +46,25 @@ const StyledVoicemailFooter = styled.div`
   transform: ${p => (p.isVisible ? "translate(0, 0)" : "translate(0, 100%)")};
 `;
 
-const StyledPlayIcon = styled.img`
-  margin-left: 0.5rem;
-  height: ${p => (p.isPlaying ? "25px" : "30px")};
-  width: 30px;
-  vertical-align: middle;
-  opacity: 1;
-  filter: brightness(0) saturate(100%) invert(0%) sepia(4%) saturate(7500%)
-    hue-rotate(222deg) brightness(98%) contrast(104%);
-  z-index: 6;
-
-  &:hover {
-    filter: none;
-    cursor: pointer;
-  }
-
-  @media ${breakpoints.tablet} {
-    margin-left: 0;
-  }
-`;
-
-const VoicemailFooter = ({
+const VoicemailPlayer = ({
+  data,
   isVisible,
   isPlaying,
   setIsPlaying,
-  voicemailName
+  voicemailID,
+  setActiveVoicemail,
+  activeVoicemail
 }) => {
   const [howlerContext, setHowlerContext] = useState(null);
+  const [person, setPerson] = useState({});
 
   useEffect(() => {
     setHowlerContext(window.Howler.ctx);
   });
+
+  useEffect(() => {
+    if (data[voicemailID]) setPerson(data[voicemailID]);
+  }, [voicemailID]);
 
   const scrollToName = name => {
     const navBar = document.getElementById(name);
@@ -90,42 +78,44 @@ const VoicemailFooter = ({
   };
 
   return (
-    <StyledVoicemailFooter isVisible={isVisible}>
-      <StyledPlayIcon
-        src={isPlaying ? Pause : Play}
-        isPlaying={isPlaying}
-        onClick={() => {
-          setIsPlaying(!isPlaying);
-        }}
-      />
+    <StyledVoicemailPlayer isVisible={isVisible}>
+      {person.Voicemails && person.Voicemails.length > 0 ? (
+        <AudioPlayer
+          sources={person.Voicemails.map(voicemail => voicemail.url)}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          setActiveVoicemail={setActiveVoicemail}
+          activeVoicemail={activeVoicemail}
+        />
+      ) : null}
       {howlerContext ? <AudioAnalyser isPlaying={isPlaying} /> : null}
-      {voicemailName ? (
+      {person.Name ? (
         <LanguageContextConsumer>
           {context => (
             <StyledText>
               {birthday.listeningToVoicemailsFor[context.lang]}{" "}
               <span
                 onClick={() => {
-                  scrollToName(voicemailName);
+                  scrollToName(person.Name);
                 }}
               >
-                {voicemailName}
+                {person.Name}
               </span>
             </StyledText>
           )}
         </LanguageContextConsumer>
       ) : null}
-    </StyledVoicemailFooter>
+    </StyledVoicemailPlayer>
   );
 };
 
-VoicemailFooter.propTypes = {
+VoicemailPlayer.propTypes = {
   isVisible: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
-  voicemailName: PropTypes.string.isRequired
+  voicemailID: PropTypes.string.isRequired
 };
 
-VoicemailFooter.defaultProps = { isVisible: false };
+VoicemailPlayer.defaultProps = { isVisible: false };
 
-export default VoicemailFooter;
+export default VoicemailPlayer;
