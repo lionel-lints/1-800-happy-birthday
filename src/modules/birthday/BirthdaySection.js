@@ -36,6 +36,12 @@ const StyledName = styled.h1`
     letter-spacing: -16px;
     font-size: calc(8vw + 8vh + 2vmin);
   }
+
+  @media ${breakpoints.desktop} {
+    font-size: 12rem;
+    letter-spacing: -1rem;
+    line-height: 13rem;
+  }
 `;
 
 const StyledDates = styled.h2`

@@ -66,7 +66,6 @@ const StyledName = styled.div`
     line-height: 14rem;
   }
 
- ${"" /* TODO: */}
   @media ${breakpoints.desktop} {
     font-size: 12rem;
     letter-spacing: -1rem;
