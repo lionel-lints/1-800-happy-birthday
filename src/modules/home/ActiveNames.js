@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -129,6 +129,11 @@ const StyledNameNavigation = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: -3px;
+  transition: opacity 0.5s ease-in-out;
+
+  &.fadeOut {
+    opacity: 0;
+  }
 `;
 
 const StyledCloseButton = styled.div`
@@ -186,13 +191,36 @@ const ActiveNames = ({
   setVoicemailID
 }) => {
   const [openID, setOpenID] = useState("");
-  const container = useRef(null);
+  const stickyNav = useRef(null);
 
   const strollToElement = element => {
     window.scroll({
       top: element.getBoundingClientRect().top + window.scrollY + 5
     });
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        e.target.classList.toggle("fadeOut", e.intersectionRatio < 0.75);
+      },
+      {
+        threshold: [0.75]
+      }
+    );
+
+    if (stickyNav.current) observer.observe(stickyNav.current);
+
+    return () => {
+      if (stickyNav.current) observer.unobserve(stickyNav.current);
+    };
+  });
+
+  useLayoutEffect(() => {
+    if (stickyNav && stickyNav.current) {
+      strollToElement(stickyNav.current);
+    }
+  }, [openID]);
 
   const closeBirthday = event => {
     event.stopPropagation();
@@ -215,12 +243,6 @@ const ActiveNames = ({
   const getFirstName = name => {
     return name.split(" ")[0];
   };
-
-  useLayoutEffect(() => {
-    if (container && container.current) {
-      strollToElement(container.current);
-    }
-  }, [openID]);
 
   return (
     <StyledActiveNamesWrapper>
@@ -250,7 +272,7 @@ const ActiveNames = ({
                 <>
                   {openID === id && (
                     <StyledNameNavigation
-                      ref={container}
+                      ref={stickyNav}
                       id={name}
                       onClick={event => {
                         event.stopPropagation();
