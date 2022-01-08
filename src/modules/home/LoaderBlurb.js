@@ -10,8 +10,8 @@ const StyledBlurb = styled.h2`
   font-family: BradleyMicro;
   color: white;
   text-align: center;
-  font-size: 1.6rem;
-  line-height: 2rem;
+  font-size: 2.5rem;
+  line-height: calc(2.5rem * 1.2);
   font-weight: 400;
   margin: 0 5%;
 
