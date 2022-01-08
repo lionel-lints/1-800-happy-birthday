@@ -48,6 +48,14 @@ const HomePage = () => {
   }, []);
 
   const endPlay = () => {
+    // if next, play next
+    console.log("id", voicemailID);
+    console.log(data[voicemailID]);
+
+    if (data[voicemailID]) {
+      console.log(data[voicemailID].Voicemails);
+    }
+    // if not next, end
     setIsPlaying(false);
     setActiveVoicemail("");
   };
