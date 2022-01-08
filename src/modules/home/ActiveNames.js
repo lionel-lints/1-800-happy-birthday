@@ -31,6 +31,10 @@ const StyledWrapper = styled.div`
       img {
         opacity: 1;
       }
+
+      .date {
+        color: red;
+      }
     }
   }
 `;
@@ -75,18 +79,29 @@ const StyledName = styled.div`
 
 const StyledDate = styled.div`
   z-index: 1;
-  color: red;
-  opacity: 0;
+  color: white;
+  opacity: 0.4;
   font-family: PinyonScript;
-  font-size: 6rem;
+  font-size: 2rem;
   transition: opacity 0.25s ease-in-out;
   width: 100%;
-  height: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+
+  @media ${breakpoints.tablet} {
+    font-size: 4rem;
+    height: 40px;
+  }
+
+  @media ${breakpoints.laptop} {
+    font-size: 6rem;
+    opacity: 0;
+    color: red;
+    height: 60px;
+  }
 `;
 
 const StyledImg = styled.img`
