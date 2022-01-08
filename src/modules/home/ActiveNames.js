@@ -193,12 +193,6 @@ const ActiveNames = ({
   const [openID, setOpenID] = useState("");
   const stickyNav = useRef(null);
 
-  const strollToElement = element => {
-    window.scroll({
-      top: element.getBoundingClientRect().top + window.scrollY + 5
-    });
-  };
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([e]) => {
@@ -218,17 +212,14 @@ const ActiveNames = ({
 
   useLayoutEffect(() => {
     if (stickyNav && stickyNav.current) {
-      strollToElement(stickyNav.current);
+      window.scroll({
+        top: stickyNav.current.getBoundingClientRect().top + window.scrollY + 5
+      });
     }
   }, [openID]);
 
   const closeBirthday = event => {
     event.stopPropagation();
-    const name = document.getElementById(openID);
-    if (name) {
-      strollToElement(name.parentElement);
-    }
-
     setOpenID("");
     setActiveVoicemail("");
     setIsPlaying(false);

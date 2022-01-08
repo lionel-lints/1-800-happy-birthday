@@ -15,6 +15,7 @@ import { birthday } from "@/assets/locales/data.json";
 const StyledText = styled.div`
   font-family: RobotoMono;
   font-size: 1rem;
+  line-height: 1.2rem;
   color: black;
   z-index: 6;
   margin-left: 1rem;

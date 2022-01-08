@@ -22,19 +22,25 @@ const StyledDetailsWrapper = styled.div`
   width: 100%;
   position: relative;
   z-index: 2;
-  margin-top: 30%;
+  margin-top: 50%;
+
+  @media ${breakpoints.laptop} {
+    margin-top: 30%;
+  }
 `;
 
 const StyledName = styled.h1`
   font-family: BradleyMicro;
-  font-size: calc(5vw + 5vh + 2vmin);
+  font-size: 4.5rem;
+  letter-spacing: -5px;
   text-align: center;
   margin: 0 5%;
-  letter-spacing: -5px;
+  margin-bottom: 1.5rem;
 
   @media ${breakpoints.laptop} {
-    letter-spacing: -16px;
     font-size: calc(8vw + 8vh + 2vmin);
+    letter-spacing: -16px;
+    margin-bottom: 0;
   }
 
   @media ${breakpoints.desktop} {
@@ -51,14 +57,16 @@ const StyledDates = styled.h2`
   font-feature-settings: "kern";
   font-size: 2rem;
   text-align: center;
-  margin: 1rem 5%;
-  margin-top: 0;
+  margin: 0 5%;
+  margin-bottom: 2rem;
 
   span {
     display: block;
   }
 
   @media ${breakpoints.laptop} {
+    margin-bottom: 1rem;
+
     span {
       font-size: 3rem;
       display: inline-block;
@@ -91,11 +99,11 @@ const StyledImg = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: 40%;
-
+  height: 20%;
   margin: 0 5%;
 
   @media ${breakpoints.tablet} {
+    height: 40%;
     margin: auto;
     max-width: 75%;
   }
@@ -144,6 +152,8 @@ const StyledTakeActionContainer = styled.div`
   background: black;
   position: absolute;
   bottom: 1rem;
+  overflow: scroll;
+  max-width: calc(100% - 4rem);
 
   @media ${breakpoints.tablet} {
     max-width: 450px;
