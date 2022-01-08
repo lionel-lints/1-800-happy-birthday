@@ -54,7 +54,8 @@ const VoicemailPlayer = ({
   setIsPlaying,
   voicemailID,
   setActiveVoicemail,
-  activeVoicemail
+  activeVoicemail,
+  setCurrentVoicemailIndex
 }) => {
   const [howlerContext, setHowlerContext] = useState(null);
   const [person, setPerson] = useState({});
@@ -87,6 +88,7 @@ const VoicemailPlayer = ({
           setIsPlaying={setIsPlaying}
           setActiveVoicemail={setActiveVoicemail}
           activeVoicemail={activeVoicemail}
+          setCurrentVoicemailIndex={setCurrentVoicemailIndex}
         />
       ) : null}
       {howlerContext ? <AudioAnalyser isPlaying={isPlaying} /> : null}

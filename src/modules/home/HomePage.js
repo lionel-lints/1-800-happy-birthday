@@ -31,6 +31,7 @@ const HomePage = () => {
   const [activeVoicemail, setActiveVoicemail] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   const [voicemailID, setVoicemailID] = useState("");
+  const [currentVoicemailIndex, setCurrentVoicemailIndex] = useState(0);
   const player = useRef(null);
 
   useLayoutEffect(() => {
@@ -48,16 +49,15 @@ const HomePage = () => {
   }, []);
 
   const endPlay = () => {
-    // if next, play next
-    console.log("id", voicemailID);
-    console.log(data[voicemailID]);
+    const voicemails = data[voicemailID].Voicemails;
+    const hasMoreVoicemails = currentVoicemailIndex < voicemails.length - 1;
 
-    if (data[voicemailID]) {
-      console.log(data[voicemailID].Voicemails);
+    if (hasMoreVoicemails) {
+      setActiveVoicemail(voicemails[currentVoicemailIndex + 1].url);
+    } else {
+      setIsPlaying(false);
+      setActiveVoicemail("");
     }
-    // if not next, end
-    setIsPlaying(false);
-    setActiveVoicemail("");
   };
 
   return (
@@ -90,6 +90,7 @@ const HomePage = () => {
         activeVoicemail={activeVoicemail}
         voicemailID={voicemailID}
         setVoicemailID={setVoicemailID}
+        setCurrentVoicemailIndex={setCurrentVoicemailIndex}
       />
       {activeVoicemail ? (
         <ReactHowler

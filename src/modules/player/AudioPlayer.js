@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { AudioControls } from "@/modules/player";
@@ -9,7 +9,8 @@ const AudioPlayer = ({
   setIsPlaying,
   setActiveVoicemail,
   setVoicemailID,
-  showPlayOnly
+  showPlayOnly,
+  setCurrentVoicemailIndex
 }) => {
   const [currentSrcIndex, setCurrentSrcIndex] = useState(0);
 
@@ -17,6 +18,7 @@ const AudioPlayer = ({
     const next =
       currentSrcIndex >= sources.length - 1 ? 0 : currentSrcIndex + 1;
 
+    if (setCurrentVoicemailIndex) setCurrentVoicemailIndex(next);
     setCurrentSrcIndex(next);
     setActiveVoicemail(sources[next]);
   };
@@ -25,6 +27,7 @@ const AudioPlayer = ({
     const previous =
       currentSrcIndex > 0 ? currentSrcIndex - 1 : sources.length - 1;
 
+    if (setCurrentVoicemailIndex) setCurrentVoicemailIndex(previous);
     setCurrentSrcIndex(previous);
     setActiveVoicemail(sources[previous]);
   };
