@@ -28,7 +28,7 @@ const serializeData = res => {
 
 const HomePage = () => {
   const [data, setData] = useSessionStorage("hbd-data", {});
-  const [voicemailID, setVoicemailID] = useState("");
+  const [activeID, setActiveID] = useState("");
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -53,12 +53,12 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    if (data && data[voicemailID]) {
+    if (data && data[activeID] && data[activeID].Voicemails) {
       setVoicemailSources(
-        data[voicemailID].Voicemails.map(voicemail => voicemail.url)
+        data[activeID].Voicemails.map(voicemail => voicemail.url)
       );
     }
-  }, [voicemailID]);
+  }, [activeID]);
 
   const playNext = () => {
     const next =
@@ -107,7 +107,8 @@ const HomePage = () => {
           <ActiveNames
             data={data}
             setActiveVoicemail={setActiveVoicemail}
-            setVoicemailID={setVoicemailID}
+            activeID={activeID}
+            setActiveID={setActiveID}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
             togglePlay={togglePlay}
@@ -124,7 +125,7 @@ const HomePage = () => {
         data={data}
         isPlaying={isPlaying}
         isVisible={!!activeVoicemail}
-        voicemailID={voicemailID}
+        activeID={activeID}
         togglePlay={togglePlay}
         playPrevious={playPrevious}
         playNext={playNext}

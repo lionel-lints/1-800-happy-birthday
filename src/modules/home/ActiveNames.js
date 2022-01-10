@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -202,12 +202,12 @@ const ActiveNames = ({
   setActiveVoicemail,
   isPlaying,
   setIsPlaying,
-  setVoicemailID,
+  activeID,
+  setActiveID,
   togglePlay,
   playPrevious,
   playNext
 }) => {
-  const [openID, setOpenID] = useState("");
   const stickyNav = useRef(null);
 
   useEffect(() => {
@@ -233,17 +233,17 @@ const ActiveNames = ({
         top: stickyNav.current.getBoundingClientRect().top + window.scrollY + 5
       });
     }
-  }, [openID]);
+  }, [activeID]);
 
   const closeBirthday = event => {
     event.stopPropagation();
-    setOpenID("");
+    setActiveID("");
     setActiveVoicemail("");
     setIsPlaying(false);
   };
 
   const openBirthday = id => {
-    setOpenID(id);
+    setActiveID(id);
     setActiveVoicemail("");
     setIsPlaying(false);
   };
@@ -278,7 +278,7 @@ const ActiveNames = ({
             <StyledWrapper onClick={() => openBirthday(id)} key={name}>
               {isLive ? (
                 <>
-                  {openID === id && (
+                  {activeID === id && (
                     <StyledNameNavigation
                       ref={stickyNav}
                       id={name}
@@ -290,12 +290,10 @@ const ActiveNames = ({
                       <StyledNameNavigationMiddle>
                         {voicemails && voicemails.length > 0 ? (
                           <AudioPlayer
-                            id={id}
                             isPlaying={isPlaying}
                             togglePlay={togglePlay}
                             playPrevious={playPrevious}
                             playNext={playNext}
-                            setVoicemailID={setVoicemailID}
                             showPlayOnly
                           />
                         ) : null}
@@ -319,7 +317,7 @@ const ActiveNames = ({
                     </StyledNameNavigation>
                   )}
 
-                  <StyledNameWrapper isOpen={openID === id} id={id}>
+                  <StyledNameWrapper isOpen={activeID === id} id={id}>
                     <StyledDate className="date">{dob.join(" ")}</StyledDate>
                     <StyledName>{name}</StyledName>
                     {photoUrl ? (
@@ -327,9 +325,9 @@ const ActiveNames = ({
                     ) : null}
                   </StyledNameWrapper>
 
-                  <StyledBirthdayWrapper isOpen={openID === id}>
-                    {openID === id ? (
-                      <Birthday data={data} id={id} isOpen={openID === id} />
+                  <StyledBirthdayWrapper isOpen={activeID === id}>
+                    {activeID === id ? (
+                      <Birthday data={data} id={id} isOpen={activeID === id} />
                     ) : null}
                   </StyledBirthdayWrapper>
                 </>
@@ -357,7 +355,8 @@ ActiveNames.propTypes = {
   togglePlay: PropTypes.func.isRequired,
   playPrevious: PropTypes.func.isRequired,
   playNext: PropTypes.func.isRequired,
-  setVoicemailID: PropTypes.func.isRequired
+  setActiveID: PropTypes.func.isRequired,
+  activeID: PropTypes.string.isRequired
 };
 
 ActiveNames.defaultProps = {

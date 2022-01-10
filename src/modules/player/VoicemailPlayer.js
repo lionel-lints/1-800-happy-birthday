@@ -54,7 +54,7 @@ const VoicemailPlayer = ({
   togglePlay,
   playPrevious,
   playNext,
-  voicemailID
+  activeID
 }) => {
   const [howlerContext, setHowlerContext] = useState(null);
   const [person, setPerson] = useState({});
@@ -64,8 +64,8 @@ const VoicemailPlayer = ({
   });
 
   useEffect(() => {
-    if (data[voicemailID]) setPerson(data[voicemailID]);
-  }, [voicemailID]);
+    if (data[activeID]) setPerson(data[activeID]);
+  }, [activeID]);
 
   const scrollToName = name => {
     const navBar = document.getElementById(name);
@@ -120,7 +120,7 @@ VoicemailPlayer.propTypes = {
   }),
   isVisible: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  voicemailID: PropTypes.string.isRequired,
+  activeID: PropTypes.string.isRequired,
   togglePlay: PropTypes.func.isRequired,
   playPrevious: PropTypes.func.isRequired,
   playNext: PropTypes.func.isRequired
