@@ -51,11 +51,10 @@ const VoicemailPlayer = ({
   data,
   isVisible,
   isPlaying,
-  setIsPlaying,
-  voicemailID,
-  setActiveVoicemail,
-  activeVoicemail,
-  setCurrentVoicemailIndex
+  togglePlay,
+  playPrevious,
+  playNext,
+  voicemailID
 }) => {
   const [howlerContext, setHowlerContext] = useState(null);
   const [person, setPerson] = useState({});
@@ -83,12 +82,10 @@ const VoicemailPlayer = ({
     <StyledVoicemailPlayer isVisible={isVisible}>
       {person.Voicemails && person.Voicemails.length > 0 ? (
         <AudioPlayer
-          sources={person.Voicemails.map(voicemail => voicemail.url)}
           isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          setActiveVoicemail={setActiveVoicemail}
-          activeVoicemail={activeVoicemail}
-          setCurrentVoicemailIndex={setCurrentVoicemailIndex}
+          togglePlay={togglePlay}
+          playPrevious={playPrevious}
+          playNext={playNext}
         />
       ) : null}
       {howlerContext ? <AudioAnalyser isPlaying={isPlaying} /> : null}
@@ -113,12 +110,22 @@ const VoicemailPlayer = ({
 };
 
 VoicemailPlayer.propTypes = {
+  data: PropTypes.shape({
+    fields: PropTypes.shape({
+      dob: PropTypes.string,
+      "Voicemail Number": PropTypes.string,
+      Name: PropTypes.string
+    }),
+    id: PropTypes.string
+  }),
   isVisible: PropTypes.bool,
   isPlaying: PropTypes.bool.isRequired,
-  setIsPlaying: PropTypes.func.isRequired,
-  voicemailID: PropTypes.string.isRequired
+  voicemailID: PropTypes.string.isRequired,
+  togglePlay: PropTypes.func.isRequired,
+  playPrevious: PropTypes.func.isRequired,
+  playNext: PropTypes.func.isRequired
 };
 
-VoicemailPlayer.defaultProps = { isVisible: false };
+VoicemailPlayer.defaultProps = { data: {}, isVisible: false };
 
 export default VoicemailPlayer;

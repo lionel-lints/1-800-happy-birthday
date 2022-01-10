@@ -1,64 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { AudioControls } from "@/modules/player";
 
 const AudioPlayer = ({
-  sources,
+  id,
   isPlaying,
-  setIsPlaying,
-  setActiveVoicemail,
+  togglePlay,
+  playPrevious,
+  playNext,
   setVoicemailID,
-  showPlayOnly,
-  setCurrentVoicemailIndex
+  showPlayOnly
 }) => {
-  const [currentSrcIndex, setCurrentSrcIndex] = useState(0);
-
-  const handleNext = () => {
-    const next =
-      currentSrcIndex >= sources.length - 1 ? 0 : currentSrcIndex + 1;
-
-    if (setCurrentVoicemailIndex) setCurrentVoicemailIndex(next);
-    setCurrentSrcIndex(next);
-    setActiveVoicemail(sources[next]);
-  };
-
-  const handlePrevious = () => {
-    const previous =
-      currentSrcIndex > 0 ? currentSrcIndex - 1 : sources.length - 1;
-
-    if (setCurrentVoicemailIndex) setCurrentVoicemailIndex(previous);
-    setCurrentSrcIndex(previous);
-    setActiveVoicemail(sources[previous]);
-  };
-
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    setActiveVoicemail(sources[currentSrcIndex]);
-
-    if (setVoicemailID) setVoicemailID();
+  const handlePlay = () => {
+    if (setVoicemailID) setVoicemailID(id);
+    togglePlay();
   };
 
   return (
     <AudioControls
       isPlaying={isPlaying}
-      forward={handleNext}
-      back={handlePrevious}
-      togglePlay={togglePlay}
+      forward={playNext}
+      back={playPrevious}
+      togglePlay={handlePlay}
       showPlayOnly={showPlayOnly}
     />
   );
 };
 
 AudioPlayer.propTypes = {
-  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
+  id: PropTypes.string,
   isPlaying: PropTypes.bool.isRequired,
-  setIsPlaying: PropTypes.func.isRequired,
-  setActiveVoicemail: PropTypes.func.isRequired,
+  togglePlay: PropTypes.func.isRequired,
+  playPrevious: PropTypes.func.isRequired,
+  playNext: PropTypes.func.isRequired,
   setVoicemailID: PropTypes.func,
   showPlayOnly: PropTypes.bool
 };
 
-AudioPlayer.defaultProps = { showPlayOnly: false, setVoicemailID: () => {} };
+AudioPlayer.defaultProps = {
+  id: "",
+  showPlayOnly: false,
+  setVoicemailID: () => {}
+};
 
 export default AudioPlayer;

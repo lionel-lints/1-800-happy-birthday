@@ -200,10 +200,12 @@ const StyledNameNavigationRight = styled.div`
 const ActiveNames = ({
   data,
   setActiveVoicemail,
-  activeVoicemail,
   isPlaying,
   setIsPlaying,
-  setVoicemailID
+  setVoicemailID,
+  togglePlay,
+  playPrevious,
+  playNext
 }) => {
   const [openID, setOpenID] = useState("");
   const stickyNav = useRef(null);
@@ -288,14 +290,12 @@ const ActiveNames = ({
                       <StyledNameNavigationMiddle>
                         {voicemails && voicemails.length > 0 ? (
                           <AudioPlayer
-                            sources={voicemails.map(voicemail => voicemail.url)}
+                            id={id}
                             isPlaying={isPlaying}
-                            setIsPlaying={setIsPlaying}
-                            setActiveVoicemail={setActiveVoicemail}
-                            activeVoicemail={activeVoicemail}
-                            setVoicemailID={() => {
-                              setVoicemailID(id);
-                            }}
+                            togglePlay={togglePlay}
+                            playPrevious={playPrevious}
+                            playNext={playNext}
+                            setVoicemailID={setVoicemailID}
                             showPlayOnly
                           />
                         ) : null}
@@ -352,9 +352,11 @@ ActiveNames.propTypes = {
     id: PropTypes.string
   }),
   setActiveVoicemail: PropTypes.func.isRequired,
-  activeVoicemail: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   setIsPlaying: PropTypes.func.isRequired,
+  togglePlay: PropTypes.func.isRequired,
+  playPrevious: PropTypes.func.isRequired,
+  playNext: PropTypes.func.isRequired,
   setVoicemailID: PropTypes.func.isRequired
 };
 

@@ -28,10 +28,14 @@ const serializeData = res => {
 
 const HomePage = () => {
   const [data, setData] = useSessionStorage("hbd-data", {});
-  const [activeVoicemail, setActiveVoicemail] = useState("");
-  const [isPlaying, setIsPlaying] = useState(false);
   const [voicemailID, setVoicemailID] = useState("");
-  const [currentVoicemailIndex, setCurrentVoicemailIndex] = useState(0);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const [activeVoicemail, setActiveVoicemail] = useState("");
+  const [activeVoicemailIndex, setActiveVoicemailIndex] = useState(0);
+  const [voicemailSources, setVoicemailSources] = useState([]);
+
   const player = useRef(null);
 
   useLayoutEffect(() => {
@@ -48,12 +52,45 @@ const HomePage = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (data && data[voicemailID]) {
+      setVoicemailSources(
+        data[voicemailID].Voicemails.map(voicemail => voicemail.url)
+      );
+    }
+  }, [voicemailID]);
+
+  const playNext = () => {
+    const next =
+      activeVoicemailIndex >= voicemailSources.length - 1
+        ? 0
+        : activeVoicemailIndex + 1;
+
+    setActiveVoicemailIndex(next);
+    setActiveVoicemail(voicemailSources[next]);
+  };
+
+  const playPrevious = () => {
+    const previous =
+      activeVoicemailIndex > 0
+        ? activeVoicemailIndex - 1
+        : voicemailSources.length - 1;
+
+    setActiveVoicemailIndex(previous);
+    setActiveVoicemail(voicemailSources[previous]);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+    setActiveVoicemail(voicemailSources[activeVoicemailIndex]);
+  };
+
   const endPlay = () => {
-    const voicemails = data[voicemailID].Voicemails;
-    const hasMoreVoicemails = currentVoicemailIndex < voicemails.length - 1;
+    const hasMoreVoicemails =
+      activeVoicemailIndex < voicemailSources.length - 1;
 
     if (hasMoreVoicemails) {
-      setActiveVoicemail(voicemails[currentVoicemailIndex + 1].url);
+      playNext();
     } else {
       setIsPlaying(false);
       setActiveVoicemail("");
@@ -71,9 +108,11 @@ const HomePage = () => {
             data={data}
             setActiveVoicemail={setActiveVoicemail}
             setVoicemailID={setVoicemailID}
-            activeVoicemail={activeVoicemail}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
+            togglePlay={togglePlay}
+            playPrevious={playPrevious}
+            playNext={playNext}
           />
           <AllNamesList data={data} />
         </>
@@ -84,13 +123,11 @@ const HomePage = () => {
       <VoicemailPlayer
         data={data}
         isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
         isVisible={!!activeVoicemail}
-        setActiveVoicemail={setActiveVoicemail}
-        activeVoicemail={activeVoicemail}
         voicemailID={voicemailID}
-        setVoicemailID={setVoicemailID}
-        setCurrentVoicemailIndex={setCurrentVoicemailIndex}
+        togglePlay={togglePlay}
+        playPrevious={playPrevious}
+        playNext={playNext}
       />
       {activeVoicemail ? (
         <ReactHowler
