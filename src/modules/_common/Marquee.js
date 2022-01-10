@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { LanguageContextConsumer } from "@/modules/_common";
 import { hero } from "@/assets/locales/data.json";
 
+import BirthdayCake from "@/assets/icons/birthday-cake.svg";
+
 import breakpoints from "@/utils/breakpoints";
 
 const StyledMarquee = styled.div`
@@ -26,6 +28,8 @@ const StyledMarquee = styled.div`
   }
 
   div {
+    display: flex;
+    align-items: center;
     white-space: nowrap;
     width: fit-content;
     will-change: transform;
@@ -35,6 +39,7 @@ const StyledMarquee = styled.div`
 
   span {
     margin-right: 5rem;
+    margin-left: 3.8rem;
     line-height: 4rem;
   }
 
@@ -56,16 +61,29 @@ const Marquee = () => {
         <StyledMarquee>
           <div>
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
+            <span>{hero[context.lang]}</span>
+            <img alt="birthday cake" src={BirthdayCake} />
             <span>{hero[context.lang]}</span>
           </div>
         </StyledMarquee>
