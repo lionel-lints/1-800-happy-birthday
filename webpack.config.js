@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const dotenv = require("dotenv");
 const path = require("path");
 
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const trimFieldOrder = require("./src/utils/trimFieldOrder");
 
 dotenv.config();
@@ -61,6 +62,7 @@ module.exports = {
   },
   plugins: [
     htmlPlugin,
+    new FaviconsWebpackPlugin("./public/favicon.png"),
     new webpack.EnvironmentPlugin([
       "AIRTABLE_API_KEY",
       "BASE_ID",
