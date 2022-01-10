@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ReactHowler from "react-howler";
 
 import { PageHeader, Footer, Marquee } from "@/modules/_common";
-import { ActiveNames, AllNamesList, Loader } from "@/modules/home";
+import { FeaturedNames, AllNamesBackground, Loader } from "@/modules/home";
 import { VoicemailPlayer } from "@/modules/player";
 
 import useSessionStorage from "@/utils/hooks/useSessionStorage";
@@ -104,7 +104,7 @@ const HomePage = () => {
 
       {data ? (
         <>
-          <ActiveNames
+          <FeaturedNames
             data={data}
             setActiveVoicemail={setActiveVoicemail}
             activeID={activeID}
@@ -115,7 +115,7 @@ const HomePage = () => {
             playPrevious={playPrevious}
             playNext={playNext}
           />
-          <AllNamesList data={data} />
+          <AllNamesBackground data={data} />
         </>
       ) : null}
 

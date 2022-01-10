@@ -34,7 +34,7 @@ const StyledName = styled.li`
   }
 `;
 
-const AllNamesList = ({ data }) => {
+const AllNamesBackground = ({ data }) => {
   useEffect(() => {
     animator.animateBackgroundNames();
   });
@@ -54,7 +54,7 @@ const AllNamesList = ({ data }) => {
   );
 };
 
-AllNamesList.propTypes = {
+AllNamesBackground.propTypes = {
   data: PropTypes.shape({
     fields: PropTypes.shape({
       dob: PropTypes.string,
@@ -65,8 +65,8 @@ AllNamesList.propTypes = {
   })
 };
 
-AllNamesList.defaultProps = {
+AllNamesBackground.defaultProps = {
   data: {}
 };
 
-export default AllNamesList;
+export default AllNamesBackground;

@@ -9,7 +9,7 @@ import { Birthday } from "@/modules/birthday";
 import { AudioPlayer } from "@/modules/player";
 import { LanguageContextConsumer, CloseIcon } from "@/modules/_common";
 
-const StyledActiveNames = styled.div`
+const StyledNames = styled.div`
   position: relative;
   text-align: center;
   margin: 2rem 0;
@@ -125,7 +125,7 @@ const StyledBirthdayWrapper = styled.div`
   opacity: ${props => (props.isOpen ? 1 : 0)};
 `;
 
-const StyledActiveNamesWrapper = styled.div`
+const StyledFeaturedNames = styled.div`
   position: relative;
 `;
 
@@ -197,7 +197,7 @@ const StyledNameNavigationRight = styled.div`
   justify-content: flex-end;
 `;
 
-const ActiveNames = ({
+const Names = ({
   data,
   setActiveVoicemail,
   isPlaying,
@@ -253,8 +253,8 @@ const ActiveNames = ({
   };
 
   return (
-    <StyledActiveNamesWrapper>
-      <StyledActiveNames>
+    <StyledFeaturedNames>
+      <StyledNames>
         {Object.keys(data).map((id, index) => {
           const isLive = !!data[id]["Live Voicemail Number"];
           const name = data[id].Name;
@@ -335,12 +335,12 @@ const ActiveNames = ({
             </StyledWrapper>
           );
         })}
-      </StyledActiveNames>
-    </StyledActiveNamesWrapper>
+      </StyledNames>
+    </StyledFeaturedNames>
   );
 };
 
-ActiveNames.propTypes = {
+Names.propTypes = {
   data: PropTypes.shape({
     fields: PropTypes.shape({
       dob: PropTypes.string,
@@ -359,8 +359,8 @@ ActiveNames.propTypes = {
   activeID: PropTypes.string.isRequired
 };
 
-ActiveNames.defaultProps = {
+Names.defaultProps = {
   data: {}
 };
 
-export default ActiveNames;
+export default Names;
