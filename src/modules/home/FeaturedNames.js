@@ -270,8 +270,8 @@ const Names = ({
           }
 
           let photoUrl;
-          if (data[id]["Hero Photo"]) {
-            photoUrl = data[id]["Hero Photo"][0].url;
+          if (data[id]["Thumbnail Photo"]) {
+            photoUrl = data[id]["Thumbnail Photo"][0].url;
           }
 
           return (
