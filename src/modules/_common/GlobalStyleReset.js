@@ -16,13 +16,16 @@ const GlobalStyleReset = createGlobalStyle`
   ${reset}
   body {
     background-color: black;
+  }
+
+  body, html, * {
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🎂</text></svg>") 16 0, auto;
   }
 
-  a:hover, button:hover {
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🍰</text></svg>")
+  body a:hover, html a:hover, button:hover {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🎂</text></svg>")
         16 0,
-      auto;
+      auto !important;
   }
 
 
