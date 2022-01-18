@@ -2,11 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import breakpoints from "@/utils/breakpoints";
-
-import Play from "@/assets/icons/play.svg";
-import Pause from "@/assets/icons/pause.svg";
-
 import { AudioAnalyser, AudioPlayer } from "@/modules/player";
 
 import { LanguageContextConsumer } from "@/modules/_common";

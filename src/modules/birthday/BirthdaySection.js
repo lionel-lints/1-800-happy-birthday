@@ -16,6 +16,9 @@ const StyledBirthdaySection = styled.section`
   justify-content: center;
   position: relative;
   transition: all 2s ease-in-out;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🎂</text></svg>")
+      16 0,
+    auto;
 `;
 
 const StyledDetailsWrapper = styled.div`
@@ -176,7 +179,9 @@ const StyledTakeActionHeader = styled.div`
 
   &:hover {
     border-color: white;
-    cursor: pointer;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🍰</text></svg>")
+        16 0,
+      auto;
   }
 
   a {
@@ -211,8 +216,8 @@ const StyledTakeActionHeaderOpen = styled.div`
 
 const StyledTakeActionCloseButton = styled.div`
   position: absolute;
-  left: 1rem;
-  top: 1rem;
+  left: 0;
+  top: 0;
 `;
 
 const StyledAction = styled.div`
@@ -228,7 +233,9 @@ const StyledAction = styled.div`
     transition: color 0.25s ease-in-out;
 
     &:hover {
-      cursor: pointer;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🍰</text></svg>")
+          16 0,
+        auto;
       color: white;
     }
   }

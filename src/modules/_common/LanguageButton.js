@@ -5,7 +5,6 @@ import { LanguageContextConsumer } from "@/modules/_common/";
 const StyledButton = styled.button`
   color: white;
   background-color: black;
-  cursor: pointer;
   outline: none;
   border: none;
 

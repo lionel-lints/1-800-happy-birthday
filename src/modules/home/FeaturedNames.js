@@ -24,7 +24,9 @@ const StyledWrapper = styled.div`
   transition: all 0.25s ease-in-out;
 
   &:hover {
-    cursor: pointer;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🍰</text></svg>")
+        16 0,
+      auto;
 
     @media ${breakpoints.tablet} {
       div.date,
@@ -140,6 +142,9 @@ const StyledNameNavigation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🎂</text></svg>")
+      16 0,
+    auto;
 
   position: -webkit-sticky;
   position: sticky;
@@ -184,7 +189,9 @@ const StyledNameNavigationText = styled.div`
     border-bottom: 1px solid black;
 
     &:hover {
-      cursor: pointer;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50' height='60' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'>🍰</text></svg>")
+          16 0,
+        auto;
       border-bottom: 1px solid transparent;
     }
   }
