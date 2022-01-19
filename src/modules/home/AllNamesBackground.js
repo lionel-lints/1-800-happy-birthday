@@ -7,7 +7,7 @@ import breakpoints from "@/utils/breakpoints";
 
 const StyledList = styled.ul`
   text-align: center;
-  opacity: 0.05 !important;
+  opacity: 0.1 !important;
   position: fixed;
   top: -0.5rem;
   left: -5rem;
