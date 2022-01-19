@@ -335,72 +335,78 @@ const BirthdaySection = ({
                   )}
                 </>
               )}
-              <StyledActions>
-                <StyledTakeActionHeader
-                  isOpen={actionsOpen}
-                  onClick={handleOpenActions}
-                >
-                  {`${birthday.takeAction[context.lang]} ${name.split(" ")[0]}`}
-                </StyledTakeActionHeader>
-                <StyledTakeActionContainer isOpen={actionsOpen}>
-                  <StyledTakeActionCloseButton onClick={handleOpenActions}>
-                    <CloseIcon />
-                  </StyledTakeActionCloseButton>
-                  <StyledTakeActionHeaderOpen>
+              {(!!callToActionText1 ||
+                !!callToActionText2 ||
+                !!callToActionText3) && (
+                <StyledActions>
+                  <StyledTakeActionHeader
+                    isOpen={actionsOpen}
+                    onClick={handleOpenActions}
+                  >
                     {`${birthday.takeAction[context.lang]} ${
                       name.split(" ")[0]
                     }`}
-                  </StyledTakeActionHeaderOpen>
-                  <StyledAction>
-                    <div>{callToActionText1}</div>
-                    {isPhoneNumber(callToActionLink1) ? (
-                      <a href={`tel:${callToActionLink1}`}>
-                        {callToActionLink1}
-                      </a>
-                    ) : (
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={callToActionLink1}
-                      >
-                        {callToActionLink1}
-                      </a>
-                    )}
-                  </StyledAction>
-                  <StyledAction>
-                    <div>{callToActionText2}</div>
-                    {isPhoneNumber(callToActionLink1) ? (
-                      <a href={`tel:${callToActionLink2}`}>
-                        {callToActionLink2}
-                      </a>
-                    ) : (
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={callToActionLink2}
-                      >
-                        {callToActionLink2}
-                      </a>
-                    )}
-                  </StyledAction>
-                  <StyledAction>
-                    <div>{callToActionText3}</div>
-                    {isPhoneNumber(callToActionLink1) ? (
-                      <a href={`tel:${callToActionLink3}`}>
-                        {callToActionLink3}
-                      </a>
-                    ) : (
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={callToActionLink3}
-                      >
-                        {callToActionLink3}
-                      </a>
-                    )}
-                  </StyledAction>
-                </StyledTakeActionContainer>
-              </StyledActions>
+                  </StyledTakeActionHeader>
+                  <StyledTakeActionContainer isOpen={actionsOpen}>
+                    <StyledTakeActionCloseButton onClick={handleOpenActions}>
+                      <CloseIcon />
+                    </StyledTakeActionCloseButton>
+                    <StyledTakeActionHeaderOpen>
+                      {`${birthday.takeAction[context.lang]} ${
+                        name.split(" ")[0]
+                      }`}
+                    </StyledTakeActionHeaderOpen>
+                    <StyledAction>
+                      <div>{callToActionText1}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink1}`}>
+                          {callToActionLink1}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink1}
+                        >
+                          {callToActionLink1}
+                        </a>
+                      )}
+                    </StyledAction>
+                    <StyledAction>
+                      <div>{callToActionText2}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink2}`}>
+                          {callToActionLink2}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink2}
+                        >
+                          {callToActionLink2}
+                        </a>
+                      )}
+                    </StyledAction>
+                    <StyledAction>
+                      <div>{callToActionText3}</div>
+                      {isPhoneNumber(callToActionLink1) ? (
+                        <a href={`tel:${callToActionLink3}`}>
+                          {callToActionLink3}
+                        </a>
+                      ) : (
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={callToActionLink3}
+                        >
+                          {callToActionLink3}
+                        </a>
+                      )}
+                    </StyledAction>
+                  </StyledTakeActionContainer>
+                </StyledActions>
+              )}
             </>
           </StyledDiv>
         </StyledBirthdaySection>
