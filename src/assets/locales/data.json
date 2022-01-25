@@ -153,6 +153,16 @@
       },
       {
         "question": {
+          "en": "What is the genesis of the project?",
+          "es": "¿Cómo se originó el proyecto?"
+        },
+        "answer": {
+          "en": "1800 Happy Birthday is created in the legacy of the 'Happy Birthday Project', a film series created with the families and loved ones on the birthdays of Oscar Grant, Mario Woods, and Philando Castile. The films were created with support from The Campaign for Black Male Achievement, The Mission Entertainment, and Blackout for Human Rights.",
+          "es": "1800 Happy Birthday se creó en el legado de 'Happy Birthday Project', una serie de videos con las familias y seres queridos de Oscar Grant, Mario Woods, y Philando Castile en sus cumpleaños. Los videos fueron producidos con el apoyo de The Campaign for Black Male Achievement, The Mission Entertainment, y Blackout for Human Rights."
+        }
+      },
+      {
+        "question": {
           "en": "How will the voicemails be used?",
           "es": "¿Cómo se usarán los mensajes de voz?"
         },
