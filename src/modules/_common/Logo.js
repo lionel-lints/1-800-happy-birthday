@@ -18,7 +18,7 @@ const StyledLogo = styled.img`
 
 const Logo = () => {
   return (
-    <a target="_blank" rel="noopener noreferrer" href="/">
+    <a rel="noopener noreferrer" href="/">
       <StyledLogo src={logo} alt="1-800-Happy-Birthday logo" width="90%" />
     </a>
   );
