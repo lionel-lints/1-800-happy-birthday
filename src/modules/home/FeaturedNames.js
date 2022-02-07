@@ -259,6 +259,14 @@ const Names = ({
     return name.split(" ")[0];
   };
 
+  const convertDateStringToDOBArray = dobString => {
+    const date = new Date(dobString);
+    return [
+      `${date.toLocaleString("default", { month: "short" })}`,
+      `${date.getUTCDate()}`
+    ];
+  };
+
   return (
     <StyledFeaturedNames>
       <StyledNames>
@@ -270,10 +278,7 @@ const Names = ({
 
           let dob;
           if (dobField) {
-            dob = new Date(Date.parse(dobField));
-            dob = dob.toDateString().split(" ");
-            dob.shift();
-            dob.pop();
+            dob = convertDateStringToDOBArray(dobField);
           }
 
           let photoUrl;
