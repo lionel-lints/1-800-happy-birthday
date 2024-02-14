@@ -20,7 +20,9 @@ const serializeData = res => {
   const result = {};
 
   res.forEach(item => {
-    result[item.id] = item.fields;
+    if (item && item.id && item.fields) {
+      result[item.id] = item.fields;
+    }
   });
 
   return result;
