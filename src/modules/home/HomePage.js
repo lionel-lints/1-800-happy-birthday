@@ -11,13 +11,15 @@ import useSessionStorage from "@/utils/hooks/useSessionStorage";
 
 import AirtableClient from "@/lib/AirtableClient";
 
+let data = require("@/data.json");
+
 const StyledHomePage = styled.div`
   color: white;
   position: relative;
 `;
 
 const serializeData = res => {
-  const result = {};
+  let result = {};
 
   if (res && res.length) {
     res.forEach(item => {
@@ -25,6 +27,8 @@ const serializeData = res => {
         result[item.id] = item.fields;
       }
     });
+  } else {
+    result = data;
   }
 
   return result;
