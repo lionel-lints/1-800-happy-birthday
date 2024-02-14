@@ -19,11 +19,13 @@ const StyledHomePage = styled.div`
 const serializeData = res => {
   const result = {};
 
-  res.forEach(item => {
-    if (item && item.id && item.fields) {
-      result[item.id] = item.fields;
-    }
-  });
+  if (res && res.length) {
+    res.forEach(item => {
+      if (item && item.id && item.fields) {
+        result[item.id] = item.fields;
+      }
+    });
+  }
 
   return result;
 };
