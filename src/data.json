@@ -4,16 +4,19 @@
     "Voicemail Number": "(646) 741-3318",
     "Live Voicemail Number": "checked",
     "Voicemails": [
-      "https://drive.google.com/file/d/1TpvL2UhoNWAk9XwDAAmTOBKomhnXJaDQ/view?usp=drive_link"
+      "https://docs.google.com/uc?export=open&id=1TpvL2UhoNWAk9XwDAAmTOBKomhnXJaDQ"
     ],
     "dob": "9/15/1970",
     "dod": "7/17/2014",
     "Thumbnail Photo": [
-      "https://drive.google.com/file/d/1KLqbzUYArOaSD7NMF7M_-gc24md5CdUS/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQLBxu8XA4kqeYCI36BDMpC7fCTJco6-6d3g7N6TXF7yOsIGetegNSVGYzx9tqntBLG025c0acjK6pB_fh8I6QdIkTp=s2560"
+      }
     ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1yQw4nMYzchm47kYQRDscig4OA1qhMwmE/preview",
-      "https://drive.google.com/file/d/1yQw4nMYzchm47kYQRDscig4OA1qhMwmE/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQps4SuXwqmTobu5-5N6UirCdEvKHf4AYdKOsWn8VXqVH9txtdMlZoy4syw9OzxcQcEAQzZxwf8b0U_b7hViTESU5rz=s1600"
+      }
     ],
     "Call to Action 1 Text": "",
     "Call to Action 1 Link": "",
@@ -35,9 +38,15 @@
     ],
     "dob": "10/14/1973",
     "dod": "5/25/2020",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1WpHtTjHIpkINN3KAT07tXx5jYttSjLqO/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYS5Mh-3iUb9VA4a4Ej0WKEX3q3zLA6810hKuE64zmhFgEyn-3EQptnMjjkqYtrdScAdTWXS-zN-tW51YhQKq7UHjgtTQg=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1sQbUUe5AKkm-sAUFpCvpCdT8njY7WNKu/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTW_bTh4nTjaLtxNZBV5vumVYzgQ78i6hXJXoqg9f0S3ls2Q40cq1xyfTUBL4InTxIMdsHqgBRviMYxHmhbJTfjFKVAbQ=s1600"
+      }
     ],
     "Call to Action 1 Text": "Donate:",
     "Call to Action 1 Link": "https://wearefloyd.org",
@@ -59,9 +68,15 @@
     ],
     "dob": "7/16/1983",
     "dod": "7/6/2016",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1ukPw6If1rFoIL35RsIlKUe2oCFbmSt80/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYROis23hoJr_JpO6bI1RGdkw_0P7b4JA7GwtHcSeL5uc9Hh3hkQ5sH0Cy-RY44TW-T3a0z_UkXJdlSXU_PA_7-WNGX4Mw=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1DeabCH9vpnB16JXJJtuGOx7hwkYILaul/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQeBPprUY1_1c420zfSNaqBSeHkK6IGyb3w4-m4fS63hjg6ERv-Ezvjyy5jhEgv6D1JV15Q-oGAd0Fzyl0XtxEBzTqFiQ=s2560"
+      }
     ],
     "Call to Action 1 Text": "Attorney General: Keith Ellison",
     "Call to Action 1 Link": "(651) 296-3353",
@@ -83,9 +98,15 @@
     ],
     "dob": "2/27/1986",
     "dod": "1/1/2009",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1KmjKxc2hk6EJ0M9MhHy20WXQUFAZXlKi/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYSrCjT4J9urKKT8dy42f7D5mWAAnwnZBIkMcJwXuXC667Fx_x6cxl7MxnR1sule0lsvpp6kr44YrD8TVrLAT2_7y9JKSA=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/19DrF5OMV3jZ52I1FrufGOhaU4uPlMRAB/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYSdYk8RXZGwoFvFeiFObOjxc6lUxlXqK5jKOTnvkMgD-gopAdEMBGVFJBynw8Gru9mFd4s0edn6KpsTNXM-CTF8588osg=s2560"
+      }
     ],
     "Call to Action 1 Text": "Alameda County District:\nDistrict Attorney Pamela Price",
     "Call to Action 1 Link": "510-272-6222",
@@ -107,9 +128,15 @@
     ],
     "dob": "2/7/1987",
     "dod": "7/13/2015",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1xbgdWcEVqrfBbKjz0xa48QStHWqjdCgB/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYR5JwBwhwZx0Vsz7cOx-WwFDma6A-wXPTPn_gbGeLdRkiPbI-8OXYtU6jyZXDp2Z-05-coOPHwq16qQzmmjSHDe_BdJwQ=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/10GYnyqzjdwbnT47pFM7TpSPP8u17E7bH/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQRpBHofAgfWaUtLpBkMtiGmBn8cyDa0Xp1X7a_h1gwMc872vs9L9p_Asrx1UaLk1-ysoOhFoM4nqw6Nvsq0UU4aUytfw=s2560"
+      }
     ],
     "Call to Action 1 Text": "Make a Donation",
     "Call to Action 1 Link": "https://dupage88.revtrak.net/wbhs-clubs-and-activities/wbhs-student-council/",
@@ -131,9 +158,15 @@
     ],
     "dob": "7/22/1989",
     "dod": "12/2/2015",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1A4lOMWdbr7IyAmG8CETqTdzYzCMKIv70/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTB5n90gpXQp0ZwYNHfVzNyp7z8WbPSWlZ-WQ-5-3cCM397edDd-S1tB7SldbyOAawWFvgnS2CGbBw1VmSEeXdgXZCDjA=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1PEFOMMgzczHA9JOINqpG2fXleVB4D3jb/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYS_QHy0LGIjXK2xg4CQtKDjwKgFhREaLrtsQzuBfxg-loSMs64_itQGPVpfm2GRMPC5C6WPYkYbJqVpKGxpFzt2pv3x=s2560"
+      }
     ],
     "Call to Action 1 Text": "District Attorney: Chesa Boudin",
     "Call to Action 1 Link": "(628)652-4012",
@@ -155,9 +188,15 @@
     ],
     "dob": "8/9/1994",
     "dod": "6/23/2018",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1S0NC6b5bHRor-mJPQMeE6Tr6to47VR7c/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTpXiNA0W1MyYyDicor6VVATXiwZz6Z7fTuo69JB4dk5CL-QlBtxaX_suh-NffUbbo1rNFJLKZCJp_k6UyCaVzpkShSgg=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1fQr-1GGDnoraRUSDP2qmcUtaZXwQrbAm/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYSfm3nwVgQG4PquASiRrKQp1dFbpEeApx0NFhwbIV5Ri0nIdlk7lLzt6Q9KOJVdHbKUduhdHWqZD54542E2xjfvc9qS=s2560"
+      }
     ],
     "Call to Action 1 Text": "Santa Rita Jail",
     "Call to Action 1 Link": "(925) 551-6500",
@@ -179,9 +218,15 @@
     ],
     "dob": "4/17/1995",
     "dod": "3/26/2021",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1A1ahGlqB1ytZD39w1a7LvIpSnwAZHdHS/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYSWkHyHJWuhj57QF34Fmf-7MbwGFiV-FMxyPgnDK5BGmadaYtpt734s9XysI9BlU-7i7dkGqwnksDrbfc_hp97R4-PexA=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1oO1KQI3aE0jXVwcbRLq5IzLsbkxLaHmH/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQyABkkGOHc0xgIB7aqIJ36gfrLHJxcfbvbIMpiKREpADSajEJsyGsevD78Ijzw4S4DGhzSpSsCEYJ8LhnzDwFff0WTSw=s2560"
+      }
     ],
     "Call to Action 1 Text": "Release The Names of the Officers Involved\nPolice Chief Paul W. Neudigate",
     "Call to Action 1 Link": "(757) 385-4141",
@@ -203,9 +248,15 @@
     ],
     "dob": "8/10/1995",
     "dod": "3/18/2018",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1Mi6m6vtw8RCKXwJiZJUdtUbRj9kC390k/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTDGGRwztp4Mjb6k_rX8Ohs8KjFS8LggMkU6G1UI8DEujWhghuGkUvwidrndDdZCJWJEaCxuL1ND0X_CtwBarKwpEHzhA=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/18khXLPjsobFvLnVwH92fvNt4vXaNX0wx/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQTBRgeUzwjA4TAt1npujRwknVnYQ0aAmnIksYp7ClME1Vci91rbceCxQ7pnd-60huQqjFMql5XMinoWoUZbRDuqZ5j=s1600"
+      }
     ],
     "Call to Action 1 Text": "Support IAMSAC Foundation",
     "Call to Action 1 Link": "https://www.iamsacfoundation.com/",
@@ -227,9 +278,15 @@
     ],
     "dob": "10/18/1995",
     "dod": "3/6/2015",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1NYGGOy81JNpZXsgQIzqY_bZtxIK6f7KU/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTHvblNpPHlNRTbiFqfQ2OTpL8krv8GhO4RHq1Maf6di8q6Z5F-bgbUMsJj-hpRWGWJ3NXuUuJYHG9uPm6BSnSkuuds=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1Vr44yh6q0abmyPTscEf8lKvsrvxOypAZ/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTt_hB8MEtJyuPittZfigSglSvY2x6gR8rEGNvjFQl2aSLKgU98pmtJLNg8xh9OpysKk4g-fKV2Bh7vTy6WaeMzmZFlDA=s1600"
+      }
     ],
     "Call to Action 1 Text": "Attorney General Josh Kaul",
     "Call to Action 1 Link": "(608) 266-1221",
@@ -251,9 +308,15 @@
     ],
     "dob": "5/20/1996",
     "dod": "8/9/2014",
-    "Thumbnail Photo": "https://drive.google.com/file/d/16AiFLRsho3v-5SHvhezfbb_Ir9gIOqEh/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYRrjaWZlHAYH5xYzHfJsi76lmSzRxfdtlCXeFwwsUVM6zM4m0qnV8l5VFS89VGEw98woQ7i-0O515H0oHCiPB2sk_OnkA=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1guh16Vk_R0IT5M99HtqyU7CI5bs1oLlL/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYRTBfLmfLo6aNgkKZbZ8uUk1_hweh3xJsHbXUDJdCj9YStS0IXzZcbD3UvkfzDFzA5OTlkfhtQ2g--kcFF_4_f8r4ww=s1600"
+      }
     ],
     "Call to Action 1 Text": "Press charges against Darren Wilson for the murder of Michael Brown\n\nState Prosecutor Wesley Bell",
     "Call to Action 1 Link": "314-615-2600",
@@ -273,9 +336,15 @@
     "Voicemails": [],
     "dob": "9/20/1997",
     "dod": "6/5/2012",
-    "Thumbnail Photo": "https://drive.google.com/file/d/16GYgFd7ZqTyU1YFVOrZlTzzTZG3X2FoQ/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYRA6bQyAbujMsX1uepcSkUZeBXZtZ6VGrkfeldpQ0Av2OyP_JAGGh-dzhD-II4mBayOv5wM9M8BvS-MPs3PgqpqsVVJ2A=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1Y2hX8weMUhfXMymwZbb12KGxdoxroiSD/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYS2xggAe3Yzo9OECJz5LTO4jb5rl0-ZVk9BpqnhW-7Q4LiO32SVs9UQQjWEf_HJbHz5_MNzugr1bmC6tK6nQzirSMmw=s2560"
+      }
     ],
     "Call to Action 1 Text": "Petition to Fire Joshua Cabillo",
     "Call to Action 1 Link": "https://www.change.org/p/san-francisco-police-commission-hold-the-sfpd-accountable-fire-joshua-cabillo-badge-1014",
@@ -297,9 +366,15 @@
     ],
     "dob": "4/24/1998",
     "dod": "6/2/2020",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1wIHjgtPnwTFtW_AhwE20V42pQiDCBNsy/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYRoMs9q5nzbMRmE7m7D4RXANSOqY_nFsf2K_2x26tGIfz7RmxulTT8h2R1nbJzDtgfUPAZuUbQ1ugWNwungcBGibDIDsg=s2560"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1Y6TlHL9tctsUHxrwbNNOZhOLiU7YvEkE/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYS74mqhx7BdHxVkSevp1Mfic7vI6_T7-P5DXST_ItDKvuyyjq-ekWV9HnmA2vPyR0KSAfLOovi1N0nmyPO3UTFZ4VDIyg=s1600"
+      }
     ],
     "Call to Action 1 Text": "DA: Krishna A. Abrams",
     "Call to Action 1 Link": "(707) 784-6800",
@@ -321,9 +396,15 @@
     ],
     "dob": "6/12/2002",
     "dod": "1/9/2021",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1u2zR85V5gN8QT4wciIzbhYZL--lwmHjD/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYRmk9RbcNB9gXvw_mvYeNixrdsZoStcN615hpUmS5AzeKYcxameGEHD1Evs2Tt6zyZGUesdi6FHgF7OvCcUVciU8_Gl=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/1oqVer_xSJxpVC-Aj5-E7z-NyB_DdHIUK/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQLmxmCI8Uu5l0E_J3j0C63Scn5StRGZ1x5PPVqSREDHfBFQOc7VvBrk_4U6w0Dl-CP6VXdR-kPgp5yiGICjDMytiahKQ=s1600"
+      }
     ],
     "Call to Action 1 Text": "Attorney General Mark Herring to assign a special prosecutor to this case",
     "Call to Action 1 Link": "804-786-2071",
@@ -345,9 +426,15 @@
     ],
     "dob": "7/13/2002",
     "dod": "11/8/2020",
-    "Thumbnail Photo": "https://drive.google.com/file/d/1_AA8LwP8oFWp-yadS2W-UwTXkueHLaM9/view?usp=drive_link",
+    "Thumbnail Photo": [
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYTALRwOshyPYan8Dl9Jpmx8SaYYx8uAuWS2QkMylAlK-WRpA1HMhvBvcgm61qSrvMqJCb9ZhoIzFVYaRY_clCSdQ-Nfbg=s1600"
+      }
+    ],
     "Hero Photo": [
-      "https://drive.google.com/file/d/17QiM3gsYo-AAhpaPXsR2k_lwa0V6e9XK/view?usp=drive_link"
+      {
+        "url": "https://lh3.googleusercontent.com/drive-viewer/AEYmBYQrJbHpKpCkRZI7y22DQIMgXEirlDz2nNAuuJDGBlacZkkh-hMH_BY2CQXGsxQmnPRsyoxXxtTgIdgsCFdjS4YVqrNS=s1600"
+      }
     ],
     "Call to Action 1 Text": "Sign the Petition",
     "Call to Action 1 Link": "https://fclm.org/",
