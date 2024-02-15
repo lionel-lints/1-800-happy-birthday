@@ -21,15 +21,17 @@ const StyledHomePage = styled.div`
 const serializeData = res => {
   let result = {};
 
-  // if (res && res.length) {
-  //   res.forEach(item => {
-  //     if (item && item.id && item.fields) {
-  //       result[item.id] = item.fields;
-  //     }
-  //   });
-  // } else {
+  if (res && res.length) {
+    res.forEach(item => {
+      if (item && item.id && item.fields) {
+        result[item.id] = item.fields;
+      }
+    });
+  }
+  // because airtable keeps changing thier api, we are just
+  // overwriting it until the rebuild is complete. This way either
+  // success or failure of airtable won't affect the loading of the page.
   result = data;
-  // }
 
   return result;
 };
@@ -52,15 +54,12 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    // airtable keeps changing their API, so we are just hardcoding
-    // the data into the site until the rebuild is handled.
-    // const getData = async () => {
-    //   const response = await AirtableClient.fetchData();
-    //   setData(serializeData(response));
-    // };
+    const getData = async () => {
+      const response = await AirtableClient.fetchData();
+      setData(serializeData(response));
+    };
 
-    // getData();
-    serializeData();
+    getData();
   }, []);
 
   useEffect(() => {
