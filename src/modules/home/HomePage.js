@@ -150,6 +150,7 @@ const HomePage = () => {
           src={activeVoicemail}
           ref={player}
           onEnd={endPlay}
+          html5
         />
       ) : null}
     </StyledHomePage>
